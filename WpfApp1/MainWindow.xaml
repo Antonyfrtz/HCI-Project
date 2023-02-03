@@ -56,7 +56,7 @@
                 </StackPanel>
             </TabItem>
         </TabControl>
-        <Button x:Name="InfoButton" BorderBrush="{x:Null}"  Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Padding="0" Background="Transparent">
+        <Button x:Name="InfoButton" Click="ShowInfo"  BorderBrush="{x:Null}"  Margin="10" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Padding="0" Background="Transparent">
             <materialDesign:PackIcon Kind="Information" Foreground="White" Width="20" Height="20" />
         </Button>
     </Grid>

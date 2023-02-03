@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BespokeFusion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,10 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
         bool LisChecked = false;
         bool SUisChecked = false;
+
         private void ShowUnShowPassword(object sender, RoutedEventArgs e) ///This shows or hides the password from the textbox taken from the passwordbox when the eye-button is pressed.
         {
             string txtbx = ((Button)sender).Name;
@@ -68,7 +71,27 @@ namespace WpfApp1
                     SUisChecked = !SUisChecked;
                     break;
             }
+        }
 
+        private void ShowInfo(object sender, RoutedEventArgs e)
+        {
+            CustomMaterialMessageBox msg = new CustomMaterialMessageBox
+            {
+                TxtMessage = { Text = "You find yourself in the lobby of Zeus's palace. \n" +
+                "You'll need to Login as an existing user (Employee or Tenant). \n" + 
+                "If you haven't created your account you will need to fill your username and password. \n" +
+                "Please do not forget to choose your role and agree to Terms of Use and Conditions. \n", Foreground = Brushes.Black },
+                TxtTitle = { Text = "Information", Foreground = Brushes.White },
+                BtnOk = { Content = "Okay", Background = Brushes.DarkSlateGray },
+                BtnCancel = {Content = "Cancel" , Visibility=Visibility.Collapsed },
+                MainContentControl = { Background = Brushes.Bisque },
+                TitleBackgroundPanel = { Background = Brushes.Goldenrod },
+
+                BorderBrush = Brushes.Goldenrod
+            };
+
+            msg.Show();
+            MessageBoxResult results = msg.Result;
         }
     }
 }
