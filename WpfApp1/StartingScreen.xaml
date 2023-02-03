@@ -5,14 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="StartingScreen" Height="450" Width="800" >
+        Title="Welcome" Height="450" Width="800" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" Icon="/favicon.ico">
 
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Zeus'sPalacel.png"/>
         </Grid.Background>
-        <Grid Width="250" Background="Bisque" Opacity="0.60" Margin="275,147,275,222"/>
-        <TextBox HorizontalAlignment="Left" Margin="287,165,0,0" Text="Welcome to Zeus's Palace" TextWrapping="Wrap"  Width="250" Height="65" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" FontFamily="Times New Roman"/>
-        <Button Content="Enter" HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Width="80" Height="36"/>
+        <Grid Width="250" Background="Bisque" Opacity="0.60" Margin="284,140,266,229"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="250" Margin="284,0,0,0">
+            <TextBlock Text="Welcome to Zeus's Palace" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="22" FontWeight="Bold" FontStyle="Italic"/>
+            <Button Content="Enter" Click="Button_Click" Width="92" Margin="0,45,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="30">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#9B59B6"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="#8E44AD"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="MinWidth" Value="80"/>
+                        <Setter Property="MinHeight" Value="40"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#8E44AD"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#7B1FA2"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
