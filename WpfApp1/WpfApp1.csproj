@@ -9,8 +9,10 @@
   <ItemGroup>
     <None Remove="favicon.ico" />
     <None Remove="Lobby1.jpg" />
+    <None Remove="room.png" />
     <None Remove="Zeus%27sPalacel.png" />
     <None Remove="zeus.png" />
+    <None Remove="zeus_User.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,14 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="favicon.ico" />
     <Resource Include="Lobby1.jpg" />
+    <Resource Include="room.png" />
     <Resource Include="Zeus'sPalacel.png" />
     <Resource Include="zeus.png" />
+    <Resource Include="zeus_User.png" />
   </ItemGroup>
 
 </Project>

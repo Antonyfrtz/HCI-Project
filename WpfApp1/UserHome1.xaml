@@ -1,0 +1,116 @@
+﻿<Window x:Class="WpfApp1.UserHome1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Title="User Homepage" Height="600" Width="1080" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#FFDEDEDE">
+        <Grid x:Name="GridMain" HorizontalAlignment="Center" VerticalAlignment="Center" Height="584" Width="1080">
+            <Image Source="/room.png" Height="366" Margin="104,94,394,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
+            <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="822,94,0,0" FontFamily="Roboto"/>
+            <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="700,140,0,0" FontFamily="Roboto"/>
+            <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="700,200,0,0" FontFamily="Roboto" />
+            <TextBlock Text="You can use the Trojan Horse &#x0a;to move around in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="700,225,0,0" FontFamily="Roboto" />
+            <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="700,290,0,0" FontFamily="Roboto" />
+            <TextBlock Text="Room Type: Classic, Guest room, 1 King, Courtyard view" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="104,485,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
+            <TextBlock Text="Room Number: 303 (third floor)" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="104,520,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
+            <materialDesign:PackIcon Kind="BedKing" Width="35" Height="40" Margin="651,478,0,0" Foreground="Black"/>
+            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1020,140,0,0" Foreground="Black"/>
+            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1020,165,0,0" Foreground="Black"/>
+            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1020,201,0,0" Foreground="Black"/>
+        </Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFeed383"/>
+            </Grid.Effect>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="0">
+                    <StackPanel Width="150">
+                        <Button Content="Settings"/>
+                        <Button Content="Account"/>
+                        <Button Content="Help"/>
+                        <Separator/>
+                        <Button Content="Logout"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <TextBlock Text="Zeus's Palace" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" Margin="0,10,0,0" FontFamily="Palace Script MT" FontWeight="Bold" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
+            <Image Source="/cleanmeandros.png" Margin="70,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="65" />
+            <Image Source="/cleanmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="663,0,0,0" Height="65"/>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#2e3546">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
+            </Grid.Effect>
+            <StackPanel>
+                <Grid Height="115" Background="#c6934b" RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Button x:Name="ButtonOpenMenu" Height="60" Width="60" Margin="8,4,8,8" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
+                    </Button>
+                    <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
+                    </Button>
+                    <Image Source="/zeus_User.png" VerticalAlignment="Bottom" Width="50" Height="50"/>
+                </Grid>
+                <ListView x:Name="ListViewMenu" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListViewItem x:Name="ItemHome" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Pool" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="Pool" VerticalAlignment="Center" Margin="20 10" Foreground="#e0ddd5"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCreate" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="HorseVariantFast" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="Trojan Horse" VerticalAlignment="Center" Margin="20 10" Foreground="#e0ddd5"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FoodForkDrink" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="Restaurant" VerticalAlignment="Center"  Margin="20 10" Foreground="#e0ddd5"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="NPC" VerticalAlignment="Center"  Margin="20 10" Foreground="#e0ddd5"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" Icon="/favicon.ico">
+        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Lobby1.jpg"/>
@@ -32,7 +32,7 @@
                             <materialDesign:PackIcon Kind="Eye" x:Name ="eyeIcon" Foreground="Black" Width="20" Height="20" />
                         </Button>
                     </Grid>
-                    <Button Content="Login" Margin="0,30,0,0"/>
+                    <Button Content="Login" Click="Login_Click" Margin="0,30,0,0"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Sign Up">

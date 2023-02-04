@@ -27,6 +27,13 @@ namespace WpfApp1
             InitializeComponent();
         }
 
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            UserHome1 userHome1 = new UserHome1();
+            userHome1.Show();
+            this.Close();
+        }
+
         bool LisChecked = false;
         bool SUisChecked = false;
 

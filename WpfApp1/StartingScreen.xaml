@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" Icon="/favicon.ico">
+        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
 
     <Grid>
         <Grid.Background>
