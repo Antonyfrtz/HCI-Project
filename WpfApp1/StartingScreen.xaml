@@ -17,7 +17,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Zeus'sPalacel.png"/>
+            <ImageBrush ImageSource="Assets/Zeus'sPalacel.png"/>
         </Grid.Background>
         <Grid Width="250" Background="Bisque" Opacity="0.60" Margin="284,140,266,229"/>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="250" Margin="284,0,0,0">

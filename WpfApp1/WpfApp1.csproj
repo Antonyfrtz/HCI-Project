@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <None Remove="Assets\blackmeandros.png" />
+    <None Remove="Assets\Lobby1.jpg" />
+    <None Remove="Assets\room.png" />
+    <None Remove="Assets\Zeus%27sPalacel.png" />
+    <None Remove="Assets\zeus.png" />
+    <None Remove="Assets\zeus_User.png" />
     <None Remove="favicon.ico" />
-    <None Remove="Lobby1.jpg" />
-    <None Remove="room.png" />
-    <None Remove="Zeus%27sPalacel.png" />
-    <None Remove="zeus.png" />
-    <None Remove="zeus_User.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,12 +23,12 @@
 
   <ItemGroup>
     <Resource Include="Assets\blackmeandros.png" />
+    <Resource Include="Assets\Lobby1.jpg" />
+    <Resource Include="Assets\room.png" />
+    <Resource Include="Assets\Zeus'sPalacel.png" />
+    <Resource Include="Assets\zeus.png" />
+    <Resource Include="Assets\zeus_User.png" />
     <Resource Include="favicon.ico" />
-    <Resource Include="Lobby1.jpg" />
-    <Resource Include="room.png" />
-    <Resource Include="Zeus'sPalacel.png" />
-    <Resource Include="zeus.png" />
-    <Resource Include="zeus_User.png" />
   </ItemGroup>
 
 </Project>

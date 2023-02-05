@@ -16,13 +16,13 @@
         FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="449" WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Lobby1.jpg"/>
+            <ImageBrush ImageSource="/Assets/Lobby1.jpg"/>
         </Grid.Background>
         <Grid  Height="450" Width="400" Background="Bisque" Opacity="0.75"></Grid>
         <TabControl Width="400" Height="450">
             <TabItem Header="Login">
                 <StackPanel Margin="20">
-                    <Image Source="/zeus.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
+                    <Image Source="/Assets/zeus.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
                     <TextBlock Text="Login" Margin="0,10,0,0" FontSize="20" HorizontalAlignment="Center"/>
                     <TextBox x:Name="UsernameTextBox" Margin="0,10,0,0" materialDesign:HintAssist.Hint="Username"  materialDesign:HintAssist.IsFloating="True" FontSize="14"/>
                     <Grid>
@@ -37,7 +37,7 @@
             </TabItem>
             <TabItem Header="Sign Up">
                 <StackPanel Margin="20">
-                    <Image Source="/zeus.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
+                    <Image Source="/Assets/zeus.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
                     <TextBlock Text="Sign Up" Margin="0,10,0,0" FontSize="20" HorizontalAlignment="Center"/>
                     <TextBox x:Name="SignUpUsernameTextBox" Margin="0,10,0,0" materialDesign:HintAssist.Hint="Username"  materialDesign:HintAssist.IsFloating="True" FontSize="14"/>
                     <Grid>

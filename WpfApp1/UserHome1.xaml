@@ -29,24 +29,8 @@
         </EventTrigger>
     </Window.Triggers>
     <Grid Background="#FFDEDEDE">
-        <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="639" Width="1210" Margin="70,65,0,0">
-            <Image Source="/room.png" Height="366" Margin="34,65,465,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
-            <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="916,29,0,0" FontFamily="Roboto"/>
-            <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,87,0,0" FontFamily="Roboto"/>
-            <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,169,0,0" FontFamily="Roboto" />
-            <TextBlock Text="You can use the Trojan Horse &#x0a;to navigate in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,198,0,0" FontFamily="Roboto" />
-            <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,271,0,0" FontFamily="Roboto" />
-            <TextBlock Text="Room Type: Classic, Guest room, 1 King, Courtyard view" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,447,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
-            <TextBlock Text="Room Number: 303 (third floor)" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,478,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
-            <materialDesign:PackIcon Kind="BedKing" Width="36" Height="40" Margin="0,440,0,0" Foreground="Black" HorizontalAlignment="Center"/>
-            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,87,0,0" Foreground="Black"/>
-            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,111,0,0" Foreground="Black"/>
-            <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,171,0,0" Foreground="Black"/>
-            <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
-            <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
-            <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>
-            <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
-            <TextBlock Text="Welcome, username." FontSize="24" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="34,22,0,0" FontFamily="Roboto" FontStyle="Italic"/>
+        <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="644" Width="1210" Margin="70,60,0,0">
+            
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
             <Grid.Effect>
@@ -57,13 +41,15 @@
                     <StackPanel Width="150">
                         <Button Content="Settings"/>
                         <Button Content="Account"/>
-                        <Button Content="Help"/>
                         <Separator/>
-                        <Button Content="Logout"/>
+                        <Button Content="Logout" Click="Logout_Click"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
             <TextBlock Text="Zeus's Palace" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" Margin="0,10,0,0" FontFamily="Palace Script MT" FontWeight="Bold" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
+            <Button x:Name="InfoBtn" Click="InfoBtn_Click" Height="60" Width="60" Margin="1181,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{x:Null}" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Information" Width="25" Height="25" Foreground="White"/>
+            </Button>
         </Grid>
         <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#2e3546">
             <Grid.Effect>
@@ -85,31 +71,40 @@
                     <Button x:Name="ButtonCloseMenu" Visibility="Collapsed" Height="60" Width="60" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Click="ButtonCloseMenu_Click">
                         <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
-                    <Image Source="/zeus_User.png" VerticalAlignment="Bottom" Width="50" Height="50"/>
+                    <Image Source="/Assets/zeus_User.png" VerticalAlignment="Bottom" Width="50" Height="50"/>
                 </Grid>
                 <ListView x:Name="ListViewMenu" Foreground="Black" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                     <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
                     <ListViewItem x:Name="ItemHome" Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="Home" VerticalAlignment="Center" Margin="20 10" Foreground="#e0ddd5"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemPool" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pool" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
                             <TextBlock Text="Pool" VerticalAlignment="Center" Margin="20 10" Foreground="#e0ddd5"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemCreate" Height="60">
+                    <ListViewItem x:Name="ItemTrojanHorse" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="HorseVariantFast" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
-                            <TextBlock Text="Trojan Horse" VerticalAlignment="Center" Margin="20 10" Foreground="#e0ddd5"/>
+                            <TextBlock Text="Trojan Horse" VerticalAlignment="Center"  Margin="20 10" Foreground="#e0ddd5"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="ItemRestaurant" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="FoodForkDrink" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
                             <TextBlock Text="Restaurant" VerticalAlignment="Center"  Margin="20 10" Foreground="#e0ddd5"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Height="60">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Message" Height="25" Width="25" Margin="10" Foreground="#e0ddd5"/>
-                            <TextBlock Text="NPC" VerticalAlignment="Center"  Margin="20 10" Foreground="#e0ddd5"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
