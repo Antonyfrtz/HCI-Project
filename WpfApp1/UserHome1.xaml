@@ -28,9 +28,10 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
+
     <Grid Background="#FFDEDEDE">
         <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="644" Width="1210" Margin="70,60,0,0">
-            
+
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
             <Grid.Effect>
