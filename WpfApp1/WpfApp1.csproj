@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\blackmeandros.png" />
     <None Remove="favicon.ico" />
     <None Remove="Lobby1.jpg" />
     <None Remove="room.png" />
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\blackmeandros.png" />
     <Resource Include="favicon.ico" />
     <Resource Include="Lobby1.jpg" />
     <Resource Include="room.png" />
