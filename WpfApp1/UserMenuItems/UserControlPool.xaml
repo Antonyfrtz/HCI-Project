@@ -3,10 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1.UserMenuItems"
+             xmlns:local="clr-namespace:WpfApp1.UserMenuItems" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Slider">
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Value, ElementName=TemperatureSlider}" Value="0">
+                    <Setter Property="Background" Value="Blue"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value, ElementName=TemperatureSlider}" Value="100">
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value, ElementName=TemperatureSlider}" Value="50">
+                    <Setter Property="Background" Value="Yellow"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        
+        <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="321,241,0,0"/>
+        <Button x:Name="ToggleLights" BorderBrush="{x:Null}"  Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Padding="0" Background="Transparent">
+            <materialDesign:PackIcon Kind="Eye" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" />
+        </Button>
+        <TextBlock Text="Alarm" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="321,211,0,0"/>
+        <Button x:Name="ToggleAlarm" BorderBrush="{x:Null}"  Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Padding="0" Background="Transparent">
+            <materialDesign:PackIcon Kind="AlarmLightOff" x:Name ="AlarmIcon" Foreground="Black" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Button>
+        <TextBlock Text="Temperature" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="321,345,0,0"/>
+        <Slider x:Name="TemperatureSlider" Minimum="0" Maximum="100" Margin="420,354,293,78" RenderTransformOrigin="0.5,0.5" >
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-91.262"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
     </Grid>
 </UserControl>
