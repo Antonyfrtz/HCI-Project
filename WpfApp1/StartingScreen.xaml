@@ -19,43 +19,23 @@
         <Grid.Background>
             <ImageBrush ImageSource="Assets/Zeus'sPalacel.png"/>
         </Grid.Background>
-        <Grid Width="250" Background="Bisque" Opacity="0.60" Margin="284,140,266,229"/>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Height="120" Width="250" Margin="284,0,0,0">
-            <TextBlock Text="Welcome to Zeus's Palace" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="22" FontWeight="Bold" FontStyle="Italic"/>
-            <Button Content="Enter" Click="Button_Click" Width="92" Margin="0,45,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="30">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Background" Value="#9B59B6"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="#8E44AD"/>
-                        <Setter Property="BorderThickness" Value="2"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="FontSize" Value="16"/>
-                        <Setter Property="Padding" Value="10,5"/>
-                        <Setter Property="MinWidth" Value="80"/>
-                        <Setter Property="MinHeight" Value="40"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#8E44AD"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#7B1FA2"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </StackPanel>
+        <materialDesign:Card
+                Padding="8"
+                Opacity="0.7"
+                Background= "#000000"
+                Margin="0,111,0,93">
+        </materialDesign:Card>
+        <Button
+            Width="150"
+            Content="Enter"
+            Margin="0,90,0,0"
+            Click="Button_Click"
+            BorderBrush="#c6934b"
+            Foreground="#c6934b"
+            materialDesign:ButtonAssist.CornerRadius="20"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Style="{StaticResource MaterialDesignPaperLightButton}"
+            ToolTip="You will be navigated to the Login page" />
+        <TextBlock Text="Palace Of Zeus" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="64" Margin="0,149,0,0" FontFamily="Palace Script MT" FontWeight="Bold" Foreground="AliceBlue" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
     </Grid>
 </Window>

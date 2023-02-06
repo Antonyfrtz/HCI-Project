@@ -7,17 +7,17 @@
              mc:Ignorable="d">
     <Grid>
         <Image Source="/Assets/room.png" Height="366" Margin="34,65,465,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
-        <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="916,29,0,0" FontFamily="Roboto"/>
-        <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,87,0,0" FontFamily="Roboto"/>
-        <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,169,0,0" FontFamily="Roboto" />
-        <TextBlock Text="You can use the Trojan Horse &#x0a;to navigate in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,198,0,0" FontFamily="Roboto" />
-        <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,271,0,0" FontFamily="Roboto" />
+        <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="916,83,0,0" FontFamily="Roboto"/>
+        <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,141,0,0" FontFamily="Roboto"/>
+        <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,223,0,0" FontFamily="Roboto" />
+        <TextBlock Text="You can use the Trojan Horse &#x0a;to navigate in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,252,0,0" FontFamily="Roboto" />
+        <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,325,0,0" FontFamily="Roboto" />
         <TextBlock Text="Room Type: Classic, Guest room, 1 King, Courtyard view" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,447,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
         <TextBlock Text="Room Number: 303 (third floor)" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,478,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
         <materialDesign:PackIcon Kind="BedKing" Width="36" Height="40" Margin="0,440,0,0" Foreground="Black" HorizontalAlignment="Center"/>
-        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,87,0,0" Foreground="Black"/>
-        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,111,0,0" Foreground="Black"/>
-        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,171,0,0" Foreground="Black"/>
+        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,141,0,0" Foreground="Black"/>
+        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,165,0,0" Foreground="Black"/>
+        <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,225,0,0" Foreground="Black"/>
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>
