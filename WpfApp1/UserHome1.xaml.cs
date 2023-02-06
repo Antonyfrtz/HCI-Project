@@ -1,18 +1,9 @@
 ﻿using BespokeFusion;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp1.UserMenuItems;
 
 namespace WpfApp1
@@ -25,9 +16,9 @@ namespace WpfApp1
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
-            UserControl main = new UserControlHome();
-            ListViewMenu.SelectedItem = ItemHome;
-            GridMain.Children.Add(main);
+            //UserControl main = new UserControlHome();
+            //ListViewMenu.SelectedItem = ItemHome;
+            //GridMain.Children.Add(main);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -98,5 +89,75 @@ namespace WpfApp1
             this.Close();
         }
 
-    }
+        private void MoveUp_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MoveDown_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MoveLeft_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MoveRight_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Park_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Navigation_Click(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "html\\map_route.html"))
+            {
+                StreamReader objReader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "html\\map_route.html");
+                string line = "";
+                line = objReader.ReadToEnd();
+                objReader.Close();
+                line = line.Replace("[origin]", "35.667595, 139.776457");
+                line = line.Replace("[destination]", "35.666156, 139.776646");
+                StreamWriter page = File.CreateText(AppDomain.CurrentDomain.BaseDirectory + "html\\created_map.html");
+                page.Write(line);
+                page.Close();
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\created_map.html");
+                webBrowser1.Source = uri;
+            }
+        }
+
+        private void OpenDoor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HalfOpenDoor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CloseDoor_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ladder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        String sURL = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\html\\mapview.html";
+        private void DockPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri(sURL);
+            webBrowser1.Source = uri;
+
+        }
+}
 }

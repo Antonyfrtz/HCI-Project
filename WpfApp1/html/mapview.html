@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 100%; /* The width is the full width of the web page */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- The div element for the map -->
+    <div id="map"></div>
+    <!-- Load the API from the specified URL
+         * The async attribute allows the browser to render the page while the API loads-->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKiBNeQf9WtuLK-6SatZIyhOiF5uVqtYQ&callback=initMap">
+    </script>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of the center of the map
+        var center = { lat: 35.667595, lng: 139.776457};
+        // The map, centered at the specified location
+        var map = new google.maps.Map(
+            document.getElementById('map'), {
+                zoom: 20,
+                minZoom: 16,
+                center: center,
+                fullscreenControl: false,
+                styles: [ // turn off all labels
+                    {
+                        featureType: "all",
+                        elementType: "labels",
+                        stylers: [
+                            { visibility: "off" }
+                        ]
+                    }
+                ]
+        });
+        // The location of the Palace
+        var position = new google.maps.LatLng(35.667262, 139.777619);
+        var palace_marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: 'Palace of Zeus',
+        });
+        var palace =
+            '<div>' +
+            '<p>Palace of Zeus Courtyard</p>' +
+            '<img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/ancient-greek-courtyard-gerald-blaine.jpg" width="150" height="100">' +
+            '</div>';
+        var p_label = new google.maps.InfoWindow({
+            content: palace
+        });
+        palace_marker.addListener('click', function () {
+            p_label.open(map, palace_marker);
+        });
+        // The location of the horse
+        var position = new google.maps.LatLng(35.667595, 139.776457);
+        var horse_marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: {
+                url: 'https://static.thenounproject.com/png/463871-200.png',
+                scaledSize: new google.maps.Size(32, 32)
+            }
+        });
+        var h_label = new google.maps.InfoWindow({
+            content: 'Your Trojan Horse'
+        });
+        horse_marker.addListener('click', function () {
+            h_label.open(map, horse_marker);
+        });
+        // The location of the garden
+        var position = new google.maps.LatLng(35.666156, 139.776646);
+        var garden_marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: 'Gardens',
+        });
+        // Content of Label
+        var gardens =
+            '<div>' +
+                '<p>Gardens Of Olympus</p>'+
+                '<img src="https://www.usnews.com/dims4/USNEWS/3cc7676/17177859217/thumbnail/256x256/quality/85/?url=https%3A%2F%2Fmedia.beam.usnews.com%2Fe8%2Fe04da21560ee2dd2db580da410207b%2Fedmond_low.jpg" width="150" height="100">' +
+            '</div>';
+        var garden_label = new google.maps.InfoWindow({
+            content: gardens
+        });
+        garden_marker.addListener('click', function () {
+            garden_label.open(map, garden_marker);
+        });
+        }
+    </script>
+</body>
+</html>

@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Title="User Homepage" Height="720" Width="1280" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
+        mc:Ignorable="d" Title="User Homepage" Height="720" Width="1280" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/favicon.ico"
+        xmlns:webView2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf">
+
+
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -31,7 +34,43 @@
 
     <Grid Background="#FFDEDEDE">
         <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="644" Width="1210" Margin="70,60,0,0">
+            <Grid Margin="50,56,588,104">
 
+
+            </Grid>
+            <DockPanel Loaded="DockPanel_Loaded" Name="panel1">
+                <Grid DockPanel.Dock="Left" Name="datos" Width="386" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="139"/>
+                        <ColumnDefinition Width="261"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                            <GradientStop Color="#FF0D2462" Offset="0" />
+                            <GradientStop Color="#FF4A95BA" Offset="1" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+
+                    <Button x:Name="BtnUp" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="113" Height="78" Padding="0" Margin="0,200,148,0" Grid.Column="1" Background="Transparent">
+                        <materialDesign:PackIcon Kind="ArrowUpDropCircle" Foreground="White" Width="60" Height="60" />
+                    </Button>
+                    <Button x:Name="BtnDown" Click="MoveDown_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="113" Height="78" Padding="0" Margin="0,366,148,0" Grid.Column="1" Background="Transparent">
+                        <materialDesign:PackIcon Kind="ArrowDownDropCircle" Foreground="White" Width="60" Height="60" />
+                    </Button>
+                    <Button x:Name="BtnLeft" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="114" Height="88" Padding="0" Margin="20,0,0,0" Background="Transparent">
+                        <materialDesign:PackIcon Kind="ArrowLeftDropCircle" Foreground="White" Width="60" Height="60" />
+                    </Button>
+                    <Button x:Name="BtnRight" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="112" Height="88" Padding="0" Margin="118,0,0,0" Grid.Column="1" Background="Transparent">
+                        <materialDesign:PackIcon Kind="ArrowRightDropCircle" Foreground="White" Width="60" Height="60" />
+                    </Button>
+
+                    <Button x:Name="BtnPark" Click="Park_Click" Background="#1269C7" Content="Park" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="111" Height="62" Padding="0" Margin="0,25,239,0" Grid.ColumnSpan="2"/>
+                    <materialDesign:PackIcon Kind="Parking" Visibility="Visible" x:Name="ParkIcon" Foreground="AliceBlue" Width="20" Height="20" Margin="128,46,252,578" Grid.ColumnSpan="2" />
+                    <Button x:Name="BtnNavigation" Click="Navigation_Click" Background="#1269C7" Content="Navigation" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="111" Height="62" Padding="0" Margin="0,25,60,0" Grid.Column="1"/>
+
+                </Grid>
+                <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" />
+            </DockPanel>
 
 
         </Grid>

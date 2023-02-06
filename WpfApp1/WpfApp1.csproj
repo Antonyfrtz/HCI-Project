@@ -16,11 +16,15 @@
     <None Remove="Assets\zeus.png" />
     <None Remove="Assets\zeus_User.png" />
     <None Remove="favicon.ico" />
+    <None Remove="html\zeus.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Api.CommonProtos" Version="2.7.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
     <PackageReference Include="MaterialMessageBox" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +37,18 @@
     <Resource Include="Assets\zeus.png" />
     <Resource Include="Assets\zeus_User.png" />
     <Resource Include="favicon.ico" />
+    <Resource Include="html\zeus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="html\mapview.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="html\map_route.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
