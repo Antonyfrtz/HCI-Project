@@ -13,6 +13,7 @@
             right: 0;
         }
     </style>
+    <script src="./coords.js"></script>
 </head>
 <body>
     <!-- The div element for the map -->
@@ -23,12 +24,15 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKiBNeQf9WtuLK-6SatZIyhOiF5uVqtYQ&callback=initMap">
     </script>
     <script>
+      // read coordinates
+      var horse_marker;
+      var map;
       // Initialize and add the map
       function initMap() {
         // The location of the center of the map
-        var center = { lat: 35.667595, lng: 139.776457};
+          var center = { lat: 35.667595, lng: 139.776457};
         // The map, centered at the specified location
-        var map = new google.maps.Map(
+        map = new google.maps.Map(
             document.getElementById('map'), {
                 zoom: 20,
                 minZoom: 16,
@@ -64,7 +68,7 @@
         });
         // The location of the horse
         var position = new google.maps.LatLng(35.667595, 139.776457);
-        var horse_marker = new google.maps.Marker({
+        horse_marker = new google.maps.Marker({
             position: position,
             map: map,
             icon: {
@@ -97,6 +101,17 @@
         garden_marker.addListener('click', function () {
             garden_label.open(map, garden_marker);
         });
+        }
+        // change position of the horse
+        function changePos(position) {
+            horse_marker.setPosition(position);
+        }
+
+        function parkPos(url) {
+            horse_marker.setIcon({
+                url: url,
+                scaledSize: new google.maps.Size(32, 32)
+            });
         }
     </script>
 </body>

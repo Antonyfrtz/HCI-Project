@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="html\coords.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="html\mapview.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

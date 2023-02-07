@@ -51,28 +51,27 @@
                         </LinearGradientBrush>
                     </Grid.Background>
 
-                    <TextBlock Text="Controls" FontSize="18" FontWeight="Bold" FontStyle="Normal" Margin="130,226,190,389" Grid.ColumnSpan="2" />
-                    <Button x:Name="BtnUp" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="0,270,200,0" Grid.Column="1" Background="Transparent">
+                    <TextBlock Text="Controls" FontSize="18" FontWeight="Bold" FontStyle="Normal" Margin="5,226,176,389" Grid.Column="1" />
+                    <Button x:Name="BtnUp" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="0,271,186,0" Grid.Column="1" Background="Transparent">
                         <materialDesign:PackIcon Kind="ArrowUpDropCircle" Foreground="White" Width="60" Height="60" />
                     </Button>
-                    <Button x:Name="BtnDown" Click="MoveDown_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="0,390,200,0" Grid.Column="1" Background="Transparent">
+                    <Button x:Name="BtnDown" Click="MoveDown_Click" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="0,391,186,0" Grid.Column="1" Background="Transparent">
                         <materialDesign:PackIcon Kind="ArrowDownDropCircle" Foreground="White" Width="60" Height="60" />
                     </Button>
-                    <Button x:Name="BtnLeft" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="70,330,0,0" Background="Transparent">
+                    <Button x:Name="BtnLeft" Click="MoveLeft_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="90,330,0,0" Background="Transparent" Grid.ColumnSpan="2">
                         <materialDesign:PackIcon Kind="ArrowLeftDropCircle" Foreground="White" Width="60" Height="60" />
                     </Button>
-                    <Button x:Name="BtnRight" Click="MoveUp_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="70,330,0,0" Grid.Column="1" Background="Transparent">
+                    <Button x:Name="BtnRight" Click="MoveRight_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="60" Padding="0" Margin="80,330,0,0" Grid.Column="1" Background="Transparent">
                         <materialDesign:PackIcon Kind="ArrowRightDropCircle" Foreground="White" Width="60" Height="60" />
                     </Button>
-
-                    <Button x:Name="BtnPark" Click="Park_Click" Background="#1269C7" Content="Park" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="112" Height="62" Padding="0" Margin="0,518,244,0" Grid.ColumnSpan="2" FontFamily="Roboto" FontSize="16"/>
-                    <materialDesign:PackIcon Kind="Parking" Visibility="Visible" x:Name="ParkIcon" Foreground="AliceBlue" Width="36" Height="34" Margin="82,479,0,0" />
-                    <materialDesign:PackIcon Kind="NavigationVariant" x:Name="NavIcon" Foreground="AliceBlue" Width="44" Height="52" Margin="157,51,0,0" Grid.Column="1" />
-                    <TextBlock Text="Navigation System" FontSize="24" FontWeight="Bold" FontStyle="Normal" Margin="62,51,122,555" Grid.ColumnSpan="2"></TextBlock>
-                    <TextBlock Text="Destinations" FontSize="18" FontWeight="Bold" FontStyle="Normal" Margin="117,94,177,521" Grid.ColumnSpan="2" />
-                    <Button x:Name="BtnNavigation" Click="Navigation_Click" Background="#1269C7" Content="Gardens" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="110" Height="62" Padding="0" Margin="0,134,244,0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" FontFamily="Roboto" FontSize="16"/>
-                    <Button x:Name="BtnNavigation_Copy" Click="Navigation_Click1" Background="#1269C7" Content="Palace of Zeus" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="112" Height="62" Padding="0" Margin="0,134,104,0" Grid.Column="1" FontFamily="Roboto" FontSize="16"/>
-
+                    <Button x:Name="BtnPark" Padding="20,0,0,0" HorizontalContentAlignment="Left" Click="Park_Click" Background="#1269C7" Content="Park" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="112" Height="62" Margin="0,518,244,0" Grid.ColumnSpan="2" FontFamily="Roboto" FontSize="16"/>
+                    <materialDesign:PackIcon Kind="Parking" Visibility="Visible" x:Name="ParkIcon" Foreground="AliceBlue" Width="36" Height="34" Margin="102,532,1,78" />
+                    <materialDesign:PackIcon Kind="NavigationVariant" x:Name="NavIcon" Foreground="AliceBlue" Width="44" Height="52" Margin="157,19,60,573" Grid.Column="1" />
+                    <TextBlock Text="Navigation System" FontSize="24" FontWeight="Bold" FontStyle="Normal" Margin="80,26,104,580" Grid.ColumnSpan="2"></TextBlock>
+                    <TextBlock Text="Destinations" FontSize="18" FontWeight="Bold" FontStyle="Normal" Margin="130,88,164,527" RenderTransformOrigin="0.858,0.484" Grid.ColumnSpan="2" />
+                    <Button x:Name="BtnNavigationGardens" Click="Gardens_Click" Background="#1269C7" Content="Gardens" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="110" Height="62" Padding="0" Margin="0,134,234,0" HorizontalContentAlignment="Center" FontFamily="Roboto" FontSize="16" Grid.ColumnSpan="2"/>
+                    <Button x:Name="BtnNavigationPalaceOfZeus" Click="PalaceOfZeus_Click" Background="#1269C7" Content="Palace of Zeus" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="112" Height="62" Padding="0" Margin="0,134,105,0" Grid.Column="1" FontFamily="Roboto" FontSize="16"/>
+                    <Button x:Name="BtnCancelNav"  Click="Cancel_Click" Background="IndianRed" Content="Cancel" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="55" Height="60" Padding="0" Margin="0,134,32,0" HorizontalContentAlignment="Center" FontFamily="Roboto" FontSize="16" Grid.Column="1"/>
                     <Canvas Height="150" Margin="45,479,46,15" Grid.Column="1" Background="Transparent">
                         <Popup x:Name="popup" StaysOpen="False" Visibility="Visible" Placement="Center" PlacementTarget="{Binding ElementName=myButton}">
                             <StackPanel Orientation="Vertical" Background="LightGray">
@@ -87,7 +86,6 @@
                 </Grid>
                 <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" />
             </DockPanel>
-
 
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
