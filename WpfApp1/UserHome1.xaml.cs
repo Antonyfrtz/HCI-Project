@@ -111,10 +111,10 @@ namespace WpfApp1
 
         private void Park_Click(object sender, RoutedEventArgs e)
         {
-
+            popup.IsOpen = true;
         }
 
-        private void Navigation_Click(object sender, RoutedEventArgs e)
+        private void Navigation_Click(object sender, RoutedEventArgs e)//For Gardens
         {
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "html\\map_route.html"))
             {
@@ -132,9 +132,16 @@ namespace WpfApp1
             }
         }
 
-        private void OpenDoor_Click(object sender, RoutedEventArgs e)
+        private void Navigation_Click1(object sender, RoutedEventArgs e)//For Palace of Zeus
         {
 
+        }
+        private void OpenDoor_Click(object sender, RoutedEventArgs e)
+        {
+            //horse_maker.icon:{
+            //  url:'',
+            //scaledSize: new google.maps.Size(32, 32)
+            //}
         }
 
         private void HalfOpenDoor_Click(object sender, RoutedEventArgs e)
@@ -157,7 +164,6 @@ namespace WpfApp1
         {
             Uri uri = new Uri(sURL);
             webBrowser1.Source = uri;
-
         }
 }
 }
