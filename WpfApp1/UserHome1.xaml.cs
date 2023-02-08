@@ -150,32 +150,33 @@ namespace WpfApp1
         // String coordinates to be used for javascript calls
         private string origin = "";
         private string dest = "";
-        private void Gardens_Click(object sender, RoutedEventArgs e)//For Gardens
+        // Navigation options
+        private string gardens = "new google.maps.LatLng(35.666156, 139.776646)";
+        private string palace = "new google.maps.LatLng(35.667262, 139.777619)";
+        private void Navigate(string destination)
         {
-            // format strings for js call
             origin = "new google.maps.LatLng(" + lat.ToString() + ", " + lng.ToString() + ")";
-            dest = "new google.maps.LatLng(35.666156, 139.776646)";
+            dest = destination; // tells navigation buttons where we are navigating
+            // enable cancel button and disable parking
+            BtnCancelNav.Visibility = Visibility.Visible;
+            BtnPark.IsEnabled = false;
+            BtnPark.ToolTip = "You cannot park while navigating. Please end your navigation before parking by clicking cancel";
             if (webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\mapview.html"))
             {
                 NavMapLoading(); // if no route has been loaded yet, wait for route map to load in
             }
-            else
+            else                                    // format strings for js call
             {
-                webBrowser1.ExecuteScriptAsync("calcRoute(" + origin + "," + dest + ");"); // else just change the destination with calcroute
+                webBrowser1.ExecuteScriptAsync("calcRoute(" + origin + "," + destination + ");"); // else just change the destination with calcroute
             }
+        }
+        private void Gardens_Click(object sender, RoutedEventArgs e)//For Gardens
+        {
+            Navigate(gardens);
         }
         private void PalaceOfZeus_Click(object sender, RoutedEventArgs e)//For Palace of Zeus
         {
-            origin = "new google.maps.LatLng(" + lat.ToString() + ", " + lng.ToString() + ")";
-            dest = "new google.maps.LatLng(35.667262, 139.777619)";
-            if (webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\mapview.html"))
-            {
-                NavMapLoading();
-            }
-            else
-            {
-                webBrowser1.ExecuteScriptAsync("calcRoute(" + origin + "," + dest + ");");
-            }
+            Navigate(palace);
         }
 
         // we need to wait for map initialization (page load) before running our calcRoute script
@@ -220,6 +221,10 @@ namespace WpfApp1
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             LoadMap();
+            // re-enable parking and disable cancel button
+            BtnPark.IsEnabled = true;
+            BtnCancelNav.Visibility = Visibility.Hidden;
+            BtnPark.ToolTip = "You can access all door controls by clicking this button";
         }
 
         private void OpenDoor_Click(object sender, RoutedEventArgs e)
