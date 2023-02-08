@@ -3,6 +3,7 @@ using MaterialDesignThemes.Wpf;
 using Microsoft.Web.WebView2.Core;
 using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -135,7 +136,7 @@ namespace WpfApp1
             if (webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\map_route.html"))
             { // if we are navigating, refresh navigation
                 webBrowser1.ExecuteScriptAsync("calcRoute(" + origin + "," + dest + ");");
-            }
+            } // if we arent navigating, update horse coordinates that build the mapview element
         }
 
         private void Park_Click(object sender, RoutedEventArgs e)
@@ -156,7 +157,7 @@ namespace WpfApp1
             dest = "new google.maps.LatLng(35.666156, 139.776646)";
             if (webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\mapview.html"))
             {
-                InitializeAsync(); // if no route has been loaded yet, wait for route map to load in
+                NavMapLoading(); // if no route has been loaded yet, wait for route map to load in
             }
             else
             {
@@ -169,7 +170,7 @@ namespace WpfApp1
             dest = "new google.maps.LatLng(35.667262, 139.777619)";
             if (webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\mapview.html"))
             {
-                InitializeAsync();
+                NavMapLoading();
             }
             else
             {
@@ -177,8 +178,8 @@ namespace WpfApp1
             }
         }
 
-        // we need to wait for map initialization (page load) before running our calscript
-        private async void InitializeAsync() //starts loading content asynchronously
+        // we need to wait for map initialization (page load) before running our calcRoute script
+        private async void NavMapLoading() //starts loading content asynchronously
         {
             await webBrowser1.EnsureCoreWebView2Async(null);
             webBrowser1.CoreWebView2.DOMContentLoaded += OnWebViewDOMContentLoaded;
@@ -188,11 +189,37 @@ namespace WpfApp1
         private async void OnWebViewDOMContentLoaded(object sender, CoreWebView2DOMContentLoadedEventArgs arg)
         {
             webBrowser1.CoreWebView2.DOMContentLoaded -= OnWebViewDOMContentLoaded;
-
             webBrowser1.Focus();
-
             // now we can load destination
             await webBrowser1.ExecuteScriptAsync("calcRoute("+origin+","+dest+");");
+        }
+
+        String sURL = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\html\\mapview.html";
+        private void LoadMap()
+        {
+            // Before loading map, change the trojan horse coordinates to the latest ones by editing the html file
+            string[] lines = File.ReadAllLines(sURL);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("var lat"))
+                {
+                    lines[i] = "<script>var lat = " + lat + "; var lng = " + lng + ";</script>";
+                    break;
+                }
+            }
+            File.WriteAllLines(sURL, lines);
+            // We can now load in the desired coordinates
+            Uri uri = new Uri(sURL);
+            webBrowser1.Source = uri;
+        }
+        private void DockPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadMap();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            LoadMap();
         }
 
         private void OpenDoor_Click(object sender, RoutedEventArgs e)
@@ -213,21 +240,6 @@ namespace WpfApp1
         private void Ladder_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/n_s7CzvdlevFxOL7t7YfzvddL-uAHq2xf_Xu3Rapdw0hiyGRqP8rYFH10bVbcpiMI6QAYxo6TYz_xOtdPZZIbHIdQKwM1LtstEkEf_s')"); 
-        }
-
-        String sURL = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\html\\mapview.html";
-        private void DockPanel_Loaded(object sender, RoutedEventArgs e)
-        {
-            Uri uri = new Uri(sURL);
-            webBrowser1.Source = uri;
-        }
-
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            Uri uri = new Uri(sURL);
-            webBrowser1.Source = uri;
-            webBrowser1.ExecuteScriptAsync("changePos(" + origin + ");");
         }
     }
 }

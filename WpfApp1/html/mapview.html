@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <script>var lat = '[lat]'; var lng = '[lng]';</script> <!-- Values replaced in LoadMap -->
     <style>
         /* Set the size of the div element that contains the map */
         #map {
@@ -13,7 +14,6 @@
             right: 0;
         }
     </style>
-    <script src="./coords.js"></script>
 </head>
 <body>
     <!-- The div element for the map -->
@@ -30,7 +30,7 @@
       // Initialize and add the map
       function initMap() {
         // The location of the center of the map
-          var center = { lat: 35.667595, lng: 139.776457};
+          var center = { lat: parseFloat(lat), lng: parseFloat(lng)};
         // The map, centered at the specified location
         map = new google.maps.Map(
             document.getElementById('map'), {
@@ -67,12 +67,12 @@
             p_label.open(map, palace_marker);
         });
         // The location of the horse
-        var position = new google.maps.LatLng(35.667595, 139.776457);
+        var position = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
         horse_marker = new google.maps.Marker({
             position: position,
             map: map,
             icon: {
-                url: 'https://static.thenounproject.com/png/463871-200.png',
+                url: 'https://lh3.googleusercontent.com/Dvym3JTcDxohGT_UeDCMoyWxObOguT5l1DVvHf1rvRfoDuzXn_1AteNK9ZFJiLbcCGDJChsR98UKUp94D7A0_oChkqdtkEu44TyUIpKb',
                 scaledSize: new google.maps.Size(32, 32)
             }
         });
@@ -106,7 +106,7 @@
         function changePos(position) {
             horse_marker.setPosition(position);
         }
-
+        // change the icon of the horse to reflect ladder/door states
         function parkPos(url) {
             horse_marker.setIcon({
                 url: url,
