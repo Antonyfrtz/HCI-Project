@@ -230,21 +230,45 @@ namespace WpfApp1
         private void OpenDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/H_iRj67z5zTIKKINEIDgWQ8-ZBYC2Bx3ls_9VbY0nI6MNevv75DfBxNaeHBX2l6sjwW03BwU8ONkb7PFeu3gvCzVocVuF6jAaVY0fcwy')");
+            Button btn = (Button)sender;
+            TextBlock textBlock = (TextBlock)btn.CommandParameter;
+            string text = textBlock.Text;
+
+            // Display the text in a dialog
+            MessageBox.Show(text);
         }
 
         private void HalfOpenDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/enwRMlXNFnSYKvMZQsIjEBoSp9uHPXJ06duqN-3iSEBiRhszuYWCSE7emEjZM1F0vQQucC9b_PUYTfWfDcqIaNyyn2jgXQp8oXfF7IYU')");
+            Button btn = (Button)sender;
+            TextBlock textBlock = (TextBlock)btn.CommandParameter;
+            string text = textBlock.Text;
+
+            // Display the text in a dialog
+            MessageBox.Show(text);
         }
 
         private void CloseDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/Dvym3JTcDxohGT_UeDCMoyWxObOguT5l1DVvHf1rvRfoDuzXn_1AteNK9ZFJiLbcCGDJChsR98UKUp94D7A0_oChkqdtkEu44TyUIpKb')");
+            Button btn = (Button)sender;
+            TextBlock textBlock = (TextBlock)btn.CommandParameter;
+            string text = textBlock.Text;
+
+            // Display the text in a dialog
+            MessageBox.Show(text);
         }
 
         private void Ladder_Click(object sender, RoutedEventArgs e)
         {
-            webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/n_s7CzvdlevFxOL7t7YfzvddL-uAHq2xf_Xu3Rapdw0hiyGRqP8rYFH10bVbcpiMI6QAYxo6TYz_xOtdPZZIbHIdQKwM1LtstEkEf_s')"); 
+            webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/n_s7CzvdlevFxOL7t7YfzvddL-uAHq2xf_Xu3Rapdw0hiyGRqP8rYFH10bVbcpiMI6QAYxo6TYz_xOtdPZZIbHIdQKwM1LtstEkEf_s')");
+            Button btn = (Button)sender;
+            TextBlock textBlock = (TextBlock)btn.CommandParameter;
+            string text = textBlock.Text;
+
+            // Display the text in a dialog
+            MessageBox.Show(text);
         }
     }
 }

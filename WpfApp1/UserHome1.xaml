@@ -71,19 +71,35 @@
                     <Button x:Name="BtnCancelNav" Visibility="Hidden" Click="Cancel_Click" Background="IndianRed" Content="Cancel" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="55" Height="60" Padding="0" Margin="0,134,32,0" HorizontalContentAlignment="Center" FontFamily="Roboto" FontSize="16" Grid.Column="1"/>
                     <Canvas Height="150" Margin="45,479,46,15" Grid.Column="1" Background="Transparent">
                         <Popup x:Name="popup" StaysOpen="False" Visibility="Visible" Placement="Center" PlacementTarget="{Binding ElementName=myButton}">
-                            <StackPanel Orientation="Vertical" Background="LightGray">
-                                <Button x:Name="btnOpenDoor" Content="Open Door" Click="OpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                <Button x:Name="btnHalfOpenDoor" Content="Half-Open Door" Click="HalfOpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                <Button x:Name="btnCloseDoor" Content="Close Door" Click="CloseDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                <Button x:Name="btnLadder" Content="Ladder" Click="Ladder_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
+                            <StackPanel  Background="Transparent">
+                                <Button x:Name="btnOpenDoor" Content="Open Door" Click="OpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16">
+                                    <Button.CommandParameter>
+                                        <TextBlock Text="Doors Opened!"></TextBlock>
+                                    </Button.CommandParameter>
+                                </Button>
+                                <Button x:Name="btnHalfOpenDoor" Content="Half-Open Door" Click="HalfOpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16">
+                                    <Button.CommandParameter>
+                                        <TextBlock Text="Doors Half-Opened!"></TextBlock>
+                                    </Button.CommandParameter>
+                                </Button>
+                                <Button x:Name="btnCloseDoor" Content="Close Door" Click="CloseDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16">
+                                    <Button.CommandParameter>
+                                        <TextBlock Text="Doors Closed!"></TextBlock>
+                                    </Button.CommandParameter>
+                                </Button>
+                                <Button x:Name="btnLadder" Content="Ladder" Click="Ladder_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16">
+                                    <Button.CommandParameter>
+                                        <TextBlock Text="Doors Half-Opened!"></TextBlock>
+                                    </Button.CommandParameter>
+                                </Button>
                             </StackPanel>
                         </Popup>
                     </Canvas>
 
+
                 </Grid>
                 <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" />
             </DockPanel>
-
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
             <Grid.Effect>
