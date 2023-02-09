@@ -23,25 +23,25 @@ namespace WpfApp1
             //UserControl main = new UserControlHome();
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
-            AddHandler(PreviewKeyDownEvent, new KeyEventHandler(MoveWithWASD), true);
+            AddHandler(PreviewKeyDownEvent, new KeyEventHandler(MoveWithArrows), true);
         }
 
         // move trojan horse using WASD
-        private void MoveWithWASD(object sender, KeyEventArgs e) // works when webView2 isnt in focus
+        private void MoveWithArrows(object sender, KeyEventArgs e) // works when webView2 isnt in focus
         {
-            if (e.Key == Key.W || e.Key == Key.Up)
+            if (e.Key == Key.Up)
             {
                 MoveUp_Click(sender, e);
             }
-            else if (e.Key == Key.S || e.Key == Key.Down)
+            else if (e.Key == Key.Down)
             {
                 MoveDown_Click(sender, e);
             }
-            else if (e.Key == Key.A || e.Key == Key.Left)
+            else if (e.Key == Key.Left)
             {
                 MoveLeft_Click(sender, e);
             }
-            else if(e.Key == Key.D || e.Key == Key.Right)
+            else if(e.Key == Key.Right)
             {
                 MoveRight_Click(sender, e);
             }
@@ -120,7 +120,7 @@ namespace WpfApp1
             lat +=0.000080;
             lng +=0.000050;
             origin = "new google.maps.LatLng(" + lat.ToString() + ", " + lng.ToString() + ")";
-            webBrowser1.ExecuteScriptAsync("changePos("+ origin +");"); // else just change the destination with calcroute
+            webBrowser1.ExecuteScriptAsync("changePos(" + origin + ");"); // else just change the destination with calcroute
             if(webBrowser1.Source == new Uri(AppDomain.CurrentDomain.BaseDirectory + "html\\map_route.html")) { // if we are navigating, refresh navigation
                 webBrowser1.ExecuteScriptAsync("calcRoute(" + origin + "," + dest + ");");
             }
@@ -164,7 +164,7 @@ namespace WpfApp1
 
         private void Park_Click(object sender, RoutedEventArgs e)
         {
-            popup.IsOpen = true;
+            pbox.IsPopupOpen = true;
         }
 
         // Coordinates - declared as double so they can be changed when the trojan horse is moved

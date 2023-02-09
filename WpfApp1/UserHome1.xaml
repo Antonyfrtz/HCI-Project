@@ -74,24 +74,16 @@
                         <Button x:Name="BtnCancelNav" Visibility="Hidden" Click="Cancel_Click" Background="IndianRed" Content="Cancel" BorderBrush="{x:Null}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="55" Height="60" Padding="0" Margin="0,134,32,0" HorizontalContentAlignment="Center" FontFamily="Roboto" FontSize="16" Grid.Column="1"/>
                         <!-- Popup menu -->
                         <Canvas Height="150" Margin="45,479,46,15" Grid.Column="1" Background="Transparent">
-                            <Popup x:Name="popup" StaysOpen="False" Visibility="Visible" Placement="Center" PlacementTarget="{Binding ElementName=myButton}">
-                                <StackPanel  Background="Transparent">
-                                    <Button x:Name="btnOpenDoor" Content="Open Door" Click="OpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                    <Button x:Name="btnHalfOpenDoor" Content="Half-Open Door" Click="HalfOpenDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                    <Button x:Name="btnCloseDoor" Content="Close Door" Click="CloseDoor_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                    <Button x:Name="btnLadder" Content="Ladder" Click="Ladder_Click" Background="#1269C7" BorderBrush="#1269C7" FontFamily="Roboto" FontSize="16"/>
-                                </StackPanel>
-                            </Popup>
                             <StackPanel Orientation="Horizontal" Margin="120,17,0,0">
-                                <materialDesign:PopupBox Name="pbox" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="0">
+                                <materialDesign:PopupBox Name="pbox" PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="False" StaysOpen="False" Margin="0">
                                     <materialDesign:PopupBox.ToggleContent>
                                         <materialDesign:PackIcon Kind="None" />
                                     </materialDesign:PopupBox.ToggleContent>
-                                    <StackPanel Width="150">
-                                        <Button Content="Settings" Click="OpenDoor_Click" Height="40" />
-                                        <Button Content="Account" Height="40" />
-                                        <Button Content="Gulag" Height="40"/>
-                                        <Button Content="Logout" Height="40"/>
+                                    <StackPanel Width="150" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Content="Open Door" Click="OpenDoor_Click" Height="40" FontFamily="Roboto" FontSize="16"/>
+                                        <Button Content="Half-Open Door" Click="HalfOpenDoor_Click" Height="40" FontFamily="Roboto" FontSize="16"/>
+                                        <Button Content="Close Door" Click="CloseDoor_Click" Height="40" FontFamily="Roboto" FontSize="16"/>
+                                        <Button Content="Ladder" Click="Ladder_Click" Height="40" FontFamily="Roboto" FontSize="16"/>
                                     </StackPanel>
                                 </materialDesign:PopupBox>
                             </StackPanel>
@@ -100,7 +92,7 @@
                     <!-- Main web area -->
                     <Grid DockPanel.Dock="Right">
                         <asf:AirspacePanel Name="airspace">
-                            <webView2:WebView2 x:Name="webBrowser1" Height="400" IsHitTestVisible="False" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" KeyDown="MoveWithWASD" PreviewKeyDown="MoveWithWASD"/>
+                            <webView2:WebView2 x:Name="webBrowser1" Height="400" IsHitTestVisible="False" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" KeyDown="MoveWithArrows" PreviewKeyDown="MoveWithArrows"/>
                         </asf:AirspacePanel>
                     </Grid>
                 </DockPanel>
