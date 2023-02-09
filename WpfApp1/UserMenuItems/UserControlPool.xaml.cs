@@ -39,11 +39,17 @@ namespace WpfApp1.UserMenuItems
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOnOutline");
                         poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_w_light.jpg", UriKind.Relative));
+                        string text = "Lights are on!";
+                        // Display the text in a dialog
+                        MessageBox.Show(text);
                     }
                     else
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOffOutline");
                         poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_nolight.jpg", UriKind.Relative));
+                        string text = "Lights are off!";
+                        // Display the text in a dialog
+                        MessageBox.Show(text);
                     }
                     LightBulbisChecked = !LightBulbisChecked;
                     break;
@@ -52,10 +58,16 @@ namespace WpfApp1.UserMenuItems
                     if (AlarmisChecked)
                     {
                         Alarm.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "AlarmLight");
+                        string text = "Alarm is on!";
+                        // Display the text in a dialog
+                        MessageBox.Show(text);
                     }
                     else
                     {
                         Alarm.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "AlarmLightOff");
+                        string text = "Alarm is off!";
+                        // Display the text in a dialog
+                        MessageBox.Show(text);
                     }
                     AlarmisChecked = !AlarmisChecked;
                     break;

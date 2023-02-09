@@ -11,8 +11,7 @@
         <Image x:Name="poolIcon" Margin="34,68,584,0" VerticalAlignment="Top" Stretch="Fill" Source="/Assets/outdoor_pool_w_light.jpg" Height="337" RenderTransformOrigin="0.497,0.351"/>
         <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,106,0,0"/>
         <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="787,108,0,0" />
-        <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" Margin="728,98,448,506" />
-
+        <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" Margin="728,98,448,506"/>
         <TextBlock Text="Alarm" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,68,0,0"/>
         <materialDesign:PackIcon Kind="AlarmLight" x:Name ="Alarm" Foreground="Black" Width="20" Height="20" Margin="787,70,0,0" />
         <ToggleButton x:Name="AlarmBtn" IsChecked="True" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" Margin="728,56,448,540" />

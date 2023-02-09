@@ -18,6 +18,7 @@
         <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,141,0,0" Foreground="Black"/>
         <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,165,0,0" Foreground="Black"/>
         <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,225,0,0" Foreground="Black"/>
+        
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>

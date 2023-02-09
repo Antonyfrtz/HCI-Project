@@ -1,4 +1,5 @@
 ﻿using BespokeFusion;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Web.WebView2.Core;
 using System;
 using System.IO;
@@ -28,19 +29,19 @@ namespace WpfApp1
         // move trojan horse using WASD
         private void MoveWithWASD(object sender, KeyEventArgs e) // works when webView2 isnt in focus
         {
-            if (e.Key == Key.W)
+            if (e.Key == Key.W || e.Key == Key.Up)
             {
                 MoveUp_Click(sender, e);
             }
-            else if (e.Key == Key.S)
+            else if (e.Key == Key.S || e.Key == Key.Down)
             {
                 MoveDown_Click(sender, e);
             }
-            else if (e.Key == Key.A)
+            else if (e.Key == Key.A || e.Key == Key.Left)
             {
                 MoveLeft_Click(sender, e);
             }
-            else if(e.Key == Key.D)
+            else if(e.Key == Key.D || e.Key == Key.Right)
             {
                 MoveRight_Click(sender, e);
             }
@@ -252,46 +253,41 @@ namespace WpfApp1
         private void OpenDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/H_iRj67z5zTIKKINEIDgWQ8-ZBYC2Bx3ls_9VbY0nI6MNevv75DfBxNaeHBX2l6sjwW03BwU8ONkb7PFeu3gvCzVocVuF6jAaVY0fcwy')");
-            Button btn = (Button)sender;
-            TextBlock textBlock = (TextBlock)btn.CommandParameter;
-            string text = textBlock.Text;
-
-            // Display the text in a dialog
-            MessageBox.Show(text);
+            OpenDialog("Trojan Horse door is opening");
         }
 
         private void HalfOpenDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/enwRMlXNFnSYKvMZQsIjEBoSp9uHPXJ06duqN-3iSEBiRhszuYWCSE7emEjZM1F0vQQucC9b_PUYTfWfDcqIaNyyn2jgXQp8oXfF7IYU')");
-            Button btn = (Button)sender;
-            TextBlock textBlock = (TextBlock)btn.CommandParameter;
-            string text = textBlock.Text;
-
-            // Display the text in a dialog
-            MessageBox.Show(text);
+            OpenDialog("Trojan Horse door is opening to intermediate position");
         }
 
         private void CloseDoor_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/Dvym3JTcDxohGT_UeDCMoyWxObOguT5l1DVvHf1rvRfoDuzXn_1AteNK9ZFJiLbcCGDJChsR98UKUp94D7A0_oChkqdtkEu44TyUIpKb')");
-            Button btn = (Button)sender;
-            TextBlock textBlock = (TextBlock)btn.CommandParameter;
-            string text = textBlock.Text;
-
-            // Display the text in a dialog
-            MessageBox.Show(text);
+            OpenDialog("Trojan Horse door is closing");
         }
 
         private void Ladder_Click(object sender, RoutedEventArgs e)
         {
             webBrowser1.ExecuteScriptAsync("parkPos('https://lh3.googleusercontent.com/n_s7CzvdlevFxOL7t7YfzvddL-uAHq2xf_Xu3Rapdw0hiyGRqP8rYFH10bVbcpiMI6QAYxo6TYz_xOtdPZZIbHIdQKwM1LtstEkEf_s')");
-            Button btn = (Button)sender;
-            TextBlock textBlock = (TextBlock)btn.CommandParameter;
-            string text = textBlock.Text;
-
-            // Display the text in a dialog
-            MessageBox.Show(text);
+            OpenDialog("Ladder is being deployed");
         }
 
+        private void OpenDialog(string text) // dialog for door and ladder options - can be used for any dialog
+        {
+            airspace.FixAirspace = true; // fixes overlay above WebView2 - p.s. microsoft u suck
+            var dialogContent = new TextBlock // content to display
+            {
+                Text = text,
+                Margin = new Thickness(20)
+            };
+            DialogHost.Show(dialogContent, "RootDialog");
+        }
+
+        private void DialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            airspace.FixAirspace = false; // disable airspace fix when dialog is closed
+        }
     }
 }
