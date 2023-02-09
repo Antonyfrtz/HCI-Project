@@ -100,7 +100,8 @@
                 <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" KeyDown="MoveWithWASD" PreviewKeyDown="MoveWithWASD"/>
             </DockPanel>
         </Grid>
-        <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">
+        <Grid Height="60" VerticalAlignment="Top" Background="#028090">
+            <!-- #539987 -->
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFeed383"/>
             </Grid.Effect>
@@ -114,7 +115,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <TextBlock Text="Zeus's Palace" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="64" Margin="0,10,0,0" FontFamily="Palace Script MT" FontWeight="Bold" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
+            <TextBlock Text="Palace  of  Zeus" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="55" FontFamily="Resources/#Luxurious Script"/>
             <Button x:Name="InfoBtn" Click="InfoBtn_Click" Height="60" Width="60" Margin="1181,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon Kind="Information" Width="25" Height="25" Foreground="White"/>
             </Button>

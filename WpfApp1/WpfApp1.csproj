@@ -17,6 +17,7 @@
     <None Remove="Assets\zeus_User.png" />
     <None Remove="favicon.ico" />
     <None Remove="html\zeus.png" />
+    <None Remove="Resources\LuxuriousScript-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,7 @@
     <Resource Include="Assets\zeus.png" />
     <Resource Include="Assets\zeus_User.png" />
     <Resource Include="favicon.ico" />
+    <Resource Include="Resources\LuxuriousScript-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>

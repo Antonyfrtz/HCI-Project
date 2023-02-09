@@ -36,6 +36,6 @@
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignPaperLightButton}"
             ToolTip="You will be navigated to the Login page" />
-        <TextBlock Text="Palace Of Zeus" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="64" Margin="0,149,0,0" FontFamily="Palace Script MT" FontWeight="Bold" Foreground="AliceBlue" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
+        <TextBlock Text="Palace of Zeus" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="60" Margin="0,149,0,0" FontFamily="Resources/#Luxurious Script" Foreground="AliceBlue" FontStyle="Normal" TextDecorations="{x:Null}"></TextBlock>
     </Grid>
 </Window>
