@@ -34,7 +34,6 @@
 
     <Grid Background="#FFDEDEDE">
         <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="644" Width="1210" Margin="70,60,0,0">
-
             <DockPanel Loaded="DockPanel_Loaded" Name="panel1">
                 <Grid DockPanel.Dock="Left" Name="datos" Width="386" HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
@@ -98,7 +97,7 @@
 
 
                 </Grid>
-                <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" />
+                <webView2:WebView2 Name="webBrowser1" Height="400" Width="527" DockPanel.Dock="Right" DefaultBackgroundColor="#000000" KeyDown="MoveWithWASD" PreviewKeyDown="MoveWithWASD"/>
             </DockPanel>
         </Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#ff703529">

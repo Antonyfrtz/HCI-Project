@@ -1,11 +1,11 @@
 ﻿using BespokeFusion;
-using MaterialDesignThemes.Wpf;
 using Microsoft.Web.WebView2.Core;
 using System;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using WpfApp1.UserMenuItems;
 
@@ -22,6 +22,28 @@ namespace WpfApp1
             //UserControl main = new UserControlHome();
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
+            AddHandler(PreviewKeyDownEvent, new KeyEventHandler(MoveWithWASD), true);
+        }
+
+        // move trojan horse using WASD
+        private void MoveWithWASD(object sender, KeyEventArgs e) // works when webView2 isnt in focus
+        {
+            if (e.Key == Key.W)
+            {
+                MoveUp_Click(sender, e);
+            }
+            else if (e.Key == Key.S)
+            {
+                MoveDown_Click(sender, e);
+            }
+            else if (e.Key == Key.A)
+            {
+                MoveLeft_Click(sender, e);
+            }
+            else if(e.Key == Key.D)
+            {
+                MoveRight_Click(sender, e);
+            }
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -270,5 +292,6 @@ namespace WpfApp1
             // Display the text in a dialog
             MessageBox.Show(text);
         }
+
     }
 }

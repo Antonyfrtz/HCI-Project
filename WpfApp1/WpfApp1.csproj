@@ -23,7 +23,7 @@
     <PackageReference Include="Google.Api.CommonProtos" Version="2.7.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
     <PackageReference Include="MaterialMessageBox" Version="4.0.2" />
-    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Utilities" Version="17.4.33103.184" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1518.46" />
   </ItemGroup>
 
