@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace WpfApp1.UserMenuItems
 {
@@ -212,10 +213,25 @@ namespace WpfApp1.UserMenuItems
         private void OpenDialog(string text) // dialog for door and ladder options - can be used for any dialog
         {
             airspace.FixAirspace = true; // fixes overlay above WebView2 - p.s. microsoft u suck
-            var dialogContent = new TextBlock // content to display
+            var dialogContent = new StackPanel
             {
-                Text = text,
-                Margin = new Thickness(20)
+                Margin = new Thickness(20),
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = text,
+                    },
+                    new Button
+                    {
+                        Content = "OK",
+                        Width = 100,
+                        Margin = new Thickness(0, 20, 0, 0),
+                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Command = DialogHost.CloseDialogCommand
+                    }
+                 }
             };
             DialogHost.Show(dialogContent, "RootDialog");
         }
