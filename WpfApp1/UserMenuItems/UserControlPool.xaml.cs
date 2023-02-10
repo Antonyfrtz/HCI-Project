@@ -40,17 +40,14 @@ namespace WpfApp1.UserMenuItems
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOnOutline");
                         poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_w_light.jpg", UriKind.Relative));
-                        string text = "Lights are on!";
-                        // Display the text in a dialog
-                        MessageBox.Show(text);
+                        OpenDialog("Lights are on!");
                     }
                     else
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOffOutline");
                         poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_nolight.jpg", UriKind.Relative));
-                        string text = "Lights are off!";
-                        // Display the text in a dialog
-                        MessageBox.Show(text);
+                        OpenDialog("Lights are off!");
+
                     }
                     LightBulbisChecked = !LightBulbisChecked;
                     break;
@@ -59,23 +56,19 @@ namespace WpfApp1.UserMenuItems
                     if (AlarmisChecked)
                     {
                         Alarm.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "AlarmLight");
-                        string text = "Alarm is on!";
-                        // Display the text in a dialog
-                        MessageBox.Show(text);
+                        OpenDialog("Alarm is on!");
                     }
                     else
                     {
                         Alarm.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "AlarmLightOff");
-                        string text = "Alarm is off!";
-                        // Display the text in a dialog
-                        MessageBox.Show(text);
+                        OpenDialog("Alarm is off!");
                     }
                     AlarmisChecked = !AlarmisChecked;
                     break;
             }
         }
 
-        private void Slider_Changed(object sender, RoutedEventArgs e)
+        private void Slider_Temp(object sender, RoutedEventArgs e)
         {
             Slider slider = sender as Slider;
             if (slider != null)
@@ -96,7 +89,12 @@ namespace WpfApp1.UserMenuItems
                         tempLabel.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#1a78c2");
                     }
                 }
-            }
+            }  
+        }
+
+        private void Slider_Temp_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            OpenDialog("Temperature is set to your choice!");
         }
 
         private void Slider_PoolLevel(object sender, RoutedEventArgs e)
@@ -120,7 +118,45 @@ namespace WpfApp1.UserMenuItems
                     Level.Text = "Empty";
                     slider.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("Gray");
                 }
-            }
+            } 
         }
-    }
+
+        private void Slider_PoolLevel_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            OpenDialog("The pool water level is changing!");
+        }
+
+        private void OpenDialog(string text) // dialog for door and ladder options - can be used for any dialog
+        {
+
+            var dialogContent = new StackPanel
+            {
+                Margin = new Thickness(20),
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = text,
+                    },
+                    new Button
+                    {
+                        Content = "OK",
+                        Width = 100,
+                        Margin = new Thickness(0, 20, 0, 0),
+                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Command = DialogHost.CloseDialogCommand
+                    }
+                 }
+            };
+            DialogHost.Show(dialogContent, "RootDialog");
+        }
+
+        private void DialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+
+        }
+
+
+    }   
 }

@@ -8,62 +8,69 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <Image x:Name="poolIcon" Margin="34,68,584,0" VerticalAlignment="Top" Stretch="Fill" Source="/Assets/outdoor_pool_w_light.jpg" Height="337" RenderTransformOrigin="0.497,0.351"/>
-        <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,106,0,0"/>
-        <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="787,108,0,0" />
-        <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" Margin="728,98,448,506"/>
-        <TextBlock Text="Alarm" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,68,0,0"/>
-        <materialDesign:PackIcon Kind="AlarmLight" x:Name ="Alarm" Foreground="Black" Width="20" Height="20" Margin="787,70,0,0" />
-        <ToggleButton x:Name="AlarmBtn" IsChecked="True" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" Margin="728,56,448,540" />
+        <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True" DialogClosing="DialogHost_DialogClosing" Visibility="Visible">
+            <!-- covers the whole page-->
+            <DockPanel Name="panel1">
+                <Grid DockPanel.Dock="Left">
+                    <Image x:Name="poolIcon" Margin="34,68,584,0" VerticalAlignment="Top" Stretch="Fill" Source="/Assets/outdoor_pool_w_light.jpg" Height="337" RenderTransformOrigin="0.497,0.351"/>
+                    <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,106,0,0"/>
+                    <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="787,108,0,0" />
+                    <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Lights of the pool" Margin="728,98,448,506"/>
+                    <TextBlock Text="Alarm" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,68,0,0"/>
+                    <materialDesign:PackIcon Kind="AlarmLight" x:Name ="Alarm" Foreground="Black" Width="20" Height="20" Margin="787,70,0,0" />
+                    <ToggleButton x:Name="AlarmBtn" IsChecked="True" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Alarm of the pool" Margin="728,56,448,540" />
+                    <materialDesign:PackIcon Kind="FormatVerticalAlignCenter" x:Name ="Cursor" Foreground="Black" Width="20" Height="20" Margin="1038,154,0,0" />
+                    <materialDesign:PackIcon Kind="PoolThermometer" x:Name ="Thermometer" Foreground="Black" Width="20" Height="20" Margin="787,158,0,0" />
+                    <TextBlock Text="Temperature" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,154,0,0"/>
+                    <Slider x:Name="TempSlider"
+                                Foreground="#E1341E"
+                                Maximum="28"
+                                Minimum="10"
+                                Orientation="Vertical"
+                                SelectionEnd="16"
+                                SelectionStart="10"
+                                ValueChanged="Slider_Temp"
+                                PreviewMouseUp="Slider_Temp_PreviewMouseUp"
+                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                                Value="{Binding ElementName=txtslider2, Path=text}" Margin="787,202,333,239" />
+                    <TextBlock Text="Pool Water Level" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="882,154,0,0"/>
+                    <TextBlock Text="Pool Managment System" FontSize="26" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,22,0,0"/>
+                    <Slider
+                                Foreground="#1a78c2"      
+                                Maximum="2"
+                                Minimum="0"
+                                Orientation="Vertical"
+                                SelectionEnd="2"
+                                SelectionStart="1"
+                                Style="{StaticResource MaterialDesignDiscreteSlider}"
+                                TickFrequency="{Binding DiscreteVertical.TickFrequency}"
+                                TickPlacement="None"
+                                ValueChanged="Slider_PoolLevel"
+                                PreviewMouseUp="Slider_PoolLevel_PreviewMouseUp"
+                                Value="21" Margin="1038,202,82,239" />
+                    <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
+                    <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
+                    <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>
+                    <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
 
-        <materialDesign:PackIcon Kind="FormatVerticalAlignCenter" x:Name ="Cursor" Foreground="Black" Width="20" Height="20" Margin="1038,154,0,0" />
-        <materialDesign:PackIcon Kind="PoolThermometer" x:Name ="Thermometer" Foreground="Black" Width="20" Height="20" Margin="787,158,0,0" />
-        <TextBlock Text="Temperature" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="659,154,0,0"/>
-        <Slider x:Name="TempSlider"
-                    Foreground="#E1341E"
-                    Maximum="28"
-                    Minimum="10"
-                    Orientation="Vertical"
-                    SelectionEnd="16"
-                    SelectionStart="10"
-                    ValueChanged="Slider_Changed"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                    Value="{Binding ElementName=txtslider2, Path=text}" Margin="787,202,333,239" />
-        <TextBlock Text="Pool Water Level" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="882,154,0,0"/>
-        <TextBlock Text="Pool Managment System" FontSize="26" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,22,0,0"/>
-        <Slider
-                    Foreground="#1a78c2"      
-                    Maximum="2"
-                    Minimum="0"
-                    Orientation="Vertical"
-                    SelectionEnd="2"
-                    SelectionStart="1"
-                    Style="{StaticResource MaterialDesignDiscreteSlider}"
-                    TickFrequency="{Binding DiscreteVertical.TickFrequency}"
-                    TickPlacement="None"
-                    ValueChanged="Slider_PoolLevel"
-                    Value="21" Margin="1038,202,82,239" />
-        <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
-        <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
-        <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>
-        <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
-        <TextBlock Text="Status of guest public pool:" FontSize="23" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,488,0,0"/>
-        <TextBlock Text="Live View of your suite's pool" FontStyle="Italic" FontSize="14" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,410,0,0"/>
-        <TextBlock Text="OPEN" FontSize="23" Foreground="#00C853" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,488,0,0"/>
-        <materialDesign:Card
-                    Name="tempLabel"
-                    Padding="8"
-                    Margin="659,274,476,305"
-                    Background="#1a78c2"
-                    Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                    UniformCornerRadius="6">
-        </materialDesign:Card>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="°" FontSize="27" TextWrapping="Wrap" Margin="697,278,0,0" />
-        <TextBlock x:Name="temp" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ElementName=TempSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="30" TextWrapping="Wrap" Margin="667,284,0,0" />
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="C" FontSize="27" TextWrapping="Wrap" Margin="707,287,0,0" RenderTransformOrigin="0.638,0.66" />
-        <TextBlock x:Name="Level" Text="Filled" FontStyle="Italic" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="900,293,0,0"/>
+                    <TextBlock Text="Status of guest public pool:" FontSize="23" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,488,0,0"/>
+                    <TextBlock Text="Live View of your suite's pool" FontStyle="Italic" FontSize="14" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,410,0,0"/>
+                    <TextBlock Text="OPEN" FontSize="23" Foreground="#00C853" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,488,0,0"/>
+                    <materialDesign:Card
+                                Name="tempLabel"
+                                Padding="8"
+                                Margin="659,274,476,305"
+                                Background="#1a78c2"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                UniformCornerRadius="6">
+                    </materialDesign:Card>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="°" FontSize="27" TextWrapping="Wrap" Margin="697,278,0,0" />
+                    <TextBlock x:Name="temp" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ElementName=TempSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="30" TextWrapping="Wrap" Margin="667,284,0,0" />
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="C" FontSize="27" TextWrapping="Wrap" Margin="707,287,0,0" RenderTransformOrigin="0.638,0.66" />
+                    <TextBlock x:Name="Level" Text="Filled" FontStyle="Italic" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="900,293,0,0"/>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DialogHost>
     </Grid>
-
-
 </UserControl>

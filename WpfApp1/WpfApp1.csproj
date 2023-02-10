@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Assets\blackmeandros.png" />
+    <None Remove="Assets\Dining_room.jpg" />
     <None Remove="Assets\Lobby1.jpg" />
     <None Remove="Assets\outdoor_pool_nolight.jpg" />
     <None Remove="Assets\outdoor_pool_w_light.jpg" />
@@ -31,6 +32,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\blackmeandros.png" />
+    <Resource Include="Assets\Dining_room.jpg" />
     <Resource Include="Assets\Lobby1.jpg" />
     <Resource Include="Assets\outdoor_pool_nolight.jpg" />
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />

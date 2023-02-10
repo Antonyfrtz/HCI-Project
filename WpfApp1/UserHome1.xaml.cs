@@ -20,9 +20,9 @@ namespace WpfApp1
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
-            UserControl main = new UserControlHome();
-            ListViewMenu.SelectedItem = ItemHome;
-            GridMain.Children.Add(main);
+            //UserControl main = new UserControlHome();
+            //ListViewMenu.SelectedItem = ItemHome;
+            //GridMain.Children.Add(main);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)

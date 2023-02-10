@@ -32,8 +32,124 @@
 
     <Grid Background="#FFDEDEDE">
         <Grid x:Name="GridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Height="644" Width="1210" Margin="70,60,0,0">
+            <Grid x:Name="BotGrid" HorizontalAlignment="Left"></Grid>
+            <Grid x:Name="ChatBot" HorizontalAlignment="Center"></Grid>
+            <Grid x:Name="DiningRoomImg" HorizontalAlignment="Right">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Assets/Dining_room.jpg"/>
+                </Grid.Background>            
+            </Grid>             
             <!-- All the controls go in here -->
+            <materialDesign:DrawerHost x:Name="DrawerHost" Width="1210" Height="644" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1">
+                <materialDesign:DrawerHost.Style>
+                    <Style
+                        TargetType="materialDesign:DrawerHost"
+                        BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                 Binding="{Binding IsChecked, ElementName=BackgroundToggle}"
+                                Value="True">
+                                <Setter
+                                Property="OverlayBackground"
+                                Value="{DynamicResource PrimaryHueMidBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </materialDesign:DrawerHost.Style>
+                <materialDesign:DrawerHost.RightDrawerContent>
+                    <StackPanel  Margin="20" Width="322">
+                        <Button
+                        HorizontalAlignment="Right"
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}"
+                        Content="{materialDesign:PackIcon Kind=Close}"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Check out our restaurant!" />
+                        <Image Source="Assets/Dining_room.jpg" Margin="0,20,10,0"/>
+                        <Button
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Content="BOOK A TABLE"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Ολο αυτο εκτος απο το X απεξω απο το drawer πρεπει ν μπει, αλλαξε το" />
+                    </StackPanel>
+                </materialDesign:DrawerHost.RightDrawerContent>
+                <!-- Screen Content -->
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!-- Space of control consumed by each column and row -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="30*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Column -->
+                    <!-- Grid.RowSpan overrides height 80%  -->
+                    <Border Grid.Column="0" Grid.RowSpan="2"  Background="#C3DFE0">
+                        <!-- Add your left column content here -->
+                    </Border>
+
+                    <!-- Main Screen -->
+                    <StackPanel Grid.Column="1" Background="#EEF4ED">
+                        <!-- Main Screen Content -->
+                        <materialDesign:Card Width="200" Padding="8" Margin="8,16,8,8" HorizontalAlignment="Left" Background="#B185A7" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                            <TextBlock
+                                Text="Hello! My name is Demetra, the goddess of harvest and agriculture, presiding over crops, grains, food, and the fertility of the earth."
+                                TextWrapping="Wrap" 
+                                />
+                        </materialDesign:Card>
+                        <materialDesign:Card Width="200" Padding="8" Margin="8" HorizontalAlignment="Left" Background="#B185A7" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                            <TextBlock
+                                Text="I welcome you to the Palace of Zeus. How may I assist you today?"
+                                TextWrapping="Wrap" />
+                        </materialDesign:Card>
+                        <materialDesign:Card Width="Auto" Padding="8" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#DB5461" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                            <TextBlock
+                                Text="Hi! I am the user"
+                                TextWrapping="Wrap"
+                                TextAlignment="Right"/>
+                        </materialDesign:Card>
+                    </StackPanel>
+
+                    <!-- Grid for buttons on the bottom -->
+                    <Grid Grid.Row="1" Grid.Column="1" Background="#2e3546">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Buttons -->
+                        <Button Grid.Row="0" Grid.Column="0" Margin="20,20,5,5" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" Background="#DB5461" BorderBrush="#DB5461" CommandParameter="{x:Static Dock.Right}" Content="{materialDesign:PackIcon Kind=ArrowRight}" />
+                        <Button Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" Content="Lunch Menu" Background="#DB5461" BorderBrush="#DB5461"/>
+                        <Button Grid.Row="1" Grid.Column="0" Margin="20,5,5,5" Content="Wines &amp; Spirits" Background="#DB5461" BorderBrush="#DB5461"/>
+                        <Button Grid.Row="1" Grid.Column="1" Margin="5" Content="Breakfast Menu" Background="#DB5461" BorderBrush="#DB5461"/>
+                    </Grid>
+
+                    <!-- Right Column -->
+                    <Border Grid.Column="2" Grid.RowSpan="2" Background="#C3DFE0">
+                        <materialDesign:Card Width="250" Height="400" Padding="10" Margin="0,40,0,0" VerticalAlignment="Top" Background="#028090" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                            <TextBlock
+                                Text="You can adjust the corner radius"
+                            TextWrapping="Wrap" />
+                        </materialDesign:Card>
+                    </Border>
+
+                </Grid>
+            </materialDesign:DrawerHost>
+
+
         </Grid>
+
+        <!-- Horizontal Menu -->
         <Grid Height="60" VerticalAlignment="Top" Background="#028090">
             <!-- #539987 -->
             <Grid.Effect>
@@ -54,6 +170,8 @@
                 <materialDesign:PackIcon Kind="Information" Width="25" Height="25" Foreground="White"/>
             </Button>
         </Grid>
+
+        <!-- Vertical Menu -->
         <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#2e3546">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
