@@ -2,6 +2,7 @@
 using MaterialDesignThemes.Wpf;
 using Microsoft.Web.WebView2.Core;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -91,6 +92,25 @@ namespace WpfApp1
             MainWindow backToLogin = new MainWindow();
             backToLogin.Show();
             this.Close();
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists("/HCI-Project/WpfApp1/Resources/UserManual.pdf"))
+            {
+                try
+                {
+                    Process.Start("microsoft-edge:", "Resources/UserManual.pdf");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while trying to open the PDF file.\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The PDF file could not be found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

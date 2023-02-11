@@ -6,7 +6,19 @@
              xmlns:local="clr-namespace:WpfApp1" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid>
-        <Image Source="/Assets/room.png" Height="366" Margin="34,65,465,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
+        <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True" DialogClosing="DialogHost_DialogClosing" Visibility="Visible">
+            <!-- covers the whole page-->
+            <DockPanel Name="panel1">
+                <Grid DockPanel.Dock="Left">
+                    <materialDesign:Card
+                                Name="tempLabel"
+                                Padding="8"
+                                Margin="791,65,34,213"
+                                Background="#4ea6b1"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                UniformCornerRadius="6">
+                    </materialDesign:Card>
+        <Image x:Name="LightsRoom" Source="/Assets/room.png" Height="366" Margin="34,65,465,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
         <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="916,83,0,0" FontFamily="Roboto"/>
         <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,141,0,0" FontFamily="Roboto"/>
         <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,223,0,0" FontFamily="Roboto" />
@@ -25,5 +37,11 @@
         <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
         <TextBlock Text="Welcome, username." FontSize="24" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="34,22,0,0" FontFamily="Roboto" FontStyle="Italic"/>
         <materialDesign:PackIcon Kind="Information" Foreground="White" Width="20" Height="20" Margin="177,-42,0,0" />
+                    <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="770,24,0,0"/>
+                    <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="869,26,0,0" />
+                    <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Lights of the room." Margin="830,19,346,585"/>
+                </Grid>
+            </DockPanel>
+        </materialDesign:DialogHost>
     </Grid>
 </UserControl>
