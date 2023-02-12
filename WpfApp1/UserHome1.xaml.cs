@@ -1,13 +1,10 @@
 ﻿using BespokeFusion;
-using MaterialDesignThemes.Wpf;
-using Microsoft.Web.WebView2.Core;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using WpfApp1.UserMenuItems;
 
@@ -18,6 +15,7 @@ namespace WpfApp1
     /// </summary>
     public partial class UserHome1 : Window
     {
+        ViewModel viewModel = new ViewModel();
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
@@ -25,6 +23,7 @@ namespace WpfApp1
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
             LoadImage();
+            DataContext = viewModel;
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -129,10 +128,74 @@ namespace WpfApp1
             if (senderName== "Nextbtn")
             {
                 _currentImageIndex++;
+                if (_currentImageIndex == 0)
+                {
+                    lbi1.Content = "Kappadokia";
+                    lbi2.Content = "Mount Zas";
+                    lbi3.Content = "The Caldera";
+                    lbi4.Content = "The Classic";
+                    lbi5.Content = "Mediterranean";
+                }
+                else if(_currentImageIndex == 1)
+                {
+                    lbi1.Content = "Mountaineer";
+                    lbi2.Content = "Aegean";
+                    lbi3.Content = "Ionian";
+                    lbi4.Content = "Navagio";
+                    lbi5.Content = "Kavouri";
+                }
+                else if(_currentImageIndex == 2)
+                {
+                    lbi1.Content = "Macedonian";
+                    lbi2.Content = "Fish if the day";
+                    lbi3.Content = "Scordalia";
+                    lbi4.Content = "Sea & Pasta Mix";
+                    lbi5.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbi1.Content = "KotaRiz";
+                    lbi2.Content = "Athenian";
+                    lbi3.Content = "Olympian";
+                    lbi3.Content = "Side Dish";
+                    lbi5.Visibility = Visibility.Hidden;
+                }
             }
             else
             {
                 _currentImageIndex--;
+                if (_currentImageIndex == 0)
+                {
+                    lbi1.Content = "Kappadokia";
+                    lbi2.Content = "Mount Zas";
+                    lbi3.Content = "The Caldera";
+                    lbi4.Content = "The Classic";
+                    lbi5.Content = "Mediterranean";
+                }
+                else if (_currentImageIndex == 1)
+                {
+                    lbi1.Content = "Mountaineer";
+                    lbi2.Content = "Aegean";
+                    lbi3.Content = "Ionian";
+                    lbi4.Content = "Navagio";
+                    lbi5.Content = "Kavouri";
+                }
+                else if (_currentImageIndex == 2)
+                {
+                    lbi1.Content = "Macedonian";
+                    lbi2.Content = "Fish if the day";
+                    lbi3.Content = "Scordalia";
+                    lbi4.Content = "Sea & Pasta Mix";
+                    lbi5.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbi1.Content = "KotaRiz";
+                    lbi2.Content = "Athenian";
+                    lbi3.Content = "Olympian";
+                    lbi3.Content = "Side Dish";
+                    lbi5.Visibility = Visibility.Hidden;
+                }
             }
             if (_currentImageIndex == 0) // first page
             {
@@ -150,6 +213,26 @@ namespace WpfApp1
                 Nextbtn.IsEnabled = true;
             }
             LoadImage();
+        }
+
+        private void SelectedListBoxItem(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem lbi = e.Source as ListBoxItem;
+
+            if (lbi != null)
+            {
+                viewModel.BadgeValue++;
+            }
+        }
+
+        private void UnselectedListBoxItem(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem lbi = e.Source as ListBoxItem;
+
+            if (lbi != null)
+            {
+                viewModel.BadgeValue--;
+            }
         }
     }
 }

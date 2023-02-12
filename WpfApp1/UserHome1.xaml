@@ -78,14 +78,14 @@
                         </StackPanel>
                         <materialDesign:Card Margin="0,0,10,10">
                             <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}">
-                                <ListBoxItem Content="Kappadokia" />
-                                <ListBoxItem Content="Mount Zas" />
-                                <ListBoxItem Content="The Caldera" />
-                                <ListBoxItem Content="The Classic" />
-                                <ListBoxItem Content="Mediterranean" ToolTipService.ShowOnDisabled="True" ToolTip="Unavailable" IsEnabled="False" />
+                                <ListBoxItem x:Name="lbi1" Content="Kappadokia" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
+                                <ListBoxItem x:Name="lbi2" Content="Mount Zas" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
+                                <ListBoxItem x:Name="lbi3" Content="The Caldera" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
+                                <ListBoxItem x:Name="lbi4" Content="The Classic" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
+                                <ListBoxItem x:Name="lbi5" Content="Mediterranean" ToolTipService.ShowOnDisabled="True" ToolTip="Unavailable" IsEnabled="False" />
                             </ListBox>
                         </materialDesign:Card>
-                        <materialDesign:Badged HorizontalAlignment="Center" Badge="3">
+                        <materialDesign:Badged HorizontalAlignment="Center" Badge="{Binding Path=BadgeValue}">
                             <Button
                               Width="240"
                               Content="Save selections for payment"
