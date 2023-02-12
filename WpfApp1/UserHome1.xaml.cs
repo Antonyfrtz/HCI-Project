@@ -24,6 +24,7 @@ namespace WpfApp1
             //UserControl main = new UserControlHome();
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
+            LoadImage();
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -96,7 +97,7 @@ namespace WpfApp1
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists("/HCI-Project/WpfApp1/Resources/UserManual.pdf"))
+            if (File.Exists("Resources/UserManual.pdf"))
             {
                 try
                 {
@@ -111,6 +112,44 @@ namespace WpfApp1
             {
                 MessageBox.Show("The PDF file could not be found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void LoadImage()
+        {
+            Menus.Source = new System.Windows.Media.Imaging.BitmapImage(new System.Uri(_imageFiles[_currentImageIndex], System.UriKind.Relative));
+        }
+
+        private int _currentImageIndex=0;
+        private readonly string[] _imageFiles = { "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_1.png" };
+
+        private void ChangeMenuItem(object sender, RoutedEventArgs e)
+        {
+            // Get button that made the call
+            string senderName = ((FrameworkElement)sender).Name;
+            if (senderName== "Nextbtn")
+            {
+                _currentImageIndex++;
+            }
+            else
+            {
+                _currentImageIndex--;
+            }
+            if (_currentImageIndex == 0) // first page
+            {
+                Previousbtn.IsEnabled = false;
+                Nextbtn.IsEnabled = true;
+            }
+            else if (_currentImageIndex == _imageFiles.Length - 1) // last page
+            {
+                Previousbtn.IsEnabled = true;
+                Nextbtn.IsEnabled = false;
+            }
+            else // intermediate
+            {
+                Previousbtn.IsEnabled = true;
+                Nextbtn.IsEnabled = true;
+            }
+            LoadImage();
         }
     }
 }

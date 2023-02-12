@@ -10,6 +10,8 @@
     <None Remove="Assets\blackmeandros.png" />
     <None Remove="Assets\Dining_room.jpg" />
     <None Remove="Assets\Lobby1.jpg" />
+    <None Remove="Assets\menus\menu_main_1.png" />
+    <None Remove="Assets\mousakas.mp4" />
     <None Remove="Assets\outdoor_pool_nolight.jpg" />
     <None Remove="Assets\outdoor_pool_w_light.jpg" />
     <None Remove="Assets\room.png" />
@@ -36,6 +38,8 @@
     <Resource Include="Assets\blackmeandros.png" />
     <Resource Include="Assets\Dining_room.jpg" />
     <Resource Include="Assets\Lobby1.jpg" />
+    <Resource Include="Assets\menus\menu_main_1.png" />
+    <Resource Include="Assets\mousakas.mp4" />
     <Resource Include="Assets\outdoor_pool_nolight.jpg" />
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />
     <Resource Include="Assets\room.png" />
@@ -49,6 +53,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\TrojanHorse.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="html\mapview.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
