@@ -85,11 +85,14 @@
                                 <ListBoxItem Content="Mediterranean" ToolTipService.ShowOnDisabled="True" ToolTip="Unavailable" IsEnabled="False" />
                             </ListBox>
                         </materialDesign:Card>
-                        <Button
-                          Width="240"
-                          Content="Save selections for payment"
-                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                          Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
+                        <materialDesign:Badged HorizontalAlignment="Center" Badge="3">
+                            <Button
+                              Width="240"
+                              Content="Save selections for payment"
+                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                              Background="#00C853" 
+                              BorderBrush="#00C853"  />
+                        </materialDesign:Badged>
                     </StackPanel>
                 </materialDesign:DrawerHost.RightDrawerContent>
                 <!-- Screen Content -->
