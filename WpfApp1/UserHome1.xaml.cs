@@ -120,7 +120,7 @@ namespace WpfApp1
         }
 
         private int _currentImageIndex=0;
-        private readonly string[] _imageFiles = { "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_1.png" };
+        private readonly string[] _imageFiles = { "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_2.png", "Assets/menus/menu_main_3.png", "Assets/menus/menu_main_4.png" };
 
         private void ChangeMenuItem(object sender, RoutedEventArgs e)
         {
