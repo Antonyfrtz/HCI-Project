@@ -1,5 +1,6 @@
 ﻿using BespokeFusion;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace WpfApp1
     /// </summary>
     public partial class UserHome1 : Window
     {
-        ViewModel viewModel = new ViewModel();
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
@@ -23,7 +23,7 @@ namespace WpfApp1
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
             LoadImage();
-            DataContext = viewModel;
+            menuListBox.ItemsSource = menuPages[0].Items;
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -119,8 +119,8 @@ namespace WpfApp1
         }
 
         private int _currentImageIndex=0;
+        private List<string> _selectedItems = new List<string>();
         private readonly string[] _imageFiles = { "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_2.png", "Assets/menus/menu_main_3.png", "Assets/menus/menu_main_4.png" };
-
         private void ChangeMenuItem(object sender, RoutedEventArgs e)
         {
             // Get button that made the call
@@ -128,74 +128,10 @@ namespace WpfApp1
             if (senderName== "Nextbtn")
             {
                 _currentImageIndex++;
-                if (_currentImageIndex == 0)
-                {
-                    lbi1.Content = "Kappadokia";
-                    lbi2.Content = "Mount Zas";
-                    lbi3.Content = "The Caldera";
-                    lbi4.Content = "The Classic";
-                    lbi5.Content = "Mediterranean";
-                }
-                else if(_currentImageIndex == 1)
-                {
-                    lbi1.Content = "Mountaineer";
-                    lbi2.Content = "Aegean";
-                    lbi3.Content = "Ionian";
-                    lbi4.Content = "Navagio";
-                    lbi5.Content = "Kavouri";
-                }
-                else if(_currentImageIndex == 2)
-                {
-                    lbi1.Content = "Macedonian";
-                    lbi2.Content = "Fish if the day";
-                    lbi3.Content = "Scordalia";
-                    lbi4.Content = "Sea & Pasta Mix";
-                    lbi5.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    lbi1.Content = "KotaRiz";
-                    lbi2.Content = "Athenian";
-                    lbi3.Content = "Olympian";
-                    lbi3.Content = "Side Dish";
-                    lbi5.Visibility = Visibility.Hidden;
-                }
             }
             else
             {
                 _currentImageIndex--;
-                if (_currentImageIndex == 0)
-                {
-                    lbi1.Content = "Kappadokia";
-                    lbi2.Content = "Mount Zas";
-                    lbi3.Content = "The Caldera";
-                    lbi4.Content = "The Classic";
-                    lbi5.Content = "Mediterranean";
-                }
-                else if (_currentImageIndex == 1)
-                {
-                    lbi1.Content = "Mountaineer";
-                    lbi2.Content = "Aegean";
-                    lbi3.Content = "Ionian";
-                    lbi4.Content = "Navagio";
-                    lbi5.Content = "Kavouri";
-                }
-                else if (_currentImageIndex == 2)
-                {
-                    lbi1.Content = "Macedonian";
-                    lbi2.Content = "Fish if the day";
-                    lbi3.Content = "Scordalia";
-                    lbi4.Content = "Sea & Pasta Mix";
-                    lbi5.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    lbi1.Content = "KotaRiz";
-                    lbi2.Content = "Athenian";
-                    lbi3.Content = "Olympian";
-                    lbi3.Content = "Side Dish";
-                    lbi5.Visibility = Visibility.Hidden;
-                }
             }
             if (_currentImageIndex == 0) // first page
             {
@@ -213,26 +149,66 @@ namespace WpfApp1
                 Nextbtn.IsEnabled = true;
             }
             LoadImage();
+            // temporarily remove event handler to avoid refreshing selected plate list and badge values
+            menuListBox.SelectionChanged -= new SelectionChangedEventHandler(menuListBox_SelectionChanged);
+            menuListBox.ItemsSource = menuPages[_currentImageIndex].Items;
+            foreach (var item in menuPages[_currentImageIndex].Items)
+            {
+                if (_selectedItems.Contains(item))
+                {
+                    menuListBox.SelectedItems.Add(item);
+                }
+            }
+            // add event handler back
+            menuListBox.SelectionChanged += new SelectionChangedEventHandler(menuListBox_SelectionChanged);
         }
 
-        private void SelectedListBoxItem(object sender, RoutedEventArgs e)
+        public class MenuPage
         {
-            ListBoxItem lbi = e.Source as ListBoxItem;
+            public string Name { get; set; }
+            public List<string> Items { get; set; }
+        }
 
-            if (lbi != null)
+        private void menuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in e.AddedItems)
             {
-                viewModel.BadgeValue++;
+                // This item was selected
+                _selectedItems.Add(item.ToString());
+                badge.Badge = _selectedItems.Count;
+            }
+
+            foreach (var item in e.RemovedItems)
+            {
+                // This item was unselected
+                _selectedItems.Remove(item.ToString());
+                badge.Badge = _selectedItems.Count;
             }
         }
 
-        private void UnselectedListBoxItem(object sender, RoutedEventArgs e)
+        List<MenuPage> menuPages = new List<MenuPage>
         {
-            ListBoxItem lbi = e.Source as ListBoxItem;
-
-            if (lbi != null)
+            new MenuPage
             {
-                viewModel.BadgeValue--;
+                Name = "Page 1",
+                Items = new List<string> { "Kappadokia", "Mount Zas", "The Caldera", "The Classic", "Mediterranean" }
+            },
+            new MenuPage
+            {
+                Name = "Page 2",
+                Items = new List<string> { "Mountaineer", "Aegean", "Ionian", "Navagio", "Kavouri" }
+            },
+            new MenuPage
+            {
+                Name = "Page 3",
+                Items = new List<string> { "Macedonian", "Fish of the day", "Scordalia", "Sea & Pasta Mix" }
+            },
+            new MenuPage
+            {
+                Name = "Page 4",
+                Items = new List<string> { "Kotariz", "Athenian", "Olympian", "Chips", "Puree", "Greens" }
             }
-        }
+        };
+
     }
 }

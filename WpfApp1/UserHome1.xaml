@@ -77,15 +77,15 @@
                                 Style="{StaticResource MaterialDesignFlatButton}" />
                         </StackPanel>
                         <materialDesign:Card Margin="0,0,10,10">
-                            <ListBox Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}">
-                                <ListBoxItem x:Name="lbi1" Content="Kappadokia" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
-                                <ListBoxItem x:Name="lbi2" Content="Mount Zas" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
-                                <ListBoxItem x:Name="lbi3" Content="The Caldera" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
-                                <ListBoxItem x:Name="lbi4" Content="The Classic" Selected="SelectedListBoxItem" Unselected="UnselectedListBoxItem"/>
-                                <ListBoxItem x:Name="lbi5" Content="Mediterranean" ToolTipService.ShowOnDisabled="True" ToolTip="Unavailable" IsEnabled="False" />
+                            <ListBox x:Name="menuListBox" Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}" ItemsSource="{Binding menuPages}" SelectionChanged="menuListBox_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
                         </materialDesign:Card>
-                        <materialDesign:Badged HorizontalAlignment="Center" Badge="{Binding Path=BadgeValue}">
+                        <materialDesign:Badged HorizontalAlignment="Center" Name="badge">
                             <Button
                               Width="240"
                               Content="Save selections for payment"
