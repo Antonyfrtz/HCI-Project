@@ -152,11 +152,5 @@ namespace WpfApp1.UserMenuItems
             DialogHost.Show(dialogContent, "RootDialog");
         }
 
-        private void DialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
-        {
-
-        }
-
-
     }   
 }

@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using WpfApp1.UserMenuItems;
 
@@ -23,6 +25,7 @@ namespace WpfApp1
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
             LoadImage();
+            DataContext = this;
             menuListBox.ItemsSource = menuPages[0].Items;
         }
 
@@ -210,5 +213,23 @@ namespace WpfApp1
             }
         };
 
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            // TO BE IMPLEMENTED
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedItems.Count > 0)
+            {
+                dishes.Text = string.Join(", ", _selectedItems);
+            }
+            else
+            {
+                dishes.Text = "No dishes currently selected";
+            }
+            DrawerHost.IsRightDrawerOpen = false;
+        }
     }
 }

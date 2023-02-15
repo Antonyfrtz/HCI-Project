@@ -20,6 +20,89 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <!--AD-->
+
+            <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid x:Name="Grid">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                                           Height="Auto" Fill="Transparent"/>
+                                <Border x:Name="Rectangle1" CornerRadius="10 0 0 10" HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch" Width="Auto" Height="Auto" 
+                                        Background="{TemplateBinding Background}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Tag" Value="Horizontal">
+                                    <Setter TargetName="Rectangle1" Property="Width" Value="Auto"/>
+                                    <Setter TargetName="Rectangle1" Property="Height" Value="7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--SCROLLBARS-->
+            <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="Foreground" Value="DarkSlateBlue"/>
+                <Setter Property="Background" Value="DarkGray"/>
+                <Setter Property="Width" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="GridRoot" Width="12" Background="{x:Null}">
+                                <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="False">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                               Style="{DynamicResource ScrollThumbs}"/>
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                    </Track.DecreaseRepeatButton>
+                                </Track>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                    <Setter Value="{DynamicResource ButtonSelectBrush}" 
+                                            TargetName="Thumb" Property="Background"/>
+                                </Trigger>
+                                <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                    <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background"/>
+                                </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="Orientation" Value="Horizontal">
+                                    <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Width" Value="Auto"/>
+                                    <Setter Property="Height" Value="12"/>
+                                    <Setter TargetName="Thumb" Property="Tag" Value="Horizontal"/>
+                                    <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand"/>
+                                    <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        
+            <!--AD-->
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
@@ -86,14 +169,27 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </materialDesign:Card>
-                        <materialDesign:Badged HorizontalAlignment="Center" Name="badge">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button
-                              Width="240"
-                              Content="Save selections for payment"
-                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                              Background="#00C853" 
-                              BorderBrush="#00C853"  />
-                        </materialDesign:Badged>
+                                  Margin="-6,0,0,0"
+                                  Width="80"
+                                  Content="Clear"
+                                  Click="Clear_Click"
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Background="#C80000" 
+                                  BorderBrush="#C80000"  />
+                            <materialDesign:Badged HorizontalAlignment="Center" BadgeBackground="Black" BadgeForeground="AliceBlue" Name="badge">
+                                <Button
+                                  Margin="4,0,0,0"
+                                  Width="225"
+                                  Click="Save_Click"
+                                  Content="Save selections for payment"
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Background="#00C853" 
+                                  BorderBrush="#00C853"  />
+                            </materialDesign:Badged>
+                            
+                        </StackPanel>
                     </StackPanel>
                 </materialDesign:DrawerHost.RightDrawerContent>
                 <!-- Screen Content -->
@@ -205,31 +301,36 @@
                                 </StackPanel>
                             </materialDesign:Card>
                             <materialDesign:Card Width="300" Height="181" Padding="10" Margin="25,415,37,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
-                                <StackPanel Margin="0,0,0,-10">
-                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Your order:" />
-                                    <Separator></Separator>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Phone" Margin="5,8,5,0" Foreground="DarkSlateGray" />
-                                        <TextBlock
-                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
-                                            Text="Tel: 210 99 99 999" />
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignScrollViewer}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Your e-order" />
+                                        <Separator></Separator>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="CartArrowDown" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                            <TextBlock
+                                                Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                                Text="Selected dishes: " />
+                                        </StackPanel>
+                                        <TextBlock Name="dishes" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="DarkSlateGray" Text="Total: " />
+                                            <TextBlock Text="69,56 $"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="DarkSlateGray" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"/>
+                                        <Button
+                                            Margin="4,5,4,4"
+                                            HorizontalAlignment="Center"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            CommandParameter="{x:Static Dock.Left}"
+                                            Content="PROCEED TO PAYMENT"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal"/>
-                                    <Button
-                                    Margin="4,10,4,4"
-                                    HorizontalAlignment="Center"
-                                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                    CommandParameter="{x:Static Dock.Left}"
-                                    Content="PROCEED TO PAYMENT"
-                                    Style="{StaticResource MaterialDesignFlatButton}" />
-                                </StackPanel>
+                                </ScrollViewer>
                             </materialDesign:Card>
                         </Grid>
                     </Border>
-
                 </Grid>
             </materialDesign:DrawerHost>
-
 
         </Grid>
 
