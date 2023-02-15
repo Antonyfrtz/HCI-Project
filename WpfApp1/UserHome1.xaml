@@ -61,7 +61,8 @@
                                 Style="{StaticResource MaterialDesignFlatButton}" />
                         </Grid>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> <!-- mipw na valoyme velakia aristera k deksia apo tin eikona? -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- mipw na valoyme velakia aristera k deksia apo tin eikona? -->
                             <Button
                                 x:Name="Previousbtn"
                                 Margin="4"
@@ -176,32 +177,54 @@
 
                     <!-- Right Column -->
                     <Border Grid.Column="2" Grid.RowSpan="2" Background="#C3DFE0">
-                        <materialDesign:Card Width="300" Height="470" Padding="10" Margin="0,25,12,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Check out our restaurant!" />
-                                <Separator></Separator>
-                                <Image Source="Assets/Dining_room.jpg" Margin="5,20,10,0"/>
-                                <Button
-                                Margin="4,10,4,4"
-                                HorizontalAlignment="Center"
-                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                CommandParameter="{x:Static Dock.Left}"
-                                Content="BOOK A TABLE NOW"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Phone" Margin="5,8,5,0" Foreground="DarkSlateGray" />
-                                    <TextBlock
-                                        Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
-                                        Text="Tel: 210 99 99 999" />
+                        <Grid>
+                            <materialDesign:Card Width="300" Height="364" Padding="10" Margin="25,25,37,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Check out our restaurant!" />
+                                    <Separator></Separator>
+                                    <Image Source="Assets/Dining_room.jpg" Margin="5,20,10,0"/>
+                                    <Button
+                                    Margin="4,10,4,4"
+                                    HorizontalAlignment="Center"
+                                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                    CommandParameter="{x:Static Dock.Left}"
+                                    Content="BOOK A TABLE NOW"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Phone" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                        <TextBlock
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                            Text="Tel: 210 99 99 999" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="StoreClock" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                        <TextBlock
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                            Text="Opening Hours: 14:00 - 23:00" />
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="StoreClock" Margin="5,8,5,0" Foreground="DarkSlateGray" />
-                                    <TextBlock
-                                        Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
-                                        Text="Opening Hours: 14:00 - 23:00" />
+                            </materialDesign:Card>
+                            <materialDesign:Card Width="300" Height="181" Padding="10" Margin="25,415,37,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                                <StackPanel Margin="0,0,0,-10">
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Your order:" />
+                                    <Separator></Separator>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Phone" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                        <TextBlock
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                            Text="Tel: 210 99 99 999" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"/>
+                                    <Button
+                                    Margin="4,10,4,4"
+                                    HorizontalAlignment="Center"
+                                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                    CommandParameter="{x:Static Dock.Left}"
+                                    Content="PROCEED TO PAYMENT"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
                                 </StackPanel>
-                            </StackPanel>
-                        </materialDesign:Card>
+                            </materialDesign:Card>
+                        </Grid>
                     </Border>
 
                 </Grid>
