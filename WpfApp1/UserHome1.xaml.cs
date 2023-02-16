@@ -194,7 +194,7 @@ namespace WpfApp1
             }
         }
 
-        List<MenuPage> menuPages = new List<MenuPage>
+        static List<MenuPage> menuPages = new List<MenuPage>
         {
             new MenuPage
             {
@@ -244,16 +244,15 @@ namespace WpfApp1
 
         }
 
+        // lookup map
+        Dictionary<string, int> itemPrices = menuPages.SelectMany(page => page.Items).ToDictionary(item => item.Name, item => item.Price);
+        // price
         private int total;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             if (_selectedItems.Count > 0) // show expander
             {
-                total = 0;
-                foreach (string selection in _selectedItems) // calculate total
-                {
-                    total += menuPages[_currentImageIndex].Items.Where(item => item.Name == selection).Select(item => item.Price).FirstOrDefault();
-                }
+                total = _selectedItems.Sum(selection => itemPrices.GetValueOrDefault(selection, 0));
                 Total.Text = total.ToString()+ " €";
                 maindishes_exp.Visibility = Visibility.Visible;
                 msg.Visibility= Visibility.Collapsed;
