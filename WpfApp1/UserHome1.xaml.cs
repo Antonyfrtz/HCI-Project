@@ -138,18 +138,18 @@ namespace WpfApp1
             }
             if (_currentImageIndex == 0) // first page
             {
-                Previousbtn.IsEnabled = false;
-                Nextbtn.IsEnabled = true;
+                Previousbtn.Visibility = Visibility.Hidden;
+                Nextbtn.Visibility = Visibility.Visible;
             }
             else if (_currentImageIndex == _imageFiles.Length - 1) // last page
             {
-                Previousbtn.IsEnabled = true;
-                Nextbtn.IsEnabled = false;
+                Previousbtn.Visibility = Visibility.Visible;
+                Nextbtn.Visibility = Visibility.Hidden;
             }
             else // intermediate
             {
-                Previousbtn.IsEnabled = true;
-                Nextbtn.IsEnabled = true;
+                Previousbtn.Visibility = Visibility.Visible;
+                Previousbtn.Visibility = Visibility.Visible;
             }
             LoadImage();
             // temporarily remove event handler to avoid refreshing selected plate list and badge values
