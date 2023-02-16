@@ -26,7 +26,7 @@ namespace WpfApp1
             //GridMain.Children.Add(main);
             LoadImage();
             DataContext = this;
-            menuListBox.ItemsSource = menuPages[0].Items;
+            menuListBox.ItemsSource = menuPages[0].Items.Select(item => item.Name);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -154,12 +154,12 @@ namespace WpfApp1
             LoadImage();
             // temporarily remove event handler to avoid refreshing selected plate list and badge values
             menuListBox.SelectionChanged -= new SelectionChangedEventHandler(menuListBox_SelectionChanged);
-            menuListBox.ItemsSource = menuPages[_currentImageIndex].Items;
+            menuListBox.ItemsSource = menuPages[_currentImageIndex].Items.Select(item => item.Name);
             foreach (var item in menuPages[_currentImageIndex].Items)
             {
-                if (_selectedItems.Contains(item))
+                if (_selectedItems.Contains(item.Name))
                 {
-                    menuListBox.SelectedItems.Add(item);
+                    menuListBox.SelectedItems.Add(item.Name);
                 }
             }
             // add event handler back
@@ -168,8 +168,13 @@ namespace WpfApp1
 
         public class MenuPage
         {
+            public List<MenuItem> Items { get; set; }
+        }
+
+        public class MenuItem
+        {
             public string Name { get; set; }
-            public List<string> Items { get; set; }
+            public int Price { get; set; }
         }
 
         private void menuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -193,23 +198,43 @@ namespace WpfApp1
         {
             new MenuPage
             {
-                Name = "Page 1",
-                Items = new List<string> { "Kappadokia", "Mount Zas", "The Caldera", "The Classic", "Mediterranean" }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Kappadokia", Price = 19 },
+                    new MenuItem { Name = "Mount Zas", Price = 18 },
+                    new MenuItem { Name = "The Caldera", Price = 33 },
+                    new MenuItem { Name = "The Classic", Price = 21 },
+                    new MenuItem { Name = "Mediterranean", Price = 35 }
+                }
             },
             new MenuPage
             {
-                Name = "Page 2",
-                Items = new List<string> { "Mountaineer", "Aegean", "Ionian", "Navagio", "Kavouri" }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Mountaineer", Price = 24 },
+                    new MenuItem { Name = "Aegean", Price = 32 },
+                    new MenuItem { Name = "Ionian", Price = 29 },
+                    new MenuItem { Name = "Navagio", Price = 28 },
+                    new MenuItem { Name = "Kavouri", Price = 34 }
+                }
             },
             new MenuPage
             {
-                Name = "Page 3",
-                Items = new List<string> { "Macedonian", "Fish of the day", "Scordalia", "Sea & Pasta Mix" }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Macedonian", Price = 29 },
+                    new MenuItem { Name = "Fish of the day", Price = 53 },
+                    new MenuItem { Name = "Scordalia", Price = 54 },
+                    new MenuItem { Name = "Sea & Pasta Mix", Price = 54 }
+                }
             },
             new MenuPage
             {
-                Name = "Page 4",
-                Items = new List<string> { "Kotariz", "Athenian", "Olympian", "Chips", "Puree", "Greens" }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Kotariz", Price = 38 },
+                    new MenuItem { Name = "Athenian", Price = 49 },
+                    new MenuItem { Name = "Olympian", Price = 57 },
+                    new MenuItem { Name = "Chips", Price = 0 },
+                    new MenuItem { Name = "Puree", Price = 0 },
+                    new MenuItem { Name = "Greens", Price = 0 }
+                }
             }
         };
 
@@ -219,15 +244,28 @@ namespace WpfApp1
 
         }
 
+        private int total;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedItems.Count > 0)
+            if (_selectedItems.Count > 0) // show expander
             {
-                dishes.Text = string.Join(", ", _selectedItems);
+                total = 0;
+                foreach (string selection in _selectedItems) // calculate total
+                {
+                    total += menuPages[_currentImageIndex].Items.Where(item => item.Name == selection).Select(item => item.Price).FirstOrDefault();
+                }
+                Total.Text = total.ToString()+ " €";
+                maindishes_exp.Visibility = Visibility.Visible;
+                msg.Visibility= Visibility.Collapsed;
+                maindishes.Text = string.Join(", ", _selectedItems);
+                paybtn.IsEnabled = true;
             }
-            else
+            else // show textblock
             {
-                dishes.Text = "No dishes currently selected";
+                Total.Text = "";
+                maindishes_exp.Visibility = Visibility.Collapsed;
+                msg.Visibility = Visibility.Visible;
+                paybtn.IsEnabled = false;
             }
             DrawerHost.IsRightDrawerOpen = false;
         }

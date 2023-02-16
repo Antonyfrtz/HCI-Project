@@ -137,6 +137,7 @@
                         <Grid>
                             <Image x:Name="Menus" Source="Assets/menus/menu_main_1.png" Margin="0,-8,10,0"/>
                             <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                                Foreground="#2e3546"
                                 Margin="0,0,10,0"
                                 Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                 CommandParameter="{x:Static Dock.Right}"
@@ -168,7 +169,7 @@
                                 Style="{StaticResource MaterialDesignFloatingActionButton}" />
                         </Grid>
                         <TextBlock HorizontalAlignment="Center" Foreground="#2e3546" Margin="8" FontStyle="Italic" Text="Select your plates below" />
-                        <materialDesign:Card Margin="0,0,10,10">
+                        <materialDesign:Card Margin="0,0,10,10" Background="#fcf7ef">
                             <ListBox x:Name="menuListBox" Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}" ItemsSource="{Binding menuPages}" SelectionChanged="menuListBox_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -184,17 +185,17 @@
                                   Content="Clear"
                                   Click="Clear_Click"
                                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                  Background="#C80000" 
-                                  BorderBrush="#C80000"  />
-                            <materialDesign:Badged HorizontalAlignment="Center" BadgeBackground="Black" BadgeForeground="AliceBlue" Name="badge">
+                                  Background="IndianRed" 
+                                  BorderBrush="IndianRed"  />
+                            <materialDesign:Badged HorizontalAlignment="Center" BadgeBackground="#2e3546" BadgeForeground="AliceBlue" Name="badge">
                                 <Button
                                   Margin="4,0,0,0"
                                   Width="225"
                                   Click="Save_Click"
                                   Content="Save selections for payment"
                                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                  Background="#00C853" 
-                                  BorderBrush="#00C853"  />
+                                  Background="#23A849" 
+                                  BorderBrush="#23A849"  />
                             </materialDesign:Badged>
                         </StackPanel>
                     </StackPanel>
@@ -214,7 +215,7 @@
 
                     <!-- Left Column -->
                     <!-- Grid.RowSpan overrides height 80%  -->
-                    <Border Grid.Column="0" Grid.RowSpan="2"  Background="#C3DFE0">
+                    <Border Grid.Column="0" Grid.RowSpan="2" Margin="0,0,0,20"  Background="#C3DFE0">
                         <MediaElement Source="../../../Assets/mousakas.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Width="400" Height="300" />
                         <!-- Add your left column content here -->
                     </Border>
@@ -318,20 +319,29 @@
                                                 Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
                                                 Text="Selected dishes: " />
                                         </StackPanel>
-                                        <TextBlock Name="dishes" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap" Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <TextBlock Name="msg" Text="No dishes currently selected" Margin="4,0,0,0" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <Expander Name="maindishes_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From the main menu" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="maindishes" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="DarkSlateGray" Text="Total: " />
-                                            <TextBlock Text="69,56 $"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Foreground="DarkSlateGray" />
+                                            <TextBlock Margin="5,7,0,0" Text="Total: " Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="DarkSlateGray"/>
+                                            <TextBlock Name="Total" Margin="2,7,0,0" Text="" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="DarkSlateGray" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal"/>
-                                        <Button
-                                            Margin="4,5,4,4"
-                                            HorizontalAlignment="Center"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            CommandParameter="{x:Static Dock.Left}"
-                                            Content="PROCEED TO PAYMENT"
-                                            Style="{StaticResource MaterialDesignFlatButton}" />
-                                    </StackPanel>
+                                            <Button
+                                                x:Name="paybtn"
+                                                Margin="4,5,4,4"
+                                                HorizontalAlignment="Center"
+                                                IsEnabled="False"
+                                                ToolTip="After selecting items, click to navigate to payment" 
+                                                ToolTipService.ShowOnDisabled="True"
+                                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                                CommandParameter="{x:Static Dock.Left}"
+                                                Content="PROCEED TO PAYMENT"
+                                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                        </StackPanel>
                                 </ScrollViewer>
                             </materialDesign:Card>
                         </Grid>
