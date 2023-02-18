@@ -20,6 +20,9 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" />
+        </Storyboard>
         <!--AD-->
 
         <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
@@ -46,7 +49,7 @@
         <!--SCROLLBARS-->
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Foreground" Value="DarkSlateBlue"/>
+            <Setter Property="Foreground" Value="IndianRed"/>
             <Setter Property="Background" Value="DarkGray"/>
             <Setter Property="Width" Value="10"/>
             <Setter Property="Template">
@@ -221,26 +224,11 @@
                     </Border>
 
                     <!-- Main Screen -->
-                    <StackPanel Grid.Column="1" Background="#EEF4ED">
-                        <!-- Main Screen Content -->
-                        <materialDesign:Card Width="200" Padding="8" Margin="8,16,8,8" HorizontalAlignment="Left" Background="#B185A7" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
-                            <TextBlock
-                                Text="Hello! My name is Demetra, the goddess of harvest and agriculture, presiding over crops, grains, food, and the fertility of the earth."
-                                TextWrapping="Wrap" 
-                                />
-                        </materialDesign:Card>
-                        <materialDesign:Card Width="200" Padding="8" Margin="8" HorizontalAlignment="Left" Background="#B185A7" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
-                            <TextBlock
-                                Text="I welcome you to the Palace of Zeus. How may I assist you today?"
-                                TextWrapping="Wrap" />
-                        </materialDesign:Card>
-                        <materialDesign:Card Width="Auto" Padding="8" Margin="8" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#DB5461" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
-                            <TextBlock
-                                Text="Hi! I am the user"
-                                TextWrapping="Wrap"
-                                TextAlignment="Right"/>
-                        </materialDesign:Card>
-                    </StackPanel>
+                    <ScrollViewer x:Name="chatScroll" VerticalScrollBarVisibility="Auto" Grid.Column="1"  Style="{StaticResource MaterialDesignScrollViewer}">
+                        <StackPanel x:Name="chat" Background="#EEF4ED">
+                            <!-- Main Screen Content - this chat is loaded dynamically -->
+                        </StackPanel>
+                    </ScrollViewer>
 
                     <!-- Grid for buttons on the bottom -->
                     <Grid Grid.Row="1" Grid.Column="1" Background="#2e3546">
@@ -253,28 +241,28 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <!-- Buttons -->
-                        <Button Grid.Row="0" Grid.Column="0" Margin="90,20,5,5" Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" Background="#DB5461" BorderBrush="#DB5461" CommandParameter="{x:Static Dock.Right}">
+                        <Button Grid.Row="0" Grid.Column="0" Margin="90,20,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461" CommandParameter="{x:Static Dock.Right}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Open Drawer" Margin="0,0,3,0" />
-                                <materialDesign:PackIcon Kind="RoomService" Margin="0,2,0,0" />
+                                <TextBlock Text="Breakfast Menu" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="Coffee" Margin="0,2,0,0" />
                             </StackPanel>
                         </Button>
-                        <Button Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" Background="#DB5461" BorderBrush="#DB5461">
+                        <Button Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Lunch Menu" Margin="0,0,3,0" />
                                 <materialDesign:PackIcon Kind="SilverwareVariant" Margin="0,2,0,0" />
                             </StackPanel>
                         </Button>
-                        <Button Grid.Row="1" Grid.Column="0" Margin="90,5,5,5" Background="#DB5461" BorderBrush="#DB5461">
+                        <Button Grid.Row="1" Grid.Column="0" Margin="90,5,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Wines &amp; Spirits" Margin="0,0,3,0" />
+                                <TextBlock Text="Cocktails &amp; Spirits" Margin="0,0,3,0" />
                                 <materialDesign:PackIcon Kind="Liquor" Margin="0,2,0,0" />
                             </StackPanel>
                         </Button>
-                        <Button Grid.Row="1" Grid.Column="1" Margin="5" Background="#DB5461" BorderBrush="#DB5461">
+                        <Button Grid.Row="1" Grid.Column="1" Margin="5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Breakfast Menu" Margin="0,0,3,0" />
-                                <materialDesign:PackIcon Kind="Coffee" Margin="0,2,0,0" />
+                                <TextBlock Text="Wine Catalog" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="GlassWine" Margin="0,2,0,0" />
                             </StackPanel>
                         </Button>
                     </Grid>
@@ -330,7 +318,7 @@
                                             <TextBlock Name="Total" Margin="2,7,0,0" Text="" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="DarkSlateGray" />
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal"/>
-                                            <Button
+                                        <Button
                                                 x:Name="paybtn"
                                                 Margin="4,5,4,4"
                                                 HorizontalAlignment="Center"
@@ -341,7 +329,7 @@
                                                 CommandParameter="{x:Static Dock.Left}"
                                                 Content="PROCEED TO PAYMENT"
                                                 Style="{StaticResource MaterialDesignFlatButton}" />
-                                        </StackPanel>
+                                    </StackPanel>
                                 </ScrollViewer>
                             </materialDesign:Card>
                         </Grid>
@@ -366,7 +354,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <TextBlock Text="Palace  of  Zeus" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="55" FontFamily="Resources/#Luxurious Script"/>
+            <TextBlock Text="Palace  of  Zeus" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="55" FontFamily="Resources/#Luxurious Script" Margin="556,0,0,0"/>
             <Button x:Name="InfoBtn" Click="InfoBtn_Click" Height="60" Width="60" Margin="1181,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon Kind="Information" Width="25" Height="25" Foreground="White"/>
             </Button>

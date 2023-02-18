@@ -1,14 +1,18 @@
 ﻿using BespokeFusion;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 using WpfApp1.UserMenuItems;
 
 namespace WpfApp1
@@ -27,6 +31,120 @@ namespace WpfApp1
             LoadImage();
             DataContext = this;
             menuListBox.ItemsSource = menuPages[0].Items.Select(item => item.Name);
+            CreateResponseCard("Hello! My name is Demetra, the goddess of harvest and agriculture, presiding over crops, grains, food, and the fertility of the earth.");
+            CreateResponseCard("I welcome you to the Palace of Zeus. How may I assist you today?");
+        }
+
+        // this function will provide text to display for card depending on what the button text is
+        private async void DisplayCardByBtnTextAsync(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            // text of button's inner textblock
+            string btnText = (string)((StackPanel)button.Content).Children[0].GetValue(TextBlock.TextProperty);
+            switch (btnText)
+            {
+                case "Say Hello":
+                    CreateUserCard("Hi! I am the user");
+                    break;
+                case "Lunch Menu":
+                    CreateUserCard("I'd like to view the lunch menu, please");
+                    CreateResponseCard("Sure! Have a look.");
+                    await Task.Delay(1500);
+                    DrawerHost.IsRightDrawerOpen = true;
+                    CreateResponseCard("You can order any items you wish by selecting them in the panel below the menu, which you can navigate using the arrows.");
+                    break;
+                case "Breakfast Menu":
+                    CreateUserCard("What are my options for breakfast?");
+                    CreateResponseCard("We have a great variety of dishes available!");
+                    await Task.Delay(1500);
+                    DrawerHost.IsRightDrawerOpen = true;
+                    break;
+                case "Cocktails & Spirits":
+                    CreateUserCard("I'd like to have a drink");
+                    CreateResponseCard("Select any drink you would like from our vast selection.");
+                    break;
+                case "Wine Catalog":
+                    CreateUserCard("Show me the wine catalog please.");
+                    CreateResponseCard("Here is a list of our available wines.");
+                    break;
+                default:
+                    CreateUserCard("An error has occured. Please contact front desk for more info");
+                    break;
+            }
+            chatScroll.ScrollToEnd();
+        }
+
+        private void CreateUserCard(string query)
+        {
+            // Card properties
+            Card userCard = new(){
+                Padding = new Thickness(8),
+                Margin = new Thickness(8),
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Background = new SolidColorBrush(Color.FromRgb(219, 84, 97)),
+                Foreground = (Brush)FindResource("PrimaryHueDarkForegroundBrush"),
+                UniformCornerRadius = 6,
+                Content = new TextBlock{
+                    Text = query, // user query text passed as a parameter
+                    TextWrapping = TextWrapping.Wrap,
+                    TextAlignment = TextAlignment.Right
+                }
+            };
+            // Add the user card to the stack panel
+            chat.Children.Add(userCard);
+
+            // Create a fade-in animation for the user card
+            var fadeInAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = 1,
+                Duration = new Duration(TimeSpan.FromSeconds(1))
+            };
+
+            // Set up the storyboard for the animation
+            var storyboard = new Storyboard();
+            Storyboard.SetTarget(fadeInAnimation, userCard);
+            Storyboard.SetTargetProperty(fadeInAnimation, new PropertyPath(UIElement.OpacityProperty));
+            storyboard.Children.Add(fadeInAnimation);
+
+            // Start the animation
+            storyboard.Begin();
+        }
+
+        private void CreateResponseCard(string reply)
+        {
+            // Card properties
+            Card replyCard = new()
+            {
+                Width = 200,
+                Padding = new Thickness(8),
+                Margin = new Thickness(8),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Background = new SolidColorBrush(Color.FromRgb(177, 133, 167)),
+                Foreground = (Brush)FindResource("PrimaryHueDarkForegroundBrush"),
+                UniformCornerRadius = 6,
+                Content = new TextBlock
+                {
+                    Text = reply, // user query text passed as a parameter
+                    TextWrapping = TextWrapping.Wrap,
+                }
+            };
+
+            // Use a DispatcherTimer to delay the display of the card
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Tick += (sender, args) =>
+            {
+                // Stop the timer
+                timer.Stop();
+
+                // Start the FadeInAnimation storyboard
+                var fadeInAnimation = (Storyboard)FindResource("FadeInAnimation");
+                fadeInAnimation.Begin(replyCard);
+                // Add the user card to the stack panel
+                chat.Children.Add(replyCard);
+            };
+            timer.Start();
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -78,9 +196,9 @@ namespace WpfApp1
                 "If you want to return to the home screen click the home icon from the menu. \n\n" +
                 "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also see your account's details. \n", Foreground = Brushes.Black },
                 TxtTitle = { Text = "Information", Foreground = Brushes.White },
-                BtnOk = { Content = "Okay", Background = Brushes.DarkSlateGray },
+                BtnOk = { Content = "Okay", Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546"), BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546") },
                 BtnCancel = { Content = "Cancel", Visibility = Visibility.Collapsed },
-                MainContentControl = { Background = Brushes.Bisque },
+                MainContentControl = { Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFAEAEAE") },
                 TitleBackgroundPanel = { Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546") },
 
                 BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546")
@@ -99,15 +217,17 @@ namespace WpfApp1
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists("Resources/UserManual.pdf"))
+            string filePath = AppDomain.CurrentDomain.BaseDirectory+"Resources\\UserManual.pdf";
+            MessageBox.Show(filePath);
+            if (File.Exists(filePath))
             {
                 try
                 {
-                    Process.Start("microsoft-edge:", "Resources/UserManual.pdf");
+                    Process.Start(filePath);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred while trying to open the PDF file.\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"An error occurred while trying to open the PDF file.\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

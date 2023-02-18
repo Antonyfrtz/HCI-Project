@@ -19,6 +19,11 @@
     <None Remove="Assets\outdoor_pool_w_light.jpg" />
     <None Remove="Assets\room.png" />
     <None Remove="Assets\room_w_nolight.png" />
+    <None Remove="Assets\wines\wine_1.png" />
+    <None Remove="Assets\wines\wine_2.png" />
+    <None Remove="Assets\wines\wine_3.png" />
+    <None Remove="Assets\wines\wine_4.png" />
+    <None Remove="Assets\wines\wine_5.png" />
     <None Remove="Assets\Zeus%27sPalacel.png" />
     <None Remove="Assets\zeus.png" />
     <None Remove="Assets\zeus_User.png" />
@@ -50,12 +55,19 @@
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />
     <Resource Include="Assets\room.png" />
     <Resource Include="Assets\room_w_nolight.png" />
+    <Resource Include="Assets\wines\wine_1.png" />
+    <Resource Include="Assets\wines\wine_2.png" />
+    <Resource Include="Assets\wines\wine_3.png" />
+    <Resource Include="Assets\wines\wine_4.png" />
+    <Resource Include="Assets\wines\wine_5.png" />
     <Resource Include="Assets\Zeus'sPalacel.png" />
     <Resource Include="Assets\zeus.png" />
     <Resource Include="Assets\zeus_User.png" />
     <Resource Include="favicon.ico" />
     <Resource Include="Resources\LuxuriousScript-Regular.ttf" />
-    <Resource Include="Resources\UserManual.pdf" />
+    <Resource Include="Resources\UserManual.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
