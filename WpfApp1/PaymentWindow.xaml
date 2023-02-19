@@ -6,7 +6,10 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" FontFamily="Champagne &amp; Limousines" WindowStartupLocation="CenterScreen">
-    <Border Background="White" CornerRadius="10">
+    <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True" Visibility="Visible">
+        <!-- covers the whole page-->
+        <DockPanel Name="panel1">
+            <Border Background="White" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
@@ -24,7 +27,7 @@
                 <Grid>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock FontSize="15" Text="To pay" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="CostTxt" FontSize="80" Text="70€" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
+                        <TextBlock x:Name="CostTxt" FontSize="80" Text="" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
                     </StackPanel>
                     <Button VerticalAlignment="Bottom" Click="CancelPayment_Click" Background="{x:Null}" BorderBrush="{x:Null}">
                         <StackPanel Orientation="Horizontal">
@@ -88,4 +91,6 @@
             </Button>
         </Grid>
     </Border>
+        </DockPanel>
+    </materialDesign:DialogHost>
 </Window>

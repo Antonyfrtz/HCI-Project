@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,18 +20,15 @@ namespace WpfApp1
     /// </summary>
     public partial class PaymentWindow : Window
     {
-        public PaymentWindow()
+        public PaymentWindow(string total)
         {
             InitializeComponent();
+            CostTxt.Text = total;
         }
-
-        //Messenger.Default.Register<string>(this, (text) =>
-        //{
-            //string CostTxt = text;
-        //});
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!");
             if (Owner is Window ownerWindow)
             {
                 // if the current window is a modal dialog
@@ -48,6 +46,7 @@ namespace WpfApp1
 
         private void CancelPayment_Click(object sender, RoutedEventArgs e)
         {
+            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!");
             if (Owner is Window ownerWindow)
             {
                 // if the current window is a modal dialog
@@ -65,42 +64,42 @@ namespace WpfApp1
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == "0000")
+            TextBox textbox = (TextBox)sender;
+            if (textbox.Text == "0000")
             {
-                textBox.Text = string.Empty;
-                textBox.Foreground = Brushes.Black;
+                textbox.Text = string.Empty;
+                textbox.Foreground = Brushes.White;
             }
 
             TextBox NameTxtBox = (TextBox)sender;
             if (NameTxtBox.Text == "FIRST LAST")
             {
                 NameTxtBox.Text = string.Empty;
-                NameTxtBox.Foreground = Brushes.Black;
+                NameTxtBox.Foreground = Brushes.White;
             }
 
             TextBox DateTxtBox = (TextBox)sender;
             if (DateTxtBox.Text == "DAY/MONTH")
             {
                 DateTxtBox.Text = string.Empty;
-                DateTxtBox.Foreground = Brushes.Black;
+                DateTxtBox.Foreground = Brushes.White;
             }
 
             TextBox CVVtxtBox = (TextBox)sender;
             if (CVVtxtBox.Text == "***")
             {
                 CVVtxtBox.Text = string.Empty;
-                CVVtxtBox.Foreground = Brushes.Black;
+                CVVtxtBox.Foreground = Brushes.White;
             }
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (string.IsNullOrEmpty(textBox.Text))
+            TextBox textbox = (TextBox)sender;
+            if (string.IsNullOrEmpty(textbox.Text))
             {
-                textBox.Text = "0000";
-                textBox.Foreground = Brushes.Gray;
+                textbox.Text = "0000";
+                textbox.Foreground = Brushes.Gray;
             }
 
             TextBox NameTxtBox = (TextBox)sender;
@@ -118,11 +117,46 @@ namespace WpfApp1
             }
 
             TextBox CVVtxtBox = (TextBox)sender;
-            if (string.IsNullOrEmpty(textBox.Text))
+            if (string.IsNullOrEmpty(CVVtxtBox.Text))
             {
                 CVVtxtBox.Text = "***";
                 CVVtxtBox.Foreground = Brushes.Gray;
             }
+        }
+
+        private void OpenDialog(string text) // dialog for door and ladder options - can be used for any dialog
+        {
+
+            var dialogContent = new StackPanel
+            {
+                Margin = new Thickness(20),
+                Children =
+                {
+                    new TextBlock
+                    {
+                        Text = text,
+                    },
+                    new Button
+                    {
+                        Content = "Yes",
+                        Width = 100,
+                        Margin = new Thickness(0, 20, 0, 0),
+                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Command = DialogHost.CloseDialogCommand
+                    },
+                    new Button
+                    {
+                        Content = "No",
+                        Width = 100,
+                        Margin = new Thickness(0, 20, 0, 0),
+                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                        Command = DialogHost.CloseDialogCommand
+                    }
+                 }
+            };
+            DialogHost.Show(dialogContent, "RootDialog");
         }
     }
 }

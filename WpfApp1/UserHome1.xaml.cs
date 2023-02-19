@@ -421,12 +421,11 @@ namespace WpfApp1
                 paybtn.IsEnabled = false;
             }
             DrawerHost.IsRightDrawerOpen = false;
-            //Messenger.Default.Send<string>(Total.Text); //need NuGet package: MVVM Light Libraries Only
         }
 
         private void paybtn_Click(object sender, RoutedEventArgs e)
         {
-            PaymentWindow paymentWindow = new PaymentWindow();
+            PaymentWindow paymentWindow = new PaymentWindow(Total.Text);
             paymentWindow.Show();
             this.Close();
         }
