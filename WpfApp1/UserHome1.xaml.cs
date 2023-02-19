@@ -3,13 +3,10 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
@@ -424,6 +421,14 @@ namespace WpfApp1
                 paybtn.IsEnabled = false;
             }
             DrawerHost.IsRightDrawerOpen = false;
+            //Messenger.Default.Send<string>(Total.Text); //need NuGet package: MVVM Light Libraries Only
+        }
+
+        private void paybtn_Click(object sender, RoutedEventArgs e)
+        {
+            PaymentWindow paymentWindow = new PaymentWindow();
+            paymentWindow.Show();
+            this.Close();
         }
     }
 }

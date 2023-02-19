@@ -1,0 +1,91 @@
+﻿<Window x:Class="WpfApp1.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize" Background="{x:Null}" AllowsTransparency="True" WindowStyle="None" FontFamily="Champagne &amp; Limousines" WindowStartupLocation="CenterScreen">
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="10 0 0 10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF15206A" Offset="0"/>
+                        <GradientStop Color="#FF196176" Offset="1"/>
+                        <GradientStop Color="#FF202F8D" Offset="0.245"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="15" Text="To pay" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="CostTxt" FontSize="80" Text="70€" Foreground="{StaticResource PrimaryHueDarkForegroundBrush}"/>
+                    </StackPanel>
+                    <Button VerticalAlignment="Bottom" Click="CancelPayment_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Width="10" Height="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Cancel your payment" FontSize="10" Margin="5"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Column="1" Margin="20">
+                <TextBlock Text="Payment" FontSize="45" HorizontalAlignment="Left"/>
+                <TextBlock Text="Fill in credit card to begin" FontSize="20" Margin="0 10"/>
+                <Border Width="257" Height="162" CornerRadius="5">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF2E2E2E" Offset="0"/>
+                            <GradientStop Color="#FF3E3D3D" Offset="1"/>
+                            <GradientStop Color="#FF3E3E3E" Offset="0.43"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <Image Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Source="Assets/logo.png"/>
+                        <Border CornerRadius="5" Height="20" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Background="#FF474747"/>
+                        <Grid Width="200" VerticalAlignment="Center" Margin="37,56,20,83">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" Text="0000" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            <TextBox Grid.Column="1" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            <TextBox Grid.Column="2" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            <TextBox Grid.Column="3" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                        </Grid>
+                        <Grid VerticalAlignment="Bottom" Margin="0,0,0,9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="10,4,30,36" Grid.Column="0">
+                                <TextBlock Text="CARD HOLDER" FontSize="7" Foreground="LightGray"/>
+                                <TextBox x:Name="NameTxtBox" Text="FIRST LAST" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            </StackPanel>
+                            <StackPanel Margin="10,4,30,36" Grid.Column="1">
+                                <TextBlock Text="Expiration Date (MM/YY):" FontSize="7" Foreground="LightGray"/>
+                                <TextBox x:Name="DateTxtBox" Text="DAY/MONTH" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            </StackPanel>
+                            <StackPanel Margin="87,38,94,2" Grid.ColumnSpan="2" >
+                                <TextBlock Text="CVV:" FontSize="7" Foreground="LightGray"/>
+                                <TextBox x:Name="CVVtxtBox" Text="***" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Button Margin="50"  Background="#FF202F8D" Content="Pay Now"/>
+            </StackPanel>
+            <Button VerticalAlignment="Top" Margin="10" Foreground="#FF202F8D" Click="CloseButton_Click" HorizontalAlignment="Right" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

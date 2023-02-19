@@ -321,6 +321,7 @@
                                         <StackPanel Orientation="Horizontal"/>
                                         <Button
                                                 x:Name="paybtn"
+                                                Click="paybtn_Click"
                                                 Foreground="#028090"
                                                 Margin="4,5,4,4"
                                                 HorizontalAlignment="Center"
