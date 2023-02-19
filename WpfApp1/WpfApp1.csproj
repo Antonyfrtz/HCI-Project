@@ -14,11 +14,11 @@
     <None Remove="Assets\menus\menu_main_2.png" />
     <None Remove="Assets\menus\menu_main_3.png" />
     <None Remove="Assets\menus\menu_main_4.png" />
-    <None Remove="Assets\mousakas.mp4" />
     <None Remove="Assets\outdoor_pool_nolight.jpg" />
     <None Remove="Assets\outdoor_pool_w_light.jpg" />
     <None Remove="Assets\room.png" />
     <None Remove="Assets\room_w_nolight.png" />
+    <None Remove="Assets\Welcome.mp4" />
     <None Remove="Assets\wines\wine_1.png" />
     <None Remove="Assets\wines\wine_2.png" />
     <None Remove="Assets\wines\wine_3.png" />
@@ -50,11 +50,11 @@
     <Resource Include="Assets\menus\menu_main_2.png" />
     <Resource Include="Assets\menus\menu_main_3.png" />
     <Resource Include="Assets\menus\menu_main_4.png" />
-    <Resource Include="Assets\mousakas.mp4" />
     <Resource Include="Assets\outdoor_pool_nolight.jpg" />
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />
     <Resource Include="Assets\room.png" />
     <Resource Include="Assets\room_w_nolight.png" />
+    <Resource Include="Assets\Welcome.mp4" />
     <Resource Include="Assets\wines\wine_1.png" />
     <Resource Include="Assets\wines\wine_2.png" />
     <Resource Include="Assets\wines\wine_3.png" />

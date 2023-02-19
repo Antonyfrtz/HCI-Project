@@ -47,6 +47,7 @@ namespace WpfApp1
                     CreateUserCard("Hi! I am the user");
                     break;
                 case "Lunch Menu":
+                    Vokis.Source = new Uri("../../../Assets/Menu.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("I'd like to view the lunch menu, please");
                     CreateResponseCard("Sure! Have a look.");
                     await Task.Delay(1500);
@@ -54,16 +55,19 @@ namespace WpfApp1
                     CreateResponseCard("You can order any items you wish by selecting them in the panel below the menu, which you can navigate using the arrows.");
                     break;
                 case "Breakfast Menu":
+                    Vokis.Source = new Uri("../../../Assets/Dishes.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("What are my options for breakfast?");
                     CreateResponseCard("We have a great variety of dishes available!");
                     await Task.Delay(1500);
                     DrawerHost.IsRightDrawerOpen = true;
                     break;
                 case "Cocktails & Spirits":
+                    Vokis.Source = new Uri("../../../Assets/Drinks.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("I'd like to have a drink");
                     CreateResponseCard("Select any drink you would like from our vast selection.");
                     break;
                 case "Wine Catalog":
+                    Vokis.Source = new Uri("../../../Assets/Wines.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("Show me the wine catalog please.");
                     CreateResponseCard("Here is a list of our available wines.");
                     break;
@@ -194,7 +198,7 @@ namespace WpfApp1
                 "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
                 "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
                 "If you want to return to the home screen click the home icon from the menu. \n\n" +
-                "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also see your account's details. \n", Foreground = Brushes.Black },
+                "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n", Foreground = Brushes.Black },
                 TxtTitle = { Text = "Information", Foreground = Brushes.White },
                 BtnOk = { Content = "Okay", Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546"), BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546") },
                 BtnCancel = { Content = "Cancel", Visibility = Visibility.Collapsed },
@@ -217,23 +221,12 @@ namespace WpfApp1
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            string filePath = AppDomain.CurrentDomain.BaseDirectory+"Resources\\UserManual.pdf";
-            MessageBox.Show(filePath);
-            if (File.Exists(filePath))
+            string path = Path.Combine(Environment.CurrentDirectory, "Resources/UserManual.pdf");
+            Process.Start(new ProcessStartInfo
             {
-                try
-                {
-                    Process.Start(filePath);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred while trying to open the PDF file.\n{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("The PDF file could not be found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                FileName = path,
+                UseShellExecute = true
+            });
         }
 
         private void LoadImage()
