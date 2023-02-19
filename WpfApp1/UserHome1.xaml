@@ -278,6 +278,7 @@
                                     <Button
                                     Margin="4,10,4,4"
                                     HorizontalAlignment="Center"
+                                    Foreground="#028090"
                                     Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                     CommandParameter="{x:Static Dock.Left}"
                                     Content="BOOK A TABLE NOW"
@@ -320,6 +321,7 @@
                                         <StackPanel Orientation="Horizontal"/>
                                         <Button
                                                 x:Name="paybtn"
+                                                Foreground="#028090"
                                                 Margin="4,5,4,4"
                                                 HorizontalAlignment="Center"
                                                 IsEnabled="False"
