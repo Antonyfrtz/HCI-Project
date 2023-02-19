@@ -47,7 +47,7 @@ namespace WpfApp1
                     CreateUserCard("Hi! I am the user");
                     break;
                 case "Lunch Menu":
-                    Vokis.Source = new Uri("../../../Assets/Menu.mp4", UriKind.RelativeOrAbsolute);
+                    Vokis.Source = new Uri("../../../Assets/voki/Menu.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("I'd like to view the lunch menu, please");
                     CreateResponseCard("Sure! Have a look.");
                     await Task.Delay(1500);
@@ -55,19 +55,19 @@ namespace WpfApp1
                     CreateResponseCard("You can order any items you wish by selecting them in the panel below the menu, which you can navigate using the arrows.");
                     break;
                 case "Breakfast Menu":
-                    Vokis.Source = new Uri("../../../Assets/Dishes.mp4", UriKind.RelativeOrAbsolute);
+                    Vokis.Source = new Uri("../../../Assets/voki/Dishes.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("What are my options for breakfast?");
                     CreateResponseCard("We have a great variety of dishes available!");
                     await Task.Delay(1500);
                     DrawerHost.IsRightDrawerOpen = true;
                     break;
                 case "Cocktails & Spirits":
-                    Vokis.Source = new Uri("../../../Assets/Drinks.mp4", UriKind.RelativeOrAbsolute);
+                    Vokis.Source = new Uri("../../../Assets/voki/Drinks.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("I'd like to have a drink");
                     CreateResponseCard("Select any drink you would like from our vast selection.");
                     break;
                 case "Wine Catalog":
-                    Vokis.Source = new Uri("../../../Assets/Wines.mp4", UriKind.RelativeOrAbsolute);
+                    Vokis.Source = new Uri("../../../Assets/voki/Wines.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("Show me the wine catalog please.");
                     CreateResponseCard("Here is a list of our available wines.");
                     break;
@@ -163,21 +163,26 @@ namespace WpfApp1
             ButtonOpenMenu.Visibility = Visibility.Visible;
         }
 
+        int menu=0;
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GridMain.Children.Clear(); // remove current selection from main grid
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemHome":
+                    menu = 0;
                     GridMain.Children.Add(new UserControlHome());
                     break;
                 case "ItemPool":
+                    menu = 1;
                     GridMain.Children.Add(new UserControlPool());
                     break;
                 case "ItemTrojanHorse":
+                    menu = 2;
                     GridMain.Children.Add(new UserControlTrojanHorse());
                     break;
                 case "ItemRestaurant":
+                    menu = 3;
                     GridMain.Children.Add(new UserControlRestaurant());
                     break;
                 default:
@@ -193,12 +198,7 @@ namespace WpfApp1
         {
             CustomMaterialMessageBox msg = new CustomMaterialMessageBox
             {
-                TxtMessage = { Text = "In the left part of the screen there is a menu which includes all the utilities you have access to. \n\n" +
-                "To enter the pool managment system click the pool icon from the menu. \n" +
-                "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
-                "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
-                "If you want to return to the home screen click the home icon from the menu. \n\n" +
-                "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n", Foreground = Brushes.Black },
+                TxtMessage = { Text = Message(), Foreground = Brushes.Black },
                 TxtTitle = { Text = "Information", Foreground = Brushes.White },
                 BtnOk = { Content = "Okay", Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546"), BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#2e3546") },
                 BtnCancel = { Content = "Cancel", Visibility = Visibility.Collapsed },
@@ -212,6 +212,50 @@ namespace WpfApp1
             MessageBoxResult results = msg.Result;
         }
 
+        private string Message()
+        {
+            switch (menu)
+            {
+                case 0: // Main menu
+                    return
+                    "You are currently in the Main menu. Here you can access all controls for the room.\n\n"+
+                    "In the left part of the screen there is a menu which includes all the utilities you have access to. \n\n" +
+                    "To enter the pool managment system click the pool icon from the menu. \n" +
+                    "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
+                    "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
+                    "If you want to return to the home screen click the home icon from the menu. \n\n" +
+                    "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n";
+                case 1: // Pool
+                    return
+                    "You are currently in the pool management area. Here you can access all controls for the pool.\n\n" +
+                    "In the left part of the screen there is a menu which includes all the utilities you have access to. \n\n" +
+                    "To enter the pool managment system click the pool icon from the menu. \n" +
+                    "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
+                    "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
+                    "If you want to return to the home screen click the home icon from the menu. \n\n" +
+                    "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n";
+                case 2: // Trojan
+                    return
+                    "You are currently in the Trojan horse GPS. Here you can navigate using the on-screen buttons.\n\n" +
+                    "In the left part of the screen there is a menu which includes all the utilities you have access to. \n\n" +
+                    "To enter the pool managment system click the pool icon from the menu. \n" +
+                    "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
+                    "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
+                    "If you want to return to the home screen click the home icon from the menu. \n\n" +
+                    "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n";
+                case 3: // Restaurant
+                    return
+                    "You are currently in the restaurant ordering page. Here you can order from our facilities by interacting with our chatbot.\n\n" +
+                    "In the left part of the screen there is a menu which includes all the utilities you have access to. \n\n" +
+                    "To enter the pool managment system click the pool icon from the menu. \n" +
+                    "To use the Trojan Horse RV you rented click the trojan horse icon from the menu. \n" +
+                    "If you want to enter the restaurant and order food or drinks click the restaurant icon from the menu. \n" +
+                    "If you want to return to the home screen click the home icon from the menu. \n\n" +
+                    "In the right top part of the screen there is a three dot button. If you click it you can logout and you can also click on Help which will open the User Manual. \n";
+            }
+            return "";
+        }
+
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             MainWindow backToLogin = new MainWindow();
@@ -221,9 +265,9 @@ namespace WpfApp1
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            string path = Path.Combine(Environment.CurrentDirectory, "Resources/UserManual.pdf");
-            Process.Start(new ProcessStartInfo
-            {
+            string path = @".\..\..\..\Resources\UserManual.pdf";
+            Process.Start(
+            new ProcessStartInfo{
                 FileName = path,
                 UseShellExecute = true
             });

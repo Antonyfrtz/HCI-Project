@@ -54,7 +54,7 @@
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />
     <Resource Include="Assets\room.png" />
     <Resource Include="Assets\room_w_nolight.png" />
-    <Resource Include="Assets\Welcome.mp4" />
+    <Resource Include="Assets\voki\Welcome.mp4" />
     <Resource Include="Assets\wines\wine_1.png" />
     <Resource Include="Assets\wines\wine_2.png" />
     <Resource Include="Assets\wines\wine_3.png" />
@@ -66,7 +66,7 @@
     <Resource Include="favicon.ico" />
     <Resource Include="Resources\LuxuriousScript-Regular.ttf" />
     <Resource Include="Resources\UserManual.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

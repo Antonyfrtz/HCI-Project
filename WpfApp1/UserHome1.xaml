@@ -219,7 +219,7 @@
                     <!-- Left Column -->
                     <!-- Grid.RowSpan overrides height 80%  -->
                     <Border Grid.Column="0" Grid.RowSpan="2" Margin="0,0,0,20"  Background="#C3DFE0">
-                        <MediaElement x:Name="Vokis" Source="../../../Assets/Welcome.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Height="300" Margin="0,161,-3,161" />
+                        <MediaElement x:Name="Vokis" Source="../../../Assets/voki/Welcome.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Height="300" Margin="0,161,-3,161" />
                         <!-- Add your left column content here -->
                     </Border>
 
