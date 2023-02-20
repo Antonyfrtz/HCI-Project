@@ -21,7 +21,7 @@
                     <materialDesign:Card
                                 Name="tempLabel1"
                                 Padding="8"
-                                Margin="789,444,34,85"
+                                Margin="789,444,34,65"
                                 Background="#4ea6b1"
                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                 UniformCornerRadius="6">
@@ -45,10 +45,20 @@
                     <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
                     <TextBlock Text="Welcome, username." FontSize="24" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="34,22,0,0" FontFamily="Roboto" FontStyle="Italic"/>
                     <materialDesign:PackIcon Kind="Information" Foreground="White" Width="20" Height="20" Margin="177,-42,0,0" />
+
                     <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="802,494,0,0"/>
                     <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="901,492,0,0" />
                     <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Lights of the room." Margin="862,487,314,117"/>
+
                     <TextBlock Text="Room Controls" FontSize="24" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="908,451,0,0" TextDecorations="Underline"/>
+
+                    <TextBlock Text="Television" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="978,494,0,0"/>
+                    <materialDesign:PackIcon Kind="TelevisionClassicOff" x:Name ="Television" Foreground="Black" Width="20" Height="20" Margin="1121,496,0,0" />
+                    <ToggleButton x:Name="TVBtn" IsChecked="False" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the television." Margin="1082,487,94,117"/>
+
+                    <TextBlock Text="Air-Conditioner" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="878,531,0,0"/>
+                    <materialDesign:PackIcon Kind="FanOff" x:Name ="AC" Foreground="Black" Width="20" Height="20" Margin="1062,534,0,0" />
+                    <ToggleButton x:Name="ACBtn" IsChecked="False" Click="ToggleButtons_Click" Background="MediumBlue" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the AC." Margin="1023,526,153,79"/>
                 </Grid>
             </DockPanel>
         </materialDesign:DialogHost>

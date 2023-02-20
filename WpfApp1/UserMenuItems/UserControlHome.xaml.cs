@@ -28,12 +28,14 @@ namespace WpfApp1
         }
 
         bool LightBulbisChecked = false;
-        private void ToggleButtons_Click(object sender, RoutedEventArgs e) ///This changes the icons next to the toggle button for lights.
+        bool TelevisionisChecked = false;
+        bool ACisChecked = false;
+        private void ToggleButtons_Click(object sender, RoutedEventArgs e) //This changes the icons next to the toggle button for lights.
         {
             string txtbx = ((ToggleButton)sender).Name;
             switch (txtbx)
             {
-                case "LightsBtn": ///this is for lightbulb
+                case "LightsBtn": //this is for lightbulb
                     if (LightBulbisChecked)
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOnOutline");
@@ -48,6 +50,34 @@ namespace WpfApp1
 
                     }
                     LightBulbisChecked = !LightBulbisChecked;
+                    break;
+
+                case "TVBtn": //this is for tv
+                    if (TelevisionisChecked)
+                    {
+                        Television.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "TelevisionClassicOff");
+                        OpenDialog("Television is off!");
+                    }
+                    else
+                    {
+                        Television.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "TelevisionClassic");
+                        OpenDialog("Television is on!");
+                    }
+                    TelevisionisChecked = !TelevisionisChecked;
+                    break;
+
+                case "ACBtn": //this is for tv
+                    if (ACisChecked)
+                    {
+                        AC.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "FanOff");
+                        OpenDialog("Air-Conditioner is off!");
+                    }
+                    else
+                    {
+                        AC.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "Fan");
+                        OpenDialog("Air-Conditioner is on!");
+                    }
+                    ACisChecked = !ACisChecked;
                     break;
             }
         }
