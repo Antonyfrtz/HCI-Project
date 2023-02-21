@@ -28,38 +28,72 @@ namespace WpfApp1
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!");
-            if (Owner is Window ownerWindow)
+            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!", (result) =>
             {
-                // if the current window is a modal dialog
-                DialogResult = false;
-                ownerWindow.Activate();
-            }
-            else
-            {
-                // if the current window is a regular window
-                var previousWindow = new UserHome1();
-                previousWindow.Show();
-            }
-            Close();
+                if (result)
+                {
+                    if (Owner is Window ownerWindow)
+                    {
+                        // if the current window is a modal dialog
+                        DialogResult = false;
+                        ownerWindow.Activate();
+                    }
+                    else
+                    {
+                        // if the current window is a regular window
+                        var previousWindow = new UserHome1();
+                        previousWindow.Show();
+                        Close();
+                    }
+                }
+            });
         }
 
         private void CancelPayment_Click(object sender, RoutedEventArgs e)
         {
-            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!");
-            if (Owner is Window ownerWindow)
+            OpenDialog("Are you sure you want to cancel your payment? Your order will be deleted!", (result) =>
             {
-                // if the current window is a modal dialog
-                DialogResult = false;
-                ownerWindow.Activate();
-            }
-            else
+                if (result)
+                {
+                    if (Owner is Window ownerWindow)
+                    {
+                        // if the current window is a modal dialog
+                        DialogResult = false;
+                        ownerWindow.Activate();
+                    }
+                    else
+                    {
+                        // if the current window is a regular window
+                        var previousWindow = new UserHome1();
+                        previousWindow.Show();
+                        Close();
+                    }
+                }
+            });
+        }
+
+        private void PayButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenDialog("Are you sure you want to proceed with the payment?", (result) =>
             {
-                // if the current window is a regular window
-                var previousWindow = new UserHome1();
-                previousWindow.Show();
-            }
-            Close();
+                if (result)
+                {
+                    if (Owner is Window ownerWindow)
+                    {
+                        // if the current window is a modal dialog
+                        DialogResult = false;
+                        ownerWindow.Activate();
+                    }
+                    else
+                    {
+                        // if the current window is a regular window
+                        var previousWindow = new UserHome1();
+                        previousWindow.Show();
+                        Close();
+                        MessageBox.Show("Order Placed! \n"+ "Your order was placed successfully. Coming right Up!"); //need to figure out a way so the opendialog works( Tried to create a new opendialog with only string but it doesn't appear)
+                    }
+                }
+            });
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -124,7 +158,7 @@ namespace WpfApp1
             }
         }
 
-        private void OpenDialog(string text) // dialog for door and ladder options - can be used for any dialog
+        private void OpenDialog(string text, Action<bool> callback) // dialog for door and ladder options - can be used for any dialog
         {
 
             var dialogContent = new StackPanel
@@ -143,7 +177,8 @@ namespace WpfApp1
                         Margin = new Thickness(0, 20, 0, 0),
                         BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Command = DialogHost.CloseDialogCommand
+                        Command = DialogHost.CloseDialogCommand,
+                        Tag = true // set a tag to identify the button
                     },
                     new Button
                     {
@@ -152,9 +187,19 @@ namespace WpfApp1
                         Margin = new Thickness(0, 20, 0, 0),
                         BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Command = DialogHost.CloseDialogCommand
+                        Command = DialogHost.CloseDialogCommand,
+                        Tag = false // set a tag to identify the button
                     }
                  }
+            };
+            ((Button)dialogContent.Children[1]).Click += (sender, args) =>
+            {
+                callback?.Invoke(true);
+            };
+
+            ((Button)dialogContent.Children[2]).Click += (sender, args) =>
+            {
+                callback?.Invoke(false);
             };
             DialogHost.Show(dialogContent, "RootDialog");
         }

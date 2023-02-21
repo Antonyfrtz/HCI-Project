@@ -84,7 +84,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <Button Margin="50"  Background="#FF202F8D" Content="Pay Now"/>
+                        <Button Margin="50"  Click="PayButton_Click" Background="#FF202F8D" Content="Pay Now"/>
             </StackPanel>
             <Button VerticalAlignment="Top" Margin="10" Foreground="#FF202F8D" Click="CloseButton_Click" HorizontalAlignment="Right" Grid.Column="1" Style="{StaticResource MaterialDesignFlatButton}">
                 <materialDesign:PackIcon Kind="Close"/>
