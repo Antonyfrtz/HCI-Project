@@ -32,6 +32,12 @@ namespace WpfApp1
             CreateResponseCard("I welcome you to the Palace of Zeus. How may I assist you today?");
         }
 
+        public UserHome1(string message)
+        {
+            InitializeComponent();
+            CreateResponseCard("Why are u gay");
+        }
+
         // Various images for different menus
         private static string[] _imageFiles = { "../Assets/menus/menu_main_1.png", "../Assets/menus/menu_main_2.png", "../Assets/menus/menu_main_3.png", "../Assets/menus/menu_main_4.png" };
         private static string[] W_imageFiles = { "../Assets/wines/wine_1.png", "../Assets/wines/wine_2.png", "../Assets/wines/wine_3.png" , "../Assets/wines/wine_4.png", "../Assets/wines/wine_5.png" };

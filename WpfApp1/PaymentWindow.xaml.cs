@@ -87,10 +87,9 @@ namespace WpfApp1
                     else
                     {
                         // if the current window is a regular window
-                        var previousWindow = new UserHome1();
+                        var previousWindow = new UserHome1("Order Placed! \n" + "Your order was placed successfully. Coming right Up!");
                         previousWindow.Show();
                         Close();
-                        MessageBox.Show("Order Placed! \n"+ "Your order was placed successfully. Coming right Up!"); //need to figure out a way so the opendialog works( Tried to create a new opendialog with only string but it doesn't appear)
                     }
                 }
             });
