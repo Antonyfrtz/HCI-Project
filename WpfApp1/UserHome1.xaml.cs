@@ -19,19 +19,23 @@ namespace WpfApp1
     /// </summary>
     public partial class UserHome1 : Window
     {
+        UserOrderPanel lunch = new UserOrderPanel(menuPages,_imageFiles);
+        UserOrderPanel wine = new UserOrderPanel(winemenuPages, W_imageFiles);
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
             //UserControl main = new UserControlHome();
             //ListViewMenu.SelectedItem = ItemHome;
             //GridMain.Children.Add(main);
-            LoadImage();
             DataContext = this;
-            menuListBox.ItemsSource = menuPages[0].Items.Select(item => item.Name);
             CreateResponseCard("Hello! My name is Demetra, the goddess of harvest and agriculture, presiding over crops, grains, food, and the fertility of the earth.");
             CreateResponseCard("I welcome you to the Palace of Zeus. How may I assist you today?");
         }
 
+        // Various images for different menus
+        private static string[] _imageFiles = { "../Assets/menus/menu_main_1.png", "../Assets/menus/menu_main_2.png", "../Assets/menus/menu_main_3.png", "../Assets/menus/menu_main_4.png" };
+        private static string[] W_imageFiles = { "../Assets/wines/wine_1.png", "../Assets/wines/wine_2.png", "../Assets/wines/wine_3.png" , "../Assets/wines/wine_4.png", "../Assets/wines/wine_5.png" };
+        
         // this function will provide text to display for card depending on what the button text is
         private async void DisplayCardByBtnTextAsync(object sender, RoutedEventArgs e)
         {
@@ -48,6 +52,7 @@ namespace WpfApp1
                     CreateUserCard("I'd like to view the lunch menu, please");
                     CreateResponseCard("Sure! Have a look.");
                     await Task.Delay(1500);
+                    DrawerHost.RightDrawerContent = lunch;
                     DrawerHost.IsRightDrawerOpen = true;
                     CreateResponseCard("You can order any items you wish by selecting them in the panel below the menu, which you can navigate using the arrows.");
                     break;
@@ -67,6 +72,9 @@ namespace WpfApp1
                     Vokis.Source = new Uri("../../../Assets/voki/Wines.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("Show me the wine catalog please.");
                     CreateResponseCard("Here is a list of our available wines.");
+                    await Task.Delay(1500);
+                    DrawerHost.RightDrawerContent = wine;
+                    DrawerHost.IsRightDrawerOpen = true;
                     break;
                 default:
                     CreateUserCard("An error has occured. Please contact front desk for more info");
@@ -284,89 +292,11 @@ namespace WpfApp1
                 UseShellExecute = true
             });
         }
-
-        private void LoadImage()
+        private void paybtn_Click(object sender, RoutedEventArgs e)
         {
-            Menus.Source = new System.Windows.Media.Imaging.BitmapImage(new System.Uri(_imageFiles[_currentImageIndex], System.UriKind.Relative));
-        }
-
-        private int _currentImageIndex=0;
-        private List<string> _selectedItems = new List<string>();
-        private readonly string[] _imageFiles = { "Assets/menus/menu_main_1.png", "Assets/menus/menu_main_2.png", "Assets/menus/menu_main_3.png", "Assets/menus/menu_main_4.png" };
-        private void ChangeMenuItem(object sender, RoutedEventArgs e)
-        {
-            // Get button that made the call
-            string senderName = ((FrameworkElement)sender).Name;
-            if (senderName== "Nextbtn")
-            {
-                _currentImageIndex++;
-            }
-            else
-            {
-                _currentImageIndex--;
-            }
-            if (_currentImageIndex == 0) // first page
-            {
-                Previousbtn.Visibility = Visibility.Hidden;
-                Nextbtn.Visibility = Visibility.Visible;
-            }
-            else if (_currentImageIndex == _imageFiles.Length - 1) // last page
-            {
-                Previousbtn.Visibility = Visibility.Visible;
-                Nextbtn.Visibility = Visibility.Hidden;
-            }
-            else // intermediate
-            {
-                Previousbtn.Visibility = Visibility.Visible;
-                Previousbtn.Visibility = Visibility.Visible;
-            }
-            LoadImage();
-            // temporarily remove event handler to avoid refreshing selected plate list and badge values
-            menuListBox.SelectionChanged -= new SelectionChangedEventHandler(menuListBox_SelectionChanged);
-            menuListBox.ItemsSource = menuPages[_currentImageIndex].Items.Select(item => item.Name);
-            foreach (var item in menuPages[_currentImageIndex].Items)
-            {
-                if (_selectedItems.Contains(item.Name))
-                {
-                    menuListBox.SelectedItems.Add(item.Name);
-                }
-            }
-            // add event handler back
-            menuListBox.SelectionChanged += new SelectionChangedEventHandler(menuListBox_SelectionChanged);
-        }
-
-        public class MenuPage
-        {
-            public List<MenuItem> Items { get; set; }
-            public List<WineMenuItem> Wines { get; set; }
-        }
-
-        public class WineMenuItem 
-        {
-            public string Name { get; set; }
-            public int Price { get; set; }
-        }
-        public class MenuItem
-        {
-            public string Name { get; set; }
-            public int Price { get; set; }
-        }
-
-        private void menuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (var item in e.AddedItems)
-            {
-                // This item was selected
-                _selectedItems.Add(item.ToString());
-                badge.Badge = _selectedItems.Count;
-            }
-
-            foreach (var item in e.RemovedItems)
-            {
-                // This item was unselected
-                _selectedItems.Remove(item.ToString());
-                badge.Badge = _selectedItems.Count;
-            }
+            PaymentWindow paymentWindow = new PaymentWindow(Total.Text);
+            paymentWindow.Show();
+            this.Close();
         }
 
         static List<MenuPage> menuPages = new List<MenuPage>
@@ -413,98 +343,61 @@ namespace WpfApp1
             }
         };
 
-        static List<MenuPage> WinemenuPages = new List<MenuPage>
+        static List<MenuPage> winemenuPages = new List<MenuPage>
         {
             new MenuPage
             {
-                Wines = new List<WineMenuItem>{
-                    new WineMenuItem { Name = "Zacharias Winery", Price = 25 },
-                    new WineMenuItem { Name = "Karipidis Estate", Price = 35 },
-                    new WineMenuItem { Name = "Vientzi Papagiannakos", Price = 38 },
-                    new WineMenuItem { Name = "Ktima Gerovassilou", Price = 44 },
-                    new WineMenuItem { Name = "Domaine Kikones", Price = 50 },
-                    new WineMenuItem { Name = "Nykteri Reserve Santo Wines", Price = 71}
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Zacharias Winery", Price = 25 },
+                    new MenuItem { Name = "Karipidis Estate", Price = 35 },
+                    new MenuItem { Name = "Vientzi Papagiannakos", Price = 38 },
+                    new MenuItem { Name = "Ktima Gerovassilou", Price = 44 },
+                    new MenuItem { Name = "Domaine Kikones", Price = 50 },
+                    new MenuItem { Name = "Nykteri Reserve Santo Wines", Price = 71}
                 }
             },
             new MenuPage
             {
-                Wines = new List<WineMenuItem>{
-                    new WineMenuItem { Name = "Driopi Nemea Domaine Tselepos", Price = 28 },
-                    new WineMenuItem { Name = "Chatzivaritis Estate Goumenissa", Price = 39 },
-                    new WineMenuItem { Name = "Oenops Wines", Price = 43 },
-                    new WineMenuItem { Name = "Cyrus One Kyros Melas", Price = 46 },
-                    new WineMenuItem { Name = "Emphasis, Pavlidi Estate", Price = 52 },
-                    new WineMenuItem{ Name = "Taos Paparousi Wines" , Price = 60}
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Driopi Nemea Domaine Tselepos", Price = 28 },
+                    new MenuItem { Name = "Chatzivaritis Estate Goumenissa", Price = 39 },
+                    new MenuItem { Name = "Oenops Wines", Price = 43 },
+                    new MenuItem { Name = "Cyrus One Kyros Melas", Price = 46 },
+                    new MenuItem { Name = "Emphasis, Pavlidi Estate", Price = 52 },
+                    new MenuItem { Name = "Taos Paparousi Wines" , Price = 60}
                 }
             },
             new MenuPage
             {
-                Wines = new List<WineMenuItem>{
-                    new WineMenuItem { Name = "Vissinokipos,Palivou Estate", Price = 27 },
-                    new WineMenuItem { Name = "Theopetra Estate", Price = 39 },
-                    new WineMenuItem { Name = "Idylle D'Achinos, La Tour Melas", Price = 43 },
-                    new WineMenuItem { Name = "Alpha Estate", Price = 54 },
-                    new WineMenuItem { Name = "Dianthos, Boutari Estate", Price = 52 },
-                    new WineMenuItem{ Name = "Mavrose 2022, Tiniakoi Ampelones", Price = 69 }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Vissinokipos,Palivou Estate", Price = 27 },
+                    new MenuItem { Name = "Theopetra Estate", Price = 39 },
+                    new MenuItem { Name = "Idylle D'Achinos, La Tour Melas", Price = 43 },
+                    new MenuItem { Name = "Alpha Estate", Price = 54 },
+                    new MenuItem { Name = "Dianthos, Boutari Estate", Price = 52 },
+                    new MenuItem { Name = "Mavrose 2022, Tiniakoi Ampelones", Price = 69 }
                 }
             },
             new MenuPage
             {
-                Wines = new List<WineMenuItem>{
-                    new WineMenuItem { Name = "Akakies Kir-Yanni Sparkling", Price = 38 },
-                    new WineMenuItem { Name = "Karanika Brut Cuvee Speciale", Price = 43 },
-                    new WineMenuItem { Name = "Douroufakis Sparkling Brut", Price = 48 },
-                    new WineMenuItem { Name = "Santo White Sparkling Brut", Price = 59 },
-                    new WineMenuItem { Name = "Muscat Rio Patras Parparousis", Price = 42 }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Akakies Kir-Yanni Sparkling", Price = 38 },
+                    new MenuItem { Name = "Karanika Brut Cuvee Speciale", Price = 43 },
+                    new MenuItem { Name = "Douroufakis Sparkling Brut", Price = 48 },
+                    new MenuItem { Name = "Santo White Sparkling Brut", Price = 59 },
+                    new MenuItem { Name = "Muscat Rio Patras Parparousis", Price = 42 }
                 }
             },
             new MenuPage
             {
-                Wines = new List<WineMenuItem>{
-                    new WineMenuItem { Name = "Moet & Chandon Brut Imperial", Price = 120 },
-                    new WineMenuItem { Name = "Taittinger Nocturne City Lights", Price = 160 },
-                    new WineMenuItem { Name = "Dom Perignon Vintage", Price = 450 },
-                    new WineMenuItem { Name = "Cristal Brut Louis Roederer", Price = 620 }
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Moet & Chandon Brut Imperial", Price = 120 },
+                    new MenuItem { Name = "Taittinger Nocturne City Lights", Price = 160 },
+                    new MenuItem { Name = "Dom Perignon Vintage", Price = 450 },
+                    new MenuItem { Name = "Cristal Brut Louis Roederer", Price = 620 }
                 }
             }
         };
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            // TO BE IMPLEMENTED
-
-        }
-
-        // lookup map
-        Dictionary<string, int> itemPrices = menuPages.SelectMany(page => page.Items).ToDictionary(item => item.Name, item => item.Price);
-        // price
-        private int total;
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            if (_selectedItems.Count > 0) // show expander
-            {
-                total = _selectedItems.Sum(selection => itemPrices.GetValueOrDefault(selection, 0));
-                Total.Text = total.ToString()+ " €";
-                maindishes_exp.Visibility = Visibility.Visible;
-                msg.Visibility= Visibility.Collapsed;
-                maindishes.Text = string.Join(", ", _selectedItems);
-                paybtn.IsEnabled = true;
-            }
-            else // show textblock
-            {
-                Total.Text = "";
-                maindishes_exp.Visibility = Visibility.Collapsed;
-                msg.Visibility = Visibility.Visible;
-                paybtn.IsEnabled = false;
-            }
-            DrawerHost.IsRightDrawerOpen = false;
-        }
-
-        private void paybtn_Click(object sender, RoutedEventArgs e)
-        {
-            PaymentWindow paymentWindow = new PaymentWindow(Total.Text);
-            paymentWindow.Show();
-            this.Close();
-        }
     }
 }
