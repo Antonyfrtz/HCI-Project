@@ -338,8 +338,14 @@ namespace WpfApp1
         public class MenuPage
         {
             public List<MenuItem> Items { get; set; }
+            public List<WineMenuItem> Wines { get; set; }
         }
 
+        public class WineMenuItem 
+        {
+            public string Name { get; set; }
+            public int Price { get; set; }
+        }
         public class MenuItem
         {
             public string Name { get; set; }
@@ -403,6 +409,62 @@ namespace WpfApp1
                     new MenuItem { Name = "Chips", Price = 0 },
                     new MenuItem { Name = "Puree", Price = 0 },
                     new MenuItem { Name = "Greens", Price = 0 }
+                }
+            }
+        };
+
+        static List<MenuPage> WinemenuPages = new List<MenuPage>
+        {
+            new MenuPage
+            {
+                Wines = new List<WineMenuItem>{
+                    new WineMenuItem { Name = "Zacharias Winery", Price = 25 },
+                    new WineMenuItem { Name = "Karipidis Estate", Price = 35 },
+                    new WineMenuItem { Name = "Vientzi Papagiannakos", Price = 38 },
+                    new WineMenuItem { Name = "Ktima Gerovassilou", Price = 44 },
+                    new WineMenuItem { Name = "Domaine Kikones", Price = 50 },
+                    new WineMenuItem { Name = "Nykteri Reserve Santo Wines", Price = 71}
+                }
+            },
+            new MenuPage
+            {
+                Wines = new List<WineMenuItem>{
+                    new WineMenuItem { Name = "Driopi Nemea Domaine Tselepos", Price = 28 },
+                    new WineMenuItem { Name = "Chatzivaritis Estate Goumenissa", Price = 39 },
+                    new WineMenuItem { Name = "Oenops Wines", Price = 43 },
+                    new WineMenuItem { Name = "Cyrus One Kyros Melas", Price = 46 },
+                    new WineMenuItem { Name = "Emphasis, Pavlidi Estate", Price = 52 },
+                    new WineMenuItem{ Name = "Taos Paparousi Wines" , Price = 60}
+                }
+            },
+            new MenuPage
+            {
+                Wines = new List<WineMenuItem>{
+                    new WineMenuItem { Name = "Vissinokipos,Palivou Estate", Price = 27 },
+                    new WineMenuItem { Name = "Theopetra Estate", Price = 39 },
+                    new WineMenuItem { Name = "Idylle D'Achinos, La Tour Melas", Price = 43 },
+                    new WineMenuItem { Name = "Alpha Estate", Price = 54 },
+                    new WineMenuItem { Name = "Dianthos, Boutari Estate", Price = 52 },
+                    new WineMenuItem{ Name = "Mavrose 2022, Tiniakoi Ampelones", Price = 69 }
+                }
+            },
+            new MenuPage
+            {
+                Wines = new List<WineMenuItem>{
+                    new WineMenuItem { Name = "Akakies Kir-Yanni Sparkling", Price = 38 },
+                    new WineMenuItem { Name = "Karanika Brut Cuvee Speciale", Price = 43 },
+                    new WineMenuItem { Name = "Douroufakis Sparkling Brut", Price = 48 },
+                    new WineMenuItem { Name = "Santo White Sparkling Brut", Price = 59 },
+                    new WineMenuItem { Name = "Muscat Rio Patras Parparousis", Price = 42 }
+                }
+            },
+            new MenuPage
+            {
+                Wines = new List<WineMenuItem>{
+                    new WineMenuItem { Name = "Moet & Chandon Brut Imperial", Price = 120 },
+                    new WineMenuItem { Name = "Taittinger Nocturne City Lights", Price = 160 },
+                    new WineMenuItem { Name = "Dom Perignon Vintage", Price = 450 },
+                    new WineMenuItem { Name = "Cristal Brut Louis Roederer", Price = 620 }
                 }
             }
         };
