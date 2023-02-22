@@ -58,12 +58,11 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-
-                            <TextBox Grid.Column="0" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" Text="0000" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-                            <TextBox Grid.Column="1" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-                            <TextBox Grid.Column="2" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-                            <TextBox Grid.Column="3" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-                        </Grid>
+                                    <TextBox Grid.Column="0" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
+                                    <TextBox Grid.Column="1" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
+                                    <TextBox Grid.Column="2" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
+                                    <TextBox Grid.Column="3" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>    
+                            </Grid>
                         <Grid VerticalAlignment="Bottom" Margin="0,0,0,9">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -71,15 +70,15 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Margin="10,4,30,36" Grid.Column="0">
                                 <TextBlock Text="CARD HOLDER" FontSize="7" Foreground="LightGray"/>
-                                <TextBox x:Name="NameTxtBox" Text="FIRST LAST" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                                <TextBox x:Name="NameTxtBox" Text="FIRST LAST" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended"/>
                             </StackPanel>
                             <StackPanel Margin="10,4,30,36" Grid.Column="1">
                                 <TextBlock Text="Expiration Date (MM/YY):" FontSize="7" Foreground="LightGray"/>
-                                <TextBox x:Name="DateTxtBox" Text="DAY/MONTH" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                                <TextBox x:Name="DateTxtBox" Text="DAY/MONTH" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended"/>
                             </StackPanel>
                             <StackPanel Margin="87,38,94,2" Grid.ColumnSpan="2" >
                                 <TextBlock Text="CVV:" FontSize="7" Foreground="LightGray"/>
-                                <TextBox x:Name="CVVtxtBox" Text="***" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                                <TextBox x:Name="CVVtxtBox" Text="***" FontSize="12" Foreground="LightGray" FontFamily="OCR A Extended"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

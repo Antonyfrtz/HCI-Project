@@ -9,6 +9,14 @@
   <ItemGroup>
     <None Remove="Assets\blackmeandros.png" />
     <None Remove="Assets\Dining_room.jpg" />
+    <None Remove="Assets\drinks\drink_1.png" />
+    <None Remove="Assets\drinks\drink_2.png" />
+    <None Remove="Assets\drinks\drink_3.png" />
+    <None Remove="Assets\drinks\drink_4.png" />
+    <None Remove="Assets\drinks\drink_5.png" />
+    <None Remove="Assets\drinks\drink_6.png" />
+    <None Remove="Assets\drinks\drink_7.png" />
+    <None Remove="Assets\drinks\drink_8.png" />
     <None Remove="Assets\Lobby1.jpg" />
     <None Remove="Assets\logo.png" />
     <None Remove="Assets\menus\menu_main_1.png" />
@@ -19,6 +27,7 @@
     <None Remove="Assets\outdoor_pool_w_light.jpg" />
     <None Remove="Assets\room.png" />
     <None Remove="Assets\room_w_nolight.png" />
+    <None Remove="Assets\voki\Success.mp4" />
     <None Remove="Assets\Welcome.mp4" />
     <None Remove="Assets\wines\wine_1.png" />
     <None Remove="Assets\wines\wine_2.png" />
@@ -46,6 +55,14 @@
   <ItemGroup>
     <Resource Include="Assets\blackmeandros.png" />
     <Resource Include="Assets\Dining_room.jpg" />
+    <Resource Include="Assets\drinks\drink_1.png" />
+    <Resource Include="Assets\drinks\drink_2.png" />
+    <Resource Include="Assets\drinks\drink_3.png" />
+    <Resource Include="Assets\drinks\drink_4.png" />
+    <Resource Include="Assets\drinks\drink_5.png" />
+    <Resource Include="Assets\drinks\drink_6.png" />
+    <Resource Include="Assets\drinks\drink_7.png" />
+    <Resource Include="Assets\drinks\drink_8.png" />
     <Resource Include="Assets\Lobby1.jpg" />
     <Resource Include="Assets\logo.png" />
     <Resource Include="Assets\menus\menu_main_1.png" />
@@ -56,6 +73,7 @@
     <Resource Include="Assets\outdoor_pool_w_light.jpg" />
     <Resource Include="Assets\room.png" />
     <Resource Include="Assets\room_w_nolight.png" />
+    <Resource Include="Assets\voki\Success.mp4" />
     <Resource Include="Assets\voki\Welcome.mp4" />
     <Resource Include="Assets\wines\wine_1.png" />
     <Resource Include="Assets\wines\wine_2.png" />

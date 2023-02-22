@@ -19,8 +19,9 @@ namespace WpfApp1
     /// </summary>
     public partial class UserHome1 : Window
     {
-        UserOrderPanel lunch = new UserOrderPanel(menuPages,_imageFiles);
-        UserOrderPanel wine = new UserOrderPanel(winemenuPages, W_imageFiles);
+        UserOrderPanel lunch = new UserOrderPanel(menuPages,_imageFiles, "maindishes");
+        UserOrderPanel wine = new UserOrderPanel(winemenuPages, W_imageFiles, "wines");
+        UserOrderPanel drink = new UserOrderPanel(drinkmenuPages, D_imageFiles, "drinks");
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
@@ -35,15 +36,17 @@ namespace WpfApp1
         public UserHome1(string message)
         {
             InitializeComponent();
-            CreateResponseCard("Payment was Succesfull!");
-            CreateResponseCard("Your order was placed successfully. Coming right Up!");
-            //Vokis.Source = new Uri("../../../Assets/voki/OrderPlaced.mp4", UriKind.RelativeOrAbsolute); //need to create this
+            CreateResponseCard("Payment was succesful and your order has been placed!");
+            CreateResponseCard("Coming right up!");
+            Vokis.Source = new Uri("../../../Assets/voki/Success.mp4", UriKind.RelativeOrAbsolute); //need to create this
         }
 
         // Various images for different menus
         private static string[] _imageFiles = { "../Assets/menus/menu_main_1.png", "../Assets/menus/menu_main_2.png", "../Assets/menus/menu_main_3.png", "../Assets/menus/menu_main_4.png" };
         private static string[] W_imageFiles = { "../Assets/wines/wine_1.png", "../Assets/wines/wine_2.png", "../Assets/wines/wine_3.png" , "../Assets/wines/wine_4.png", "../Assets/wines/wine_5.png" };
-        
+        private static string[] D_imageFiles = { "../Assets/drinks/drink_1.png", "../Assets/drinks/drink_2.png", "../Assets/drinks/drink_3.png", "../Assets/drinks/drink_4.png", "../Assets/drinks/drink_5.png", "../Assets/drinks/drink_6.png", "../Assets/drinks/drink_7.png", "../Assets/drinks/drink_8.png" };
+
+
         // this function will provide text to display for card depending on what the button text is
         private async void DisplayCardByBtnTextAsync(object sender, RoutedEventArgs e)
         {
@@ -75,6 +78,9 @@ namespace WpfApp1
                     Vokis.Source = new Uri("../../../Assets/voki/Drinks.mp4", UriKind.RelativeOrAbsolute);
                     CreateUserCard("I'd like to have a drink");
                     CreateResponseCard("Select any drink you would like from our vast selection.");
+                    await Task.Delay(1500);
+                    DrawerHost.RightDrawerContent = drink;
+                    DrawerHost.IsRightDrawerOpen = true;
                     break;
                 case "Wine Catalog":
                     Vokis.Source = new Uri("../../../Assets/voki/Wines.mp4", UriKind.RelativeOrAbsolute);
@@ -356,12 +362,12 @@ namespace WpfApp1
             new MenuPage
             {
                 Items = new List<MenuItem>{
-                    new MenuItem { Name = "Zacharias Winery", Price = 25 },
-                    new MenuItem { Name = "Karipidis Estate", Price = 35 },
-                    new MenuItem { Name = "Vientzi Papagiannakos", Price = 38 },
-                    new MenuItem { Name = "Ktima Gerovassilou", Price = 44 },
-                    new MenuItem { Name = "Domaine Kikones", Price = 50 },
-                    new MenuItem { Name = "Nykteri Reserve", Price = 71}
+                    new MenuItem { Name = "Zacharias", Price = 25 },
+                    new MenuItem { Name = "Karipidis", Price = 35 },
+                    new MenuItem { Name = "Vientzi", Price = 38 },
+                    new MenuItem { Name = "Gerovassilou", Price = 44 },
+                    new MenuItem { Name = "Kikones", Price = 50 },
+                    new MenuItem { Name = "Nykteri", Price = 71}
                 }
             },
             new MenuPage
@@ -380,7 +386,7 @@ namespace WpfApp1
                 Items = new List<MenuItem>{
                     new MenuItem { Name = "Vissinokipos", Price = 27 },
                     new MenuItem { Name = "Theopetra", Price = 39 },
-                    new MenuItem { Name = "Idylle D'Achinos", Price = 43 },
+                    new MenuItem { Name = "Idylle", Price = 43 },
                     new MenuItem { Name = "Alpha", Price = 54 },
                     new MenuItem { Name = "Dianthos", Price = 52 },
                     new MenuItem { Name = "Mavrose 2022", Price = 69 }
@@ -403,6 +409,91 @@ namespace WpfApp1
                     new MenuItem { Name = "Taittinger", Price = 160 },
                     new MenuItem { Name = "Dom Perignon", Price = 450 },
                     new MenuItem { Name = "Cristal Brut", Price = 620 }
+                }
+            }
+        };
+
+        static List<MenuPage> drinkmenuPages = new List<MenuPage>
+        {
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Ouzito", Price = 10 },
+                    new MenuItem { Name = "Thalassaki", Price = 12 },
+                    new MenuItem { Name = "Goddess", Price = 12 },
+                    new MenuItem { Name = "Kafeneion", Price = 10 },
+                    new MenuItem { Name = "Cretan", Price = 8 },
+                    new MenuItem { Name = "Sidecar", Price = 8 }
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Siris", Price = 5 },
+                    new MenuItem { Name = "Fresh Chios", Price = 6 },
+                    new MenuItem { Name = "Sol", Price = 6 },
+                    new MenuItem { Name = "Eza", Price = 5 },
+                    new MenuItem { Name = "Corfu Red Ale", Price = 8 },
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Grey Goose", Price = 9 },
+                    new MenuItem { Name = "Ciroc", Price = 9 },
+                    new MenuItem { Name = "Belvedere", Price = 10 },
+                    new MenuItem { Name = "Stoli Elit", Price = 17 },
+                    new MenuItem { Name = "Beluga Gold", Price = 20 },
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Johnnie Walker", Price = 9 },
+                    new MenuItem { Name = "Lambay", Price = 11 },
+                    new MenuItem { Name = "Gentlemen", Price = 14 },
+                    new MenuItem { Name = "Harmony", Price = 14 },
+                    new MenuItem { Name = "Ardbeg", Price = 21 },
+                    new MenuItem { Name = "Famous Grouse", Price = 21 }
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Bacardi Heritage", Price = 9 },
+                    new MenuItem { Name = "El Dorado", Price = 9 },
+                    new MenuItem { Name = "Dictator", Price = 10 },
+                    new MenuItem { Name = "Lost Spirits", Price = 14 },
+                    new MenuItem { Name = "Havana Club Union", Price = 15 }
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Bombay Sapphire", Price = 7 },
+                    new MenuItem { Name = "Concepts Votanikon", Price = 9 },
+                    new MenuItem { Name = "Roku Suntory", Price = 11 },
+                    new MenuItem { Name = "Nordes", Price = 13 },
+                    new MenuItem { Name = "Hendrick's", Price = 15 }
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Jose Quervo", Price = 9 },
+                    new MenuItem { Name = "El Jimador", Price = 9 },
+                    new MenuItem { Name = "Reposado", Price = 11 },
+                    new MenuItem { Name = "Don Julio", Price = 13 },
+                    new MenuItem { Name = "Casa Dragones", Price = 37 }
+                }
+            },
+            new MenuPage
+            {
+                Items = new List<MenuItem>{
+                    new MenuItem { Name = "Palaiothen", Price = 10 },
+                    new MenuItem { Name = "Metaxa", Price = 9 },
+                    new MenuItem { Name = "Roots", Price = 11 },
+                    new MenuItem { Name = "Stoupaki", Price = 8 },
                 }
             }
         };

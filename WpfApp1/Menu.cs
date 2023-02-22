@@ -9,7 +9,6 @@ namespace WpfApp1
     public class MenuPage
     {
         public List<MenuItem> Items { get; set; }
-        public List<MenuItem> Wines { get; set; }
     }
 
     public class MenuItem

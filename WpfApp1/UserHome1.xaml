@@ -243,10 +243,25 @@
                                                 Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
                                                 Text="Selected dishes: " />
                                         </StackPanel>
-                                        <TextBlock Name="msg" Text="No dishes currently selected" Margin="4,0,0,0" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <TextBlock Name="msg" Text="No items currently selected" Margin="4,0,0,0" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <Expander Name="breakfast_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From the main menu" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="breakfast" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
                                         <Expander Name="maindishes_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From the main menu" Foreground="Black">
                                             <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                                                 <TextBlock Name="maindishes" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="wines_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From our wine cellar" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="wines" Text="No wines currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="drinks_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From our bar" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="drinks" Text="No drinks currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
                                             </StackPanel>
                                         </Expander>
                                         <StackPanel Orientation="Horizontal">

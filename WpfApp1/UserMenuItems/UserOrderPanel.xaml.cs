@@ -23,10 +23,12 @@ namespace WpfApp1.UserMenuItems
         List<MenuPage> menuPages;
         Dictionary<string, int> itemPrices;
         private string[] _imageFiles;
-        public UserOrderPanel(List<MenuPage> selectedMenuPages, string[] images)
+        private string _cart;
+        public UserOrderPanel(List<MenuPage> selectedMenuPages, string[] images, string cart)
         {
             menuPages = selectedMenuPages;
             _imageFiles = images;
+            _cart = cart;
             InitializeComponent();
             // first image
             LoadImage();
@@ -108,33 +110,48 @@ namespace WpfApp1.UserMenuItems
             menuListBox.SelectedItems.Clear();
         }
 
-        // price
-        private int total;
+        // price of all items
+        static private int total;
+        // number of different menus selected
+        static private int menusSelected;
+        // price of items of specific menu
+        private int menutotal;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             // Get all controls from the main window
             var parent = Window.GetWindow(this);
             var Total = (TextBlock)parent.FindName("Total");
-            var dishesInExpander = (Expander)parent.FindName("maindishes_exp");
+            var itemsInExpander = (Expander)parent.FindName(_cart + "_exp");
             var msg = (TextBlock)parent.FindName("msg");
-            var dishes = (TextBlock)parent.FindName("maindishes");
+            var dishes = (TextBlock)parent.FindName(_cart);
             var paybtn = (Button)parent.FindName("paybtn");
             var DrawerHost = (MaterialDesignThemes.Wpf.DrawerHost)parent.FindName("DrawerHost");
-            if (_selectedItems.Count > 0) // show expander
+            // Update cart
+            total -= menutotal; // remove previously saved value of items from the cart
+            menutotal = _selectedItems.Sum(selection => itemPrices.GetValueOrDefault(selection, 0));
+            total += menutotal; // add latest value to the cart
+            Total.Text = total.ToString() + " €";
+            // Logic for no items in specific menu
+            if (_selectedItems.Count == 0)
             {
-                total = _selectedItems.Sum(selection => itemPrices.GetValueOrDefault(selection, 0));
-                Total.Text = total.ToString() + " €";
-                dishesInExpander.Visibility = Visibility.Visible;
-                msg.Visibility = Visibility.Collapsed;
-                dishes.Text = string.Join(", ", _selectedItems);
-                paybtn.IsEnabled = true;
+                itemsInExpander.Visibility = Visibility.Collapsed;
             }
-            else // show textblock
+            else
+            {
+                itemsInExpander.Visibility = Visibility.Visible;
+                dishes.Text = string.Join(", ", _selectedItems);
+            }
+            // Logic for no items in cart
+            if (total == 0)
             {
                 Total.Text = "";
-                dishesInExpander.Visibility = Visibility.Collapsed;
                 msg.Visibility = Visibility.Visible;
                 paybtn.IsEnabled = false;
+            }
+            else
+            {
+                msg.Visibility = Visibility.Collapsed;
+                paybtn.IsEnabled = true;
             }
             DrawerHost.IsRightDrawerOpen = false;
         }

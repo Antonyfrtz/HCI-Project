@@ -103,27 +103,6 @@ namespace WpfApp1
                 textbox.Text = string.Empty;
                 textbox.Foreground = Brushes.White;
             }
-
-            TextBox NameTxtBox = (TextBox)sender;
-            if (NameTxtBox.Text == "FIRST LAST")
-            {
-                NameTxtBox.Text = string.Empty;
-                NameTxtBox.Foreground = Brushes.White;
-            }
-
-            TextBox DateTxtBox = (TextBox)sender;
-            if (DateTxtBox.Text == "DAY/MONTH")
-            {
-                DateTxtBox.Text = string.Empty;
-                DateTxtBox.Foreground = Brushes.White;
-            }
-
-            TextBox CVVtxtBox = (TextBox)sender;
-            if (CVVtxtBox.Text == "***")
-            {
-                CVVtxtBox.Text = string.Empty;
-                CVVtxtBox.Foreground = Brushes.White;
-            }
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -133,27 +112,6 @@ namespace WpfApp1
             {
                 textbox.Text = "0000";
                 textbox.Foreground = Brushes.Gray;
-            }
-
-            TextBox NameTxtBox = (TextBox)sender;
-            if (string.IsNullOrEmpty(NameTxtBox.Text))
-            {
-                NameTxtBox.Text = "FIRST LAST";
-                NameTxtBox.Foreground = Brushes.Gray;
-            }
-
-            TextBox DateTxtBox = (TextBox)sender;
-            if (string.IsNullOrEmpty(DateTxtBox.Text))
-            {
-                DateTxtBox.Text = "DAY/MONTH";
-                DateTxtBox.Foreground = Brushes.Gray;
-            }
-
-            TextBox CVVtxtBox = (TextBox)sender;
-            if (string.IsNullOrEmpty(CVVtxtBox.Text))
-            {
-                CVVtxtBox.Text = "***";
-                CVVtxtBox.Foreground = Brushes.Gray;
             }
         }
 
