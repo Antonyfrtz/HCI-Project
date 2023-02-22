@@ -173,7 +173,7 @@ namespace WpfApp1
                     {
                         Content = "Yes",
                         Width = 100,
-                        Margin = new Thickness(0, 20, 0, 0),
+                        Margin = new Thickness(0, 10, 0, 0),
                         BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Command = DialogHost.CloseDialogCommand,
@@ -183,7 +183,7 @@ namespace WpfApp1
                     {
                         Content = "No",
                         Width = 100,
-                        Margin = new Thickness(0, 20, 0, 0),
+                        Margin = new Thickness(0, 10, 0, 0),
                         BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
                         Command = DialogHost.CloseDialogCommand,

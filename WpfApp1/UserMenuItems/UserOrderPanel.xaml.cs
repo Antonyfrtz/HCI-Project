@@ -104,8 +104,8 @@ namespace WpfApp1.UserMenuItems
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            // TO BE IMPLEMENTED
-
+            badge.Badge = 0;
+            menuListBox.SelectedItems.Clear();
         }
 
         // price

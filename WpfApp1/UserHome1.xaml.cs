@@ -35,7 +35,9 @@ namespace WpfApp1
         public UserHome1(string message)
         {
             InitializeComponent();
-            CreateResponseCard("Why are u gay");
+            CreateResponseCard("Payment was Succesfull!");
+            CreateResponseCard("Your order was placed successfully. Coming right Up!");
+            //Vokis.Source = new Uri("../../../Assets/voki/OrderPlaced.mp4", UriKind.RelativeOrAbsolute); //need to create this
         }
 
         // Various images for different menus
@@ -359,48 +361,48 @@ namespace WpfApp1
                     new MenuItem { Name = "Vientzi Papagiannakos", Price = 38 },
                     new MenuItem { Name = "Ktima Gerovassilou", Price = 44 },
                     new MenuItem { Name = "Domaine Kikones", Price = 50 },
-                    new MenuItem { Name = "Nykteri Reserve Santo Wines", Price = 71}
+                    new MenuItem { Name = "Nykteri Reserve", Price = 71}
                 }
             },
             new MenuPage
             {
                 Items = new List<MenuItem>{
-                    new MenuItem { Name = "Driopi Nemea Domaine Tselepos", Price = 28 },
-                    new MenuItem { Name = "Chatzivaritis Estate Goumenissa", Price = 39 },
-                    new MenuItem { Name = "Oenops Wines", Price = 43 },
-                    new MenuItem { Name = "Cyrus One Kyros Melas", Price = 46 },
-                    new MenuItem { Name = "Emphasis, Pavlidi Estate", Price = 52 },
-                    new MenuItem { Name = "Taos Paparousi Wines" , Price = 60}
+                    new MenuItem { Name = "Driopi Nemea", Price = 28 },
+                    new MenuItem { Name = "Chatzivaritis", Price = 39 },
+                    new MenuItem { Name = "Oenops", Price = 43 },
+                    new MenuItem { Name = "Cyrus One", Price = 46 },
+                    new MenuItem { Name = "Emphasis", Price = 52 },
+                    new MenuItem { Name = "Taos Paparousi" , Price = 60}
                 }
             },
             new MenuPage
             {
                 Items = new List<MenuItem>{
-                    new MenuItem { Name = "Vissinokipos,Palivou Estate", Price = 27 },
-                    new MenuItem { Name = "Theopetra Estate", Price = 39 },
-                    new MenuItem { Name = "Idylle D'Achinos, La Tour Melas", Price = 43 },
-                    new MenuItem { Name = "Alpha Estate", Price = 54 },
-                    new MenuItem { Name = "Dianthos, Boutari Estate", Price = 52 },
-                    new MenuItem { Name = "Mavrose 2022, Tiniakoi Ampelones", Price = 69 }
+                    new MenuItem { Name = "Vissinokipos", Price = 27 },
+                    new MenuItem { Name = "Theopetra", Price = 39 },
+                    new MenuItem { Name = "Idylle D'Achinos", Price = 43 },
+                    new MenuItem { Name = "Alpha", Price = 54 },
+                    new MenuItem { Name = "Dianthos", Price = 52 },
+                    new MenuItem { Name = "Mavrose 2022", Price = 69 }
                 }
             },
             new MenuPage
             {
                 Items = new List<MenuItem>{
-                    new MenuItem { Name = "Akakies Kir-Yanni Sparkling", Price = 38 },
-                    new MenuItem { Name = "Karanika Brut Cuvee Speciale", Price = 43 },
-                    new MenuItem { Name = "Douroufakis Sparkling Brut", Price = 48 },
-                    new MenuItem { Name = "Santo White Sparkling Brut", Price = 59 },
-                    new MenuItem { Name = "Muscat Rio Patras Parparousis", Price = 42 }
+                    new MenuItem { Name = "Akakies", Price = 38 },
+                    new MenuItem { Name = "Karanika", Price = 43 },
+                    new MenuItem { Name = "Douroufakis", Price = 48 },
+                    new MenuItem { Name = "Santo White", Price = 59 },
+                    new MenuItem { Name = "Muscat Rio", Price = 42 }
                 }
             },
             new MenuPage
             {
                 Items = new List<MenuItem>{
-                    new MenuItem { Name = "Moet & Chandon Brut Imperial", Price = 120 },
-                    new MenuItem { Name = "Taittinger Nocturne City Lights", Price = 160 },
-                    new MenuItem { Name = "Dom Perignon Vintage", Price = 450 },
-                    new MenuItem { Name = "Cristal Brut Louis Roederer", Price = 620 }
+                    new MenuItem { Name = "Moet & Chandon", Price = 120 },
+                    new MenuItem { Name = "Taittinger", Price = 160 },
+                    new MenuItem { Name = "Dom Perignon", Price = 450 },
+                    new MenuItem { Name = "Cristal Brut", Price = 620 }
                 }
             }
         };
