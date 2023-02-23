@@ -130,34 +130,43 @@ namespace WpfApp1
                     {
                         Text = text,
                     },
-                    new Button
+                    new StackPanel
                     {
-                        Content = "Yes",
-                        Width = 100,
-                        Margin = new Thickness(0, 10, 0, 0),
-                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Command = DialogHost.CloseDialogCommand,
-                        Tag = true // set a tag to identify the button
-                    },
-                    new Button
-                    {
-                        Content = "No",
-                        Width = 100,
-                        Margin = new Thickness(0, 10, 0, 0),
-                        BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                        Command = DialogHost.CloseDialogCommand,
-                        Tag = false // set a tag to identify the button
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Orientation= Orientation.Horizontal,
+                        Children =
+                        {
+                            new Button
+                            {
+                                Content = "Yes",
+                                Width = 100,
+                                Margin = new Thickness(0, 10, 5, 0),
+                                BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                                Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                                Command = DialogHost.CloseDialogCommand,
+                                Tag = true // set a tag to identify the button
+                            },
+                            new Button
+                            {
+                                Content = "No",
+                                Width = 100,
+                                Margin = new Thickness(5, 10, 0, 0),
+                                BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                                Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                                Command = DialogHost.CloseDialogCommand,
+                                Tag = false // set a tag to identify the button
+                            }
+                        }
                     }
                  }
             };
-            ((Button)dialogContent.Children[1]).Click += (sender, args) =>
+            StackPanel stackpanel = (StackPanel)dialogContent.Children[1];
+            ((Button)stackpanel.Children[0]).Click += (sender, args) =>
             {
                 callback?.Invoke(true);
             };
 
-            ((Button)dialogContent.Children[2]).Click += (sender, args) =>
+            ((Button)stackpanel.Children[1]).Click += (sender, args) =>
             {
                 callback?.Invoke(false);
             };

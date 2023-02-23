@@ -165,54 +165,66 @@ namespace WpfApp1.UserMenuItems
         {
             var label = new Label(); // create a new Label control
             label.Visibility = Visibility.Visible;
+            label.HorizontalAlignment = HorizontalAlignment.Center;
             var dialogContent = new StackPanel
             {
                 Margin = new Thickness(20),
                 Children =
-        {
-            new TextBlock
-            {
-                Text = text,
-            },
-            label, // add the Label control to the StackPanel
-            new Button
-            {
-                Content = "+",
-                Width = 100,
-                Margin = new Thickness(0, 10, 0, 0),
-                BorderBrush= new SolidColorBrush(Color.FromRgb(35,168,73)),
-                Background = new SolidColorBrush(Color.FromRgb(35,168,73)),
-                Tag = true // set a tag to identify the button
-            },
-            new Button
-            {
-                Content = "-",
-                Width = 100,
-                Margin = new Thickness(0, 10, 0, 0),
-                BorderBrush= new SolidColorBrush(Color.FromRgb(205,92,92)),
-                Background = new SolidColorBrush(Color.FromRgb(205,92,92)),
-                Tag = false // set a tag to identify the button
-            },
-            new Button
-            {
-                Content = "Okay",
-                Width = 100,
-                Margin = new Thickness(0, 10, 0, 0),
-                BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
-                Command = DialogHost.CloseDialogCommand
-            }
-         }
+                {
+                new TextBlock
+                {
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Text = text,
+                },
+                label, // add the Label control to the StackPanel
+                new StackPanel
+                {
+                    Orientation= Orientation.Horizontal,
+                    Children =
+                    {
+                        new Button
+                        {
+                            HorizontalAlignment=HorizontalAlignment.Left,
+                            Content = "+",
+                            Width = 45,
+                            Margin = new Thickness(0, 10, 5, 0),
+                            BorderBrush= new SolidColorBrush(Color.FromRgb(35,168,73)),
+                            Background = new SolidColorBrush(Color.FromRgb(35,168,73)),
+                            Tag = true // set a tag to identify the button
+                        },
+                        new Button
+                        {
+                            HorizontalAlignment=HorizontalAlignment.Right,
+                            Content = "-",
+                            Width = 45,
+                            Margin = new Thickness(5, 10, 0, 0),
+                            BorderBrush= new SolidColorBrush(Color.FromRgb(205,92,92)),
+                            Background = new SolidColorBrush(Color.FromRgb(205,92,92)),
+                            Tag = false // set a tag to identify the button
+                        },
+                    }
+                },
+                new Button
+                {
+                    Content = "Okay",
+                    Width = 100,
+                    Margin = new Thickness(0, 10, 0, 0),
+                    BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                    Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                    Command = DialogHost.CloseDialogCommand
+                }
+            }  
             };
             int count = 1; // initialize a counter variable
             label.Content = count.ToString();
-            ((Button)dialogContent.Children[2]).Click += (sender, args) =>
+            StackPanel stackpanel=(StackPanel)dialogContent.Children[2];
+            ((Button)stackpanel.Children[0]).Click += (sender, args) =>
             {
                 count++; // increment the counter
                 label.Content = count.ToString(); // update the content of the Label control
             };
 
-            ((Button)dialogContent.Children[3]).Click += (sender, args) =>
+            ((Button)stackpanel.Children[1]).Click += (sender, args) =>
             {
                 if (count > 1) // check if the counter is greater than 0
                 {
@@ -221,7 +233,7 @@ namespace WpfApp1.UserMenuItems
                 }
             };
 
-            ((Button)dialogContent.Children[4]).Click += (sender, args) =>
+            ((Button)dialogContent.Children[3]).Click += (sender, args) =>
             {
                 callback?.Invoke(count);
             };
