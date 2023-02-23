@@ -24,17 +24,15 @@ namespace WpfApp1
         public UserHome1()
         {
             InitializeComponent(); // by defaults opens to homepage
-            UserControl main = new UserControlHome();
             ListViewMenu.SelectedItem = ItemHome;
-            GridMain.Children.Add(main);
         }
 
         // Constructor callback from payment screen
         public UserHome1(string message, Uri uri)
         {
-            InitializeComponent(); // by defaults opens to homepage
+            InitializeComponent(); // by defaults opens to homepage\
+            GridMain.Children.Clear();
             UserControl main = new UserControlRestaurant(message, uri);
-            ListViewMenu.SelectedItem = ItemHome;
             GridMain.Children.Add(main);
         }
 

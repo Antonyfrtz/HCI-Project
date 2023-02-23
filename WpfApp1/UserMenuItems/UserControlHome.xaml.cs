@@ -107,5 +107,20 @@ namespace WpfApp1
             };
             DialogHost.Show(dialogContent, "RootDialog");
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+            if (selectedItem.Content.ToString() == "Room service required")
+            {
+                BrushConverter converter = new BrushConverter();
+                Brush brush = (Brush)converter.ConvertFromString("#E3A857");
+                comboBox.Foreground = brush;
+            }
+            else if (selectedItem.Content.ToString() == "Occupied")
+            {
+                comboBox.Foreground = Brushes.IndianRed;
+            }
+        }
     }
 }

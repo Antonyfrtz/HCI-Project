@@ -13,31 +13,31 @@
                     <materialDesign:Card
                                 Name="tempLabel"
                                 Padding="8"
-                                Margin="791,65,34,213"
-                                Background="#4ea6b1"
+                                Margin="791,22,34,292"
+                                Background="#C3DFE0"
                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                 UniformCornerRadius="6">
                     </materialDesign:Card>
                     <materialDesign:Card
                                 Name="tempLabel1"
                                 Padding="8"
-                                Margin="789,444,34,65"
-                                Background="#4ea6b1"
+                                Margin="790,360,33,103"
+                                Background="#C3DFE0"
                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                 UniformCornerRadius="6">
                     </materialDesign:Card>
                     <Image x:Name="LightsRoom" Source="/Assets/room.png" Height="366" Margin="34,65,465,0" VerticalAlignment="Top" Stretch="Fill" RenderTransformOrigin="0.497,0.351"/>
-                    <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="916,83,0,0" FontFamily="Roboto"/>
-                    <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,141,0,0" FontFamily="Roboto"/>
-                    <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,223,0,0" FontFamily="Roboto" />
-                    <TextBlock Text="You can use the Trojan Horse &#x0a;to navigate in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,252,0,0" FontFamily="Roboto" />
-                    <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,325,0,0" FontFamily="Roboto" />
+                    <TextBlock Text="Information" FontSize="24" Foreground="Black" TextDecorations="Underline" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="921,42,0,0" FontFamily="Roboto"/>
+                    <TextBlock Text="You have access to the central pool. &#x0a;You also have your own private pool." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,84,0,0" FontFamily="Roboto"/>
+                    <TextBlock Text="You have rented a Trojan Horse RV." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,154,0,0" FontFamily="Roboto" />
+                    <TextBlock Text="You can use the Trojan Horse &#x0a;to navigate in Zeus's Palace" FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,200,0,0" FontFamily="Roboto" />
+                    <TextBlock Text="The Restaurant opens at 8:00 AM and &#x0a;closes at 23:00 PM." FontSize="20" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="802,268,0,0" FontFamily="Roboto" />
                     <TextBlock Text="Room Type: Classic, Guest room, 1 King, Courtyard view" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,447,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
                     <TextBlock Text="Room Number: 303 (third floor)" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="23"  Foreground="Black" Margin="34,478,0,0" FontFamily="Times New Roman" FontWeight="Bold" FontStyle="Italic"/>
                     <materialDesign:PackIcon Kind="BedKing" Width="36" Height="40" Margin="0,440,0,0" Foreground="Black" HorizontalAlignment="Center"/>
-                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,141,0,0" Foreground="Black"/>
-                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,165,0,0" Foreground="Black"/>
-                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,225,0,0" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,88,0,0" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,113,0,0" Foreground="Black"/>
+                    <materialDesign:PackIcon Kind="CheckCircle" Width="27" Height="20" Margin="1131,158,0,0" Foreground="Black"/>
 
                     <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="-69,568,0,0" Height="65"/>
                     <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="272,568,0,0" Height="65"/>
@@ -46,19 +46,24 @@
                     <TextBlock Text="Welcome, username." FontSize="24" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="34,22,0,0" FontFamily="Roboto" FontStyle="Italic"/>
                     <materialDesign:PackIcon Kind="Information" Foreground="White" Width="20" Height="20" Margin="177,-42,0,0" />
 
-                    <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="802,494,0,0"/>
-                    <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="901,492,0,0" />
-                    <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Lights of the room." Margin="862,487,314,117"/>
+                    <TextBlock Text="Lights" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="807,418,0,0"/>
+                    <materialDesign:PackIcon Kind="LightbulbOnOutline" x:Name ="Lightbulb" Foreground="Black" Width="20" Height="20" Margin="921,417,0,0" RenderTransformOrigin="0.65,-0.8" />
+                    <ToggleButton x:Name="LightsBtn" IsChecked="True" Click="ToggleButtons_Click" Background="#ffe298" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Enable or Disable Lights of the room." Margin="875,387,301,171"/>
 
-                    <TextBlock Text="Room Controls" FontSize="24" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="908,451,0,0" TextDecorations="Underline"/>
+                    <TextBlock Text="Room Controls" FontSize="24" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="908,375,0,0" TextDecorations="Underline"/>
 
-                    <TextBlock Text="Television" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="978,494,0,0"/>
-                    <materialDesign:PackIcon Kind="TelevisionClassicOff" x:Name ="Television" Foreground="Black" Width="20" Height="20" Margin="1121,496,0,0" />
-                    <ToggleButton x:Name="TVBtn" IsChecked="False" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the television." Margin="1082,487,94,117"/>
+                    <TextBlock Text="Television" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="978,418,0,0"/>
+                    <materialDesign:PackIcon Kind="TelevisionClassicOff" x:Name ="Television" Foreground="Black" Width="20" Height="20" Margin="1124,417,0,0" />
+                    <ToggleButton x:Name="TVBtn" IsChecked="False" Click="ToggleButtons_Click" Background="IndianRed" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the television." Margin="1078,387,98,170"/>
 
-                    <TextBlock Text="Air-Conditioner" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="878,531,0,0"/>
-                    <materialDesign:PackIcon Kind="FanOff" x:Name ="AC" Foreground="Black" Width="20" Height="20" Margin="1062,534,0,0" />
-                    <ToggleButton x:Name="ACBtn" IsChecked="False" Click="ToggleButtons_Click" Background="MediumBlue" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the AC." Margin="1023,526,153,79"/>
+                    <TextBlock Text="Air-Conditioner" FontSize="20" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="890,454,0,0"/>
+                    <materialDesign:PackIcon Kind="FanOff" x:Name ="AC" Foreground="Black" Width="20" Height="20" Margin="1078,456,0,0" />
+                    <ToggleButton x:Name="ACBtn" IsChecked="False" Click="ToggleButtons_Click" Background="MediumBlue" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Turn on or off the AC." Margin="1033,427,135,137"/>
+
+                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="890,481,0,0" VerticalAlignment="Top" Width="222" materialDesign:HintAssist.Hint="Room Status"  Foreground="Black" FontFamily="Roboto" materialDesign:HintAssist.IsFloating="True" FontWeight="Normal" FontSize="20" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Room service required" FontWeight="Normal" FontFamily="Roboto" Foreground="#E3A857"/>
+                        <ComboBoxItem Content="Occupied" FontWeight="Normal" FontFamily="Roboto" Foreground="IndianRed"/>
+                    </ComboBox>
                 </Grid>
             </DockPanel>
         </materialDesign:DialogHost>

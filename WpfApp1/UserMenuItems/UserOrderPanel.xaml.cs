@@ -116,7 +116,7 @@ namespace WpfApp1.UserMenuItems
 
 
         // price of all items
-        static private int total;
+        static public int total;
         // price of items of specific menu
         private int menutotal;
         private void Save_Click(object sender, RoutedEventArgs e)

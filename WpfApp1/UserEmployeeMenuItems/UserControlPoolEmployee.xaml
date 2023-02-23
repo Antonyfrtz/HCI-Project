@@ -54,9 +54,10 @@
                     <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="613,568,0,0" Height="65"/>
                     <Image Source="/Assets/blackmeandros.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="388" Margin="817,568,0,0" Height="65"/>
 
-                    <TextBlock Text="Status of guest public pool:" FontSize="23" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,488,0,0"/>
+                    <TextBlock Text="Status of guest public pool:" FontSize="23" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,468,0,0"/>
+                    <TextBlock Text="Guests using the pool: 0/54" FontSize="23" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,500,0,0"/>
                     <TextBlock Text="Live View of the public pool" FontStyle="Italic" FontSize="14" Foreground="Black" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,410,0,0"/>
-                    <TextBlock Text="OPEN" FontSize="23" Foreground="#00C853" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,488,0,0"/>
+                    <TextBlock Text="OPEN" FontSize="23" Foreground="#00C853" FontFamily="Roboto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,468,0,0"/>
                     <materialDesign:Card
                                 Name="tempLabel"
                                 Padding="8"

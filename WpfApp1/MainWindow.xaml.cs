@@ -93,7 +93,9 @@ namespace WpfApp1
             CustomMaterialMessageBox msg = new CustomMaterialMessageBox
             {
                 TxtMessage = { Text = "You find yourself in the lobby of Zeus's palace. \n" +
-                "You'll need to Login as an existing user (Employee or Tenant). \n" + 
+                "You'll need to Login as an existing user (Employee or Tenant). \n" +
+                "To connect as a user simply click the login button.\n" +
+                "To connect as an employee write admin in username and click login.\n" +
                 "If you haven't created your account you will need to fill your username and password. \n" +
                 "Please do not forget to choose your role and agree to Terms of Use and Conditions. \n", Foreground = Brushes.Black },
                 TxtTitle = { Text = "Information", Foreground = Brushes.White },

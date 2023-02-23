@@ -56,7 +56,6 @@
                 <materialDesign:PackIcon Kind="Information" Width="25" Height="25" Foreground="White"/>
             </Button>
         </Grid>
-
         <!-- Vertical Menu -->
         <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#2e3546">
             <Grid.Effect>

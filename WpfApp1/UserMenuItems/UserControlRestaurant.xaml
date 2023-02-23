@@ -142,7 +142,23 @@
                     <!-- Left Column -->
                     <!-- Grid.RowSpan overrides height 80%  -->
                     <Border Grid.Column="0" Grid.RowSpan="2" Margin="0,0,0,20"  Background="#C3DFE0">
-                        <MediaElement x:Name="Vokis" Source="../../../Assets/voki/Welcome.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Height="300" Margin="0,161,-3,161" />
+                        <Grid>
+                        <MediaElement x:Name="Vokis" Source="../../../Assets/voki/Welcome.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Height="300" Margin="-1,140,-2,182" />
+                        <materialDesign:Card
+                                Name="tempLabel"
+                                Padding="8"
+                                Margin="60,524,60,35"
+                                Background="#f5dd8c"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                UniformCornerRadius="6">
+                        </materialDesign:Card>
+                        <TextBlock Text="Rate us" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="#2e3546" Margin="140,521,127,68" FontSize="20" FontWeight="Bold"/>
+                        <materialDesign:RatingBar
+                        x:Name="BasicRatingBarWithPreview"
+                        IsPreviewValueEnabled="True"
+                        Value="3" Margin="114,559,113,23" 
+                        PreviewMouseLeftButtonDown="OnRatingBarClick" />
+                    </Grid>
                         <!-- Add your left column content here -->
                     </Border>
 
@@ -230,7 +246,7 @@
                                         <materialDesign:PackIcon Kind="StoreClock" Margin="5,8,5,0" Foreground="DarkSlateGray" />
                                         <TextBlock
                                             Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
-                                            Text="Opening Hours: 14:00 - 23:00" />
+                                            Text="Opening Hours: 8:00 - 23:00" />
                                     </StackPanel>
                                 </StackPanel>
                             </materialDesign:Card>

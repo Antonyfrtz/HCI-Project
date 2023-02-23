@@ -39,13 +39,13 @@ namespace WpfApp1.UserMenuItems
                     if (LightBulbisChecked)
                     {
                         Lightbulb.Kind = (PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOnOutline");
-                        poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_w_light.jpg", UriKind.Relative));
+                        poolIcon.Source = new BitmapImage(new Uri("../Assets/outdoor-pool-public.png", UriKind.Relative));
                         OpenDialog("Lights are on!");
                     }
                     else
                     {
                         Lightbulb.Kind = (MaterialDesignThemes.Wpf.PackIconKind)Enum.Parse(typeof(MaterialDesignThemes.Wpf.PackIconKind), "LightbulbOffOutline");
-                        poolIcon.Source = new BitmapImage(new Uri("/Assets/outdoor_pool_nolight.jpg", UriKind.Relative));
+                        poolIcon.Source = new BitmapImage(new Uri("../Assets/outdoor-pool-public-nolights.png", UriKind.Relative));
                         OpenDialog("Lights are off!");
 
                     }

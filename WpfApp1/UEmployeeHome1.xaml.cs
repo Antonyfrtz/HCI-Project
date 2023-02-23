@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.UserEmployeeMenuItems;
 using WpfApp1.UserMenuItems;
 
 namespace WpfApp1
@@ -35,7 +36,7 @@ namespace WpfApp1
             {
                 case "ItemHome":
                     menu = 0;
-                    GridMain.Children.Add(new UserControlHome());
+                    GridMain.Children.Add(new UserControlRooms());
                     break;
                 case "ItemPool":
                     menu = 1;

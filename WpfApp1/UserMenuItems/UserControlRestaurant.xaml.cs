@@ -46,6 +46,7 @@ namespace WpfApp1.UserMenuItems
 
         public UserControlRestaurant(string message, Uri uri)
         {
+            UserOrderPanel.total = 0;
             InitializeComponent();
             DataContext = this;
             CreateResponseCard(message);
@@ -445,5 +446,19 @@ namespace WpfApp1.UserMenuItems
                 }
             }
         };
+
+        private bool _ratingBarClicked = false;
+        private void OnRatingBarClick(object sender, RoutedEventArgs e)
+        {
+            if (!_ratingBarClicked)
+            {
+                CreateResponseCard("Thank you so much for sharing your experience with us. We hope to see you again soon.");
+                Vokis.Source = new Uri("../../../Assets/voki/ThankYou.mp4", UriKind.RelativeOrAbsolute);
+
+                // Set the _ratingBarClicked flag to true to prevent further clicks
+                _ratingBarClicked = true;
+            }
+
+        }
     }
 }
