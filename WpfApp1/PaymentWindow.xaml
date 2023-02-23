@@ -61,8 +61,8 @@
                                     <TextBox Grid.Column="0" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
                                     <TextBox Grid.Column="1" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
                                     <TextBox Grid.Column="2" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
-                                    <TextBox Grid.Column="3" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>    
-                            </Grid>
+                                    <TextBox Grid.Column="3" Text="0000" HorizontalAlignment="Center" Foreground="LightGray" FontFamily="Global Monospace" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" MaxLength="4" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed"/>
+                                </Grid>
                         <Grid VerticalAlignment="Bottom" Margin="0,0,0,9">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

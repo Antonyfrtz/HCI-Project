@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:WpfApp1.UserMenuItems" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+<materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True" Visibility="Visible">
+        <!-- covers the whole page-->
+        <DockPanel Name="panel1">
     <Grid>
         <StackPanel Margin="20" Width="322">
             <Grid>
@@ -69,9 +72,11 @@
                                   Content="Save selections for payment"
                                   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                   Background="#23A849" 
-                                  BorderBrush="#23A849"  />
+                                  BorderBrush="#23A849"/>
                 </materialDesign:Badged>
             </StackPanel>
         </StackPanel>
     </Grid>
+        </DockPanel>
+    </materialDesign:DialogHost>
 </UserControl>

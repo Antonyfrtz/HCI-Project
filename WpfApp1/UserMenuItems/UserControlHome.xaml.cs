@@ -107,10 +107,5 @@ namespace WpfApp1
             };
             DialogHost.Show(dialogContent, "RootDialog");
         }
-
-        private void DialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
-        {
-
-        }
     }
 }

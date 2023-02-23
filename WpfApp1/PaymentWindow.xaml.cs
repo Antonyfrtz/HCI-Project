@@ -41,7 +41,8 @@ namespace WpfApp1
                     else
                     {
                         // if the current window is a regular window
-                        var previousWindow = new UserHome1();
+                        var message2 = "Your order wasn't successful.\nIf you need any help do not hesitate to ask.";
+                        var previousWindow = new UserHome1(message2, new Uri("../../../Assets/voki/OrderFail.mp4", UriKind.RelativeOrAbsolute));
                         previousWindow.Show();
                         Close();
                     }
@@ -64,7 +65,8 @@ namespace WpfApp1
                     else
                     {
                         // if the current window is a regular window
-                        var previousWindow = new UserHome1();
+                        var message2  = "Your order wasn't successful.\nIf you need any help do not hesitate to ask.";
+                        var previousWindow = new UserHome1(message2, new Uri("../../../Assets/voki/OrderFail.mp4", UriKind.RelativeOrAbsolute));
                         previousWindow.Show();
                         Close();
                     }
@@ -87,7 +89,8 @@ namespace WpfApp1
                     else
                     {
                         // if the current window is a regular window
-                        var previousWindow = new UserHome1("Order Placed! \n" + "Your order was placed successfully. Coming right Up!");
+                        var message1 = "Payment was succesful and your order has been placed!\n" + "Coming right up!";
+                        var previousWindow = new UserHome1(message1, new Uri("../../../Assets/voki/Success.mp4", UriKind.RelativeOrAbsolute));
                         previousWindow.Show();
                         Close();
                     }

@@ -3,10 +3,299 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1.UserMenuItems"
+             xmlns:local="clr-namespace:WpfApp1.UserMenuItems" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" />
+        </Storyboard>
+        <!--AD-->
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid x:Name="Grid">
+                            <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" 
+                                           Height="Auto" Fill="Transparent"/>
+                            <Border x:Name="Rectangle1" CornerRadius="10 0 0 10" HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch" Width="Auto" Height="Auto" 
+                                        Background="{TemplateBinding Background}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto"/>
+                                <Setter TargetName="Rectangle1" Property="Height" Value="7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--SCROLLBARS-->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="IndianRed"/>
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="12" Background="{x:Null}">
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="False">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" 
+                                               Style="{DynamicResource ScrollThumbs}"/>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter Value="{DynamicResource ButtonSelectBrush}" 
+                                            TargetName="Thumb" Property="Background"/>
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto"/>
+                                <Setter Property="Height" Value="12"/>
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal"/>
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand"/>
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--AD-->
+    </UserControl.Resources>
+
     <Grid>
-            
+        <materialDesign:DrawerHost x:Name="DrawerHost" Width="1210" Height="644" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="1">
+                <materialDesign:DrawerHost.Style>
+                    <Style
+                        TargetType="materialDesign:DrawerHost"
+                        BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                 Binding="{Binding IsChecked, ElementName=BackgroundToggle}"
+                                Value="True">
+                                <Setter
+                                Property="OverlayBackground"
+                                Value="{DynamicResource PrimaryHueMidBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </materialDesign:DrawerHost.Style>
+                <materialDesign:DrawerHost.RightDrawerContent>
+                    <Grid></Grid>
+                </materialDesign:DrawerHost.RightDrawerContent>
+                <!-- Screen Content -->
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!-- Space of control consumed by each column and row -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="30*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Column -->
+                    <!-- Grid.RowSpan overrides height 80%  -->
+                    <Border Grid.Column="0" Grid.RowSpan="2" Margin="0,0,0,20"  Background="#C3DFE0">
+                        <MediaElement x:Name="Vokis" Source="../../../Assets/voki/Welcome.mp4" IsEnabled="True" Stretch="Fill" LoadedBehavior="Play" Height="300" Margin="0,161,-3,161" />
+                        <!-- Add your left column content here -->
+                    </Border>
+
+                    <!-- Main Screen -->
+                    <ScrollViewer x:Name="chatScroll" VerticalScrollBarVisibility="Auto" Grid.Column="1"  Style="{StaticResource MaterialDesignScrollViewer}">
+                        <StackPanel x:Name="chat" Background="#EEF4ED">
+                            <!-- Main Screen Content - this chat is loaded dynamically -->
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <!-- Grid for buttons on the bottom -->
+                    <Grid Grid.Row="1" Grid.Column="1" Background="#2e3546">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Buttons -->
+                        <Button Grid.Row="0" Grid.Column="0" Margin="15,20,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461" CommandParameter="{x:Static Dock.Right}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Breakfast Menu" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="Coffee" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Lunch Menu" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="SilverwareVariant" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Row="0" Grid.Column="2" Margin="5,20,5,5" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Desserts Menu" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="CakeVariant" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Row="1" Grid.Column="0" Margin="15,5,5,20" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Drinks" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="Liquor" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Row="1" Grid.Column="1" Margin="5,5,5,20" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Say Hello" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="HandWave" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Row="1" Grid.Column="2" Margin="5,5,5,20" Click="DisplayCardByBtnTextAsync" Background="#DB5461" BorderBrush="#DB5461">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Wine Catalog" Margin="0,0,3,0" />
+                                <materialDesign:PackIcon Kind="GlassWine" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Right Column -->
+                    <Border Grid.Column="2" Grid.RowSpan="2" Background="#C3DFE0">
+                        <Grid>
+                            <materialDesign:Card Width="300" Height="364" Padding="10" Margin="25,25,37,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Check out our restaurant!" />
+                                    <Separator></Separator>
+                                    <Image Source="../Assets/Dining_room.jpg" Margin="5,20,10,0"/>
+                                    <Button
+                                    Margin="4,10,4,4"
+                                    HorizontalAlignment="Center"
+                                    Foreground="#028090"
+                                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                    CommandParameter="{x:Static Dock.Left}"
+                                    Content="BOOK A TABLE NOW"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Phone" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                        <TextBlock
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                            Text="Tel: 210 99 99 999" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="StoreClock" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                        <TextBlock
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                            Text="Opening Hours: 14:00 - 23:00" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </materialDesign:Card>
+                            <materialDesign:Card Width="300" Height="181" Padding="10" Margin="25,415,37,0" VerticalAlignment="Top" Background="#EEF4ED" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" UniformCornerRadius="6">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{StaticResource MaterialDesignScrollViewer}">
+                                    <StackPanel>
+                                        <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" Foreground="DarkSlateGray" Text="Your e-order" />
+                                        <Separator></Separator>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="CartArrowDown" Margin="5,8,5,0" Foreground="DarkSlateGray" />
+                                            <TextBlock
+                                                Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray"
+                                                Text="Selected dishes: " />
+                                        </StackPanel>
+                                        <TextBlock Name="msg" Text="No items currently selected" Margin="4,0,0,0" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                        <Expander Name="breakfasts_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From the breakfast menu" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="breakfasts" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="maindishes_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From the main menu" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="maindishes" Text="No dishes currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="wines_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From our wine cellar" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="wines" Text="No wines currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="drinks_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From our bar" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="drinks" Text="No drinks currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <Expander Name="desserts_exp" Visibility="Collapsed" HorizontalAlignment="Stretch" materialDesign:ExpanderAssist.HorizontalHeaderPadding="20,4,10,4" Background="#dfeadd" Header="From our desserts" Foreground="Black">
+                                            <StackPanel Margin="24,8,24,16" Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                                                <TextBlock Name="desserts" Text="No desserts currently selected" FontStyle="Italic" TextWrapping="Wrap"  Style="{StaticResource MaterialDesignBody1TextBlock}" Foreground="DarkSlateGray" />
+                                            </StackPanel>
+                                        </Expander>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5,7,0,0" Text="Total: " Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="DarkSlateGray"/>
+                                            <TextBlock x:Name="Total" Margin="2,7,0,0" Text="" Style="{StaticResource MaterialDesignSubtitle2TextBlock}" Foreground="DarkSlateGray" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"/>
+                                        <Button
+                                                x:Name="paybtn"
+                                                Click="paybtn_Click"
+                                                Foreground="#028090"
+                                                Margin="4,5,4,4"
+                                                HorizontalAlignment="Center"
+                                                IsEnabled="False"
+                                                ToolTip="After selecting items, click to navigate to payment" 
+                                                ToolTipService.ShowOnDisabled="True"
+                                                Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                                CommandParameter="{x:Static Dock.Left}"
+                                                Content="PROCEED TO PAYMENT"
+                                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </materialDesign:Card>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </materialDesign:DrawerHost>
     </Grid>
+    
 </UserControl>

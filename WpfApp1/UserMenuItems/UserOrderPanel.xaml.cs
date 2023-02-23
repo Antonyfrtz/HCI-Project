@@ -1,17 +1,11 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp1.UserMenuItems
 {
@@ -92,40 +86,50 @@ namespace WpfApp1.UserMenuItems
             foreach (var item in e.AddedItems)
             {
                 // This item was selected
-                _selectedItems.Add(item.ToString());
-                badge.Badge = _selectedItems.Count;
+                OpenDialog("Add quantity", (result) =>
+                {
+                    for (int i = 0; i < result; i++)
+                    {
+                        _selectedItems.Add(item.ToString());
+                    }
+                    badge.Badge = _selectedItems.Count;
+                });
             }
 
             foreach (var item in e.RemovedItems)
             {
                 // This item was unselected
-                _selectedItems.Remove(item.ToString());
+                while (_selectedItems.Contains(item.ToString()))
+                {
+                    _selectedItems.Remove(item.ToString());
+                }
                 badge.Badge = _selectedItems.Count;
             }
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            badge.Badge = 0;
-            menuListBox.SelectedItems.Clear();
+            _selectedItems.Clear(); // clear the collection of selected items
+            badge.Badge = 0; // set the badge count to 0
+            ((IEnumerable<object>)menuListBox.SelectedItems).ToList().ForEach(menuListBox.SelectedItems.Remove); // clear the selected items in the ListBox control
         }
+
 
         // price of all items
         static private int total;
-        // number of different menus selected
-        static private int menusSelected;
         // price of items of specific menu
         private int menutotal;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             // Get all controls from the main window
-            var parent = Window.GetWindow(this);
-            var Total = (TextBlock)parent.FindName("Total");
-            var itemsInExpander = (Expander)parent.FindName(_cart + "_exp");
-            var msg = (TextBlock)parent.FindName("msg");
-            var dishes = (TextBlock)parent.FindName(_cart);
-            var paybtn = (Button)parent.FindName("paybtn");
-            var DrawerHost = (MaterialDesignThemes.Wpf.DrawerHost)parent.FindName("DrawerHost");
+            UserHome1 parent = (UserHome1)Window.GetWindow(this);
+            UserControlRestaurant restaurant = (UserControlRestaurant)parent.passControlDown();
+            var Total = (TextBlock)restaurant.FindName("Total");
+            var itemsInExpander = (Expander)restaurant.FindName(_cart + "_exp");
+            var msg = (TextBlock)restaurant.FindName("msg");
+            var dishes = (TextBlock)restaurant.FindName(_cart);
+            var paybtn = (Button)restaurant.FindName("paybtn");
+            var DrawerHost = (DrawerHost)restaurant.FindName("DrawerHost");
             // Update cart
             total -= menutotal; // remove previously saved value of items from the cart
             menutotal = _selectedItems.Sum(selection => itemPrices.GetValueOrDefault(selection, 0));
@@ -154,6 +158,80 @@ namespace WpfApp1.UserMenuItems
                 paybtn.IsEnabled = true;
             }
             DrawerHost.IsRightDrawerOpen = false;
+        }
+
+
+        private void OpenDialog(string text, Action<int> callback) // dialog for door and ladder options - can be used for any dialog
+        {
+            var label = new Label(); // create a new Label control
+            label.Visibility = Visibility.Visible;
+            var dialogContent = new StackPanel
+            {
+                Margin = new Thickness(20),
+                Children =
+        {
+            new TextBlock
+            {
+                Text = text,
+            },
+            label, // add the Label control to the StackPanel
+            new Button
+            {
+                Content = "+",
+                Width = 100,
+                Margin = new Thickness(0, 10, 0, 0),
+                BorderBrush= new SolidColorBrush(Color.FromRgb(35,168,73)),
+                Background = new SolidColorBrush(Color.FromRgb(35,168,73)),
+                Tag = true // set a tag to identify the button
+            },
+            new Button
+            {
+                Content = "-",
+                Width = 100,
+                Margin = new Thickness(0, 10, 0, 0),
+                BorderBrush= new SolidColorBrush(Color.FromRgb(205,92,92)),
+                Background = new SolidColorBrush(Color.FromRgb(205,92,92)),
+                Tag = false // set a tag to identify the button
+            },
+            new Button
+            {
+                Content = "Okay",
+                Width = 100,
+                Margin = new Thickness(0, 10, 0, 0),
+                BorderBrush= new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                Background = new SolidColorBrush(Color.FromRgb(18, 105, 199)),
+                Command = DialogHost.CloseDialogCommand
+            }
+         }
+            };
+            int count = 1; // initialize a counter variable
+            label.Content = count.ToString();
+            ((Button)dialogContent.Children[2]).Click += (sender, args) =>
+            {
+                count++; // increment the counter
+                label.Content = count.ToString(); // update the content of the Label control
+            };
+
+            ((Button)dialogContent.Children[3]).Click += (sender, args) =>
+            {
+                if (count > 1) // check if the counter is greater than 0
+                {
+                    count--; // decrement the counter
+                    label.Content = count.ToString(); // update the content of the Label control
+                }
+            };
+
+            ((Button)dialogContent.Children[4]).Click += (sender, args) =>
+            {
+                callback?.Invoke(count);
+            };
+            
+            DialogHost.Show(dialogContent, "RootDialog");
+        }
+
+        private void DialogHost_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+
         }
 
     }

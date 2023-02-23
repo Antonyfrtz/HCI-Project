@@ -29,8 +29,16 @@ namespace WpfApp1
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            UserHome1 userHome1 = new UserHome1();
-            userHome1.Show();
+            if (UsernameTextBox.Text != "admin")
+            {
+                UserHome1 userHome1 = new UserHome1();
+                userHome1.Show();
+            }
+            else
+            {
+                UEmployeeHome1 employeeHome1 = new UEmployeeHome1();
+                employeeHome1.Show();
+            }
             this.Close();
         }
 
