@@ -21,7 +21,7 @@
                     <materialDesign:Card
                                 Name="tempLabel1"
                                 Padding="8"
-                                Margin="790,360,33,103"
+                                Margin="790,365,33,95"
                                 Background="#C3DFE0"
                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
                                 UniformCornerRadius="6">
