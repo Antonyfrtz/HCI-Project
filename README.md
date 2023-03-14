@@ -1,5 +1,5 @@
 # Hotel UX/UI/Management Application
-A hotel management app made for Human-Computer Interaction class in WPF using XAML, C# and HTML-JS
+A hotel management app made for Human-Computer Interaction class in WPF using XAML, materialdesign, C# and HTML-JS
 
 You can login as user (any credentials will do) or admin (use admin as username with empty password on login)
 
